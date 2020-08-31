@@ -7,7 +7,7 @@ import styles from '../styles/project.module.scss';
 export default function Project({projectData}) {
   return (
     <section className={styles.section}>
-      <Typography use="headline3" className={styles.heading}>
+      <Typography use="headline4" className={styles.heading}>
         {projectData.name}
       </Typography>
       <Typography use="body1">{projectData.description}</Typography>

@@ -1,5 +1,6 @@
 .card {
   margin: 10px 5px;
+  min-width: 400px;
 }
 
 .heading {
@@ -10,6 +11,9 @@
 }
 
 .extra {
+  display: flex;
+  align-items: center;
+
   font-style: italic;
   &.size {
     text-transform: capitalize;
@@ -19,6 +23,10 @@
   }
 }
 
+.name {
+}
+
 .primary {
   padding: 10px;
 }
+

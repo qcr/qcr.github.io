@@ -7,6 +7,10 @@
 
 .entries {
   margin: 25px 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .section {

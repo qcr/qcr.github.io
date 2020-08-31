@@ -14,7 +14,7 @@ export default function EntryCard({cardData}) {
               {cardData.type === 'dataset' ? 'Dataset' : 'Code'}
             </Typography>
             <Typography
-              use="button"
+              use="body2"
               className={`${styles.extra} ${
                 styles[cardData.type == 'dataset' ? 'size' : 'url']
               }`}
@@ -23,10 +23,12 @@ export default function EntryCard({cardData}) {
                 ? cardData.size
                   ? cardData.size
                   : '(size unspecified)'
-                : cardData['repo-url']}
+                : cardData['repo-url'].replace(/.*\/([^\/]*\/[^\/]*)$/, '$1')}
             </Typography>
           </div>
-          <Typography use="body1">{cardData.name}</Typography>
+          <Typography use="body1" className={styles.name}>
+            {cardData.name}
+          </Typography>
         </CardPrimaryAction>
       </Card>
     </Elevation>
