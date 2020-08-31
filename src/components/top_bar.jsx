@@ -12,7 +12,9 @@ export default function TopBar() {
     <TopAppBar className={styles.bar}>
       <TopAppBarRow>
         <TopAppBarSection alignStart>
-          <img className={styles.logo} alt="QCR Logo (light)" src={logo} />
+          <Link href="/">
+            <img className={styles.logo} alt="QCR Logo (light)" src={logo} />
+          </Link>
         </TopAppBarSection>
         <TopAppBarSection alignEnd className={styles.pages}>
           <Link href="/code">
