@@ -8,6 +8,10 @@ const nextConfig = {
   },
   webpack(config) {
     config.resolve.roots = [__dirname];
+    config.module.rules.push({
+      test: /\.yaml$/,
+      loader: ['./lib/loaders/yaml.js'],
+    });
     return config;
   },
 };
