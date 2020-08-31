@@ -1,0 +1,41 @@
+.button {
+  text-transform: none;
+  width: 300px;
+  i {
+    filter: brightness(0) invert(1);
+  }
+}
+
+.button-link {
+  margin: 0px auto;
+}
+
+.content {
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightsalmon;
+  height: 1000px;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid salmon;
+  text-align: center;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+
+.extra {
+  color: var(--mdc-theme-primary);
+  font-style: italic;
+  font-weight: bold;
+  text-transform: none;
+  margin: 0px auto;
+}
+
+.heading {
+  font-weight: bold;
+  color: var(--mdc-theme-primary);
+  margin: 40px 0px;
+  text-align: center;
+}

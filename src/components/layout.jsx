@@ -8,7 +8,9 @@ export default function Layout({children, home}) {
     <>
       <TopBar />
       <div className={styles.space} />
-      <div className={home ? styles.home : styles.content}>{children}</div>
+      <div className={`${styles.main} ${home ? styles.home : styles.content}`}>
+        {children}
+      </div>
       {/*<BottomBar /> */}
     </>
   );

@@ -1,8 +1,8 @@
 benchbot-challenge:
   name: Semantic Scene Understanding (challenge)
-  dataset-url: https://cloudstor.aarnet.edu.au/plus/s/gRg5N85PZYRcI2c/download
+  url: https://cloudstor.aarnet.edu.au/plus/s/gRg5N85PZYRcI2c/download
   size: 7.5GB
 benchbot-develop:
   name: Semantic Scene Understanding (development)
-  dataset-url: https://cloudstor.aarnet.edu.au/plus/s/1MNBnLZan8X95qb/download
+  url: https://cloudstor.aarnet.edu.au/plus/s/1MNBnLZan8X95qb/download
   size: 8.4GB

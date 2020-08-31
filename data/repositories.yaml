@@ -1,30 +1,30 @@
 abstract-map:
   name: Abstract Map (Python)
-  repo-url: https://github.com/btalb/abstract_map
+  url: https://github.com/btalb/abstract_map
 abstract-map-simulator:
   name: 2D Simulator for Zoo Experiments
-  repo-url: https://github.com/btalb/abstract_map_simulator
+  url: https://github.com/btalb/abstract_map_simulator
 abstract-map-app:
   name: Android App for Human Participants
-  repo-url: https://github.com/btalb/abstract_map_app
+  url: https://github.com/btalb/abstract_map_app
 benchbot:
   name: BenchBot Software Stack
-  repo-url: https://github.com/roboticvisionorg/benchbot
+  url: https://github.com/roboticvisionorg/benchbot
 benchbot-api:
   name: BenchBot Python API
-  repo-url: https://github.com/roboticvisionorg/benchbot-api
+  url: https://github.com/roboticvisionorg/benchbot-api
 benchbot-batches:
   name: BenchBot Environment Batches
-  repo-url: https://github.com/roboticvisionorg/benchbot-batches
+  url: https://github.com/roboticvisionorg/benchbot-batches
 benchbot-examples:
   name: BenchBot Examples
-  repo-url: https://github.com/roboticvisionorg/benchbot-examples
+  url: https://github.com/roboticvisionorg/benchbot-examples
 benchbot-eval:
   name: BenchBot Evaluation Tools
-  repo-url: https://github.com/roboticvisionorg/benchbot-eval
+  url: https://github.com/roboticvisionorg/benchbot-eval
 benchbot-supervisor:
   name: BenchBot Backend Supervisor
-  repo-url: https://github.com/roboticvisionorg/benchbot-supervisor
+  url: https://github.com/roboticvisionorg/benchbot-supervisor
 benchbot-simulator:
   name: BenchBot Simulator (Isaac)
-  repo-url: https://github.com/roboticvisionorg/benchbot-simulator
+  url: https://github.com/roboticvisionorg/benchbot-simulator

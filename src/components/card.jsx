@@ -8,6 +8,8 @@ import {
 import {Elevation} from '@rmwc/elevation';
 import {Typography} from '@rmwc/typography';
 
+import Link from 'next/link';
+
 import styles from '../styles/card.module.scss';
 
 export default function EntryCard({cardData}) {
@@ -15,28 +17,30 @@ export default function EntryCard({cardData}) {
   return (
     <Elevation z={4} wrap>
       <Card className={styles.card}>
-        <CardPrimaryAction className={styles.primary}>
-          <div className={styles.heading}>
-            <Typography use="button" className={styles.type}>
-              {isDataset ? 'Dataset' : 'Code'}
-            </Typography>
-            <Typography
-              use="body2"
-              className={`${styles.extra} ${
-                styles[isDataset ? 'size' : 'url']
-              }`}
-            >
-              {isDataset
-                ? cardData.size
+        <Link href={`/${isDataset ? 'datasets' : 'code'}/${cardData.id}`}>
+          <CardPrimaryAction className={styles.primary}>
+            <div className={styles.heading}>
+              <Typography use="button" className={styles.type}>
+                {isDataset ? 'Dataset' : 'Code'}
+              </Typography>
+              <Typography
+                use="body2"
+                className={`${styles.extra} ${
+                  styles[isDataset ? 'size' : 'url']
+                }`}
+              >
+                {isDataset
                   ? cardData.size
-                  : '(size unspecified)'
-                : cardData['repo-url'].replace(/.*\/([^\/]*\/[^\/]*)$/, '$1')}
+                    ? cardData.size
+                    : '(size unspecified)'
+                  : cardData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1')}
+              </Typography>
+            </div>
+            <Typography use="body1" className={styles.name}>
+              {cardData.name}
             </Typography>
-          </div>
-          <Typography use="body1" className={styles.name}>
-            {cardData.name}
-          </Typography>
-        </CardPrimaryAction>
+          </CardPrimaryAction>
+        </Link>
       </Card>
     </Elevation>
   );
