@@ -1,0 +1,24 @@
+.card {
+  margin: 10px 5px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--mdc-theme-primary);
+}
+
+.extra {
+  font-style: italic;
+  &.size {
+    text-transform: capitalize;
+  }
+  &.url {
+    text-transform: lowercase;
+  }
+}
+
+.primary {
+  padding: 10px;
+}
