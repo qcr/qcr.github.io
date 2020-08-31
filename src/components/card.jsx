@@ -1,25 +1,32 @@
-import {Card, CardPrimaryAction} from '@rmwc/card';
+import {
+  Card,
+  CardActionIcon,
+  CardActionIcons,
+  CardActions,
+  CardPrimaryAction,
+} from '@rmwc/card';
 import {Elevation} from '@rmwc/elevation';
 import {Typography} from '@rmwc/typography';
 
 import styles from '../styles/card.module.scss';
 
 export default function EntryCard({cardData}) {
+  const isDataset = cardData.type === 'dataset';
   return (
-    <Elevation z={6} wrap>
+    <Elevation z={4} wrap>
       <Card className={styles.card}>
         <CardPrimaryAction className={styles.primary}>
           <div className={styles.heading}>
             <Typography use="button" className={styles.type}>
-              {cardData.type === 'dataset' ? 'Dataset' : 'Code'}
+              {isDataset ? 'Dataset' : 'Code'}
             </Typography>
             <Typography
               use="body2"
               className={`${styles.extra} ${
-                styles[cardData.type == 'dataset' ? 'size' : 'url']
+                styles[isDataset ? 'size' : 'url']
               }`}
             >
-              {cardData.type === 'dataset'
+              {isDataset
                 ? cardData.size
                   ? cardData.size
                   : '(size unspecified)'
