@@ -2,7 +2,9 @@ import Layout from '../components/layout';
 
 import styles from '../styles/index.module.scss';
 
-export default function HomePage() {
+import {datasets, projects, repos} from '/lib/data';
+
+export default function HomePage({projects}) {
   return (
     <Layout home>
       <span className={styles.main}>
@@ -11,6 +13,17 @@ export default function HomePage() {
         <br />
         robots lined up could be cool), and maybe a blurb or something...
       </span>
+      {Object.values(projects).map((p, i) => (
+        <p>{p.name}</p>
+      ))}
     </Layout>
   );
+}
+
+export function getStaticProps() {
+  return {
+    props: {
+      projects: projects,
+    },
+  };
 }
