@@ -24,17 +24,22 @@ export default function DatasetPage({datasetData}) {
       <Typography use="body2" className={styles.extra}>
         {datasetData.size}
       </Typography>
-      <Typography use="body1" className={styles.content}>
-        Content rendered markdown file specified by the 'details' field of your
-        dataset data in '/data/datasets.yaml' (not sure what to at the moment as
-        a default if no value is provided?)
-      </Typography>
+      {datasetData.details ? (
+        <Typography use="body1" className="markdown">
+          <div dangerouslySetInnerHTML={{__html: datasetData.details}} />{' '}
+        </Typography>
+      ) : (
+        <Typography use="body1" className={styles.content}>
+          Content rendered markdown file specified by the 'details' field of
+          your dataset data in '/data/datasets.yaml' (not sure what use as a
+          default if no value is provided?)
+        </Typography>
+      )}
     </Layout>
   );
 }
 
 export function getStaticPaths() {
-  console.log(Object.values(datasets));
   return {
     paths: Object.values(datasets).map(d => ({
       params: {
@@ -46,7 +51,6 @@ export function getStaticPaths() {
 }
 
 export function getStaticProps(ctx) {
-  console.log(ctx.params);
   return {
     props: {
       datasetData: lookupEntry(ctx.params.dataset),

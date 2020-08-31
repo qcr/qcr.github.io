@@ -36,7 +36,6 @@ export default function CodePage({codeData}) {
 }
 
 export function getStaticPaths() {
-  console.log(Object.values(repos));
   return {
     paths: Object.values(repos).map(r => ({
       params: {
@@ -48,7 +47,6 @@ export function getStaticPaths() {
 }
 
 export function getStaticProps(ctx) {
-  console.log(ctx.params);
   return {
     props: {
       codeData: lookupEntry(ctx.params.code),

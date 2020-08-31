@@ -9,6 +9,10 @@ const nextConfig = {
   webpack(config) {
     config.resolve.roots = [__dirname];
     config.module.rules.push({
+      test: /\.md$/,
+      loader: ['./lib/loaders/markdown.js'],
+    });
+    config.module.rules.push({
       test: /\.yaml$/,
       loader: ['./lib/loaders/yaml.js'],
     });
