@@ -10,7 +10,7 @@ import {datasets, projects, repos} from '/lib/data';
 export default function HomePage({projects}) {
   return (
     <Layout home>
-      <Typography use="body1" className={styles.main}>
+      <Typography use="body1" className={`missing ${styles.main}`}>
         Something big & exciting that summarises who we are (a widescreen image
         of all our
         <br />

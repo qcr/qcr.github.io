@@ -12,6 +12,18 @@
   max-width: 1200px;
 }
 
+.progress {
+  margin: 0px;
+  padding: 20px;
+  height: 1rem;
+  font-size: 1rem;
+  border-radius: 0px;
+
+  a {
+    font-weight: bold;
+  }
+}
+
 .space {
   height: 100px;
 }
