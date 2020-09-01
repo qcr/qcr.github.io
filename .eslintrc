@@ -1,0 +1,19 @@
+{
+  "extends": ["eslint:recommended", "google"],
+  "rules": {
+    "require-jsdoc": 0
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  }
+}

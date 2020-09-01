@@ -1,0 +1,27 @@
+.bar {
+  height: 100px;
+  align-items: center;
+  justify-content: space-around;
+  :global(.mdc-top-app-bar__row) {
+    max-width: 1300px;
+  }
+}
+
+.logo {
+  width: 150px;
+  margin: 20px;
+}
+
+.pages {
+  display: flex;
+  justify-content: flex-end;
+
+  :global(.mdc-button) {
+    width: 100px;
+  }
+
+  :global(.mdc-button__label) {
+    text-transform: capitalize;
+    color: white;
+  }
+}

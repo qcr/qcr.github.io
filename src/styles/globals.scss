@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root {
+  --qut-blue: #00407a;
+}
+
+.markdown {
+  margin: 100px 0px;
+  p {
+    padding: 10px 0px;
+  }
+
+  li {
+    margin-left: 30px;
+  }
+
+  .embedded-block {
+    margin: 30px 0px;
+    text-align: center;
+  }
+}
