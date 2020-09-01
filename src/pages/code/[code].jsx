@@ -10,6 +10,7 @@ import icon from '/content/images/icon_github.svg';
 import {lookupEntry, repos} from '/lib/data';
 
 export default function CodePage({codeData}) {
+  console.log(codeData);
   return (
     <Layout>
       <Typography use="headline3" className={styles.heading}>

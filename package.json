@@ -27,6 +27,7 @@
     "next-optimized-images": "^2.6.2",
     "prettier": "^2.1.1",
     "sass": "^1.26.10",
+    "simple-git": "^2.20.1",
     "yaml": "^1.10.0"
   }
 }
