@@ -12,13 +12,10 @@ export default function Layout({children, home}) {
       <div className={styles.space} />
       <Typography use="body1" className={`notify ${styles.progress}`}>
         Note: this site is a work in progress. Please visit&nbsp;
-        <a
-          href="https://research.qut.edu.au/qcr/open-source-code"
-          target="_blank"
-        >
+        <a href="https://research.qut.edu.au/qcr" target="_blank">
           this page
         </a>
-        &nbsp;for access to our open source work
+        &nbsp;for general details about our work
       </Typography>
       <div className={`${styles.main} ${home ? styles.home : styles.content}`}>
         {children}
