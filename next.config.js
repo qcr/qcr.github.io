@@ -1,3 +1,4 @@
+const fs = require('fs');
 const optimisedImages = require('next-optimized-images');
 const path = require('path');
 const withPlugins = require('next-compose-plugins');
