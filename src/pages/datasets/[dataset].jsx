@@ -10,7 +10,6 @@ import icon from '/content/images/icon_download.svg';
 import {datasets, lookupEntry} from '/lib/data';
 
 export default function DatasetPage({datasetData}) {
-  console.log(datasetData.details);
   return (
     <Layout>
       <Typography use="headline3" className={styles.heading}>
