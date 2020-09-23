@@ -15,7 +15,7 @@ export default function Layout({children, home}) {
         <a href="https://research.qut.edu.au/qcr" target="_blank">
           this page
         </a>
-        &nbsp;for general details about our work
+        &nbsp;for details about the QCR
       </Typography>
       <div className={`${styles.main} ${home ? styles.home : styles.content}`}>
         {children}
