@@ -10,7 +10,6 @@ import icon from '/content/images/icon_github.svg';
 import {lookupEntry, repos} from '/lib/data';
 
 export default function CodePage({codeData}) {
-  console.log(codeData);
   return (
     <Layout>
       <Typography use="headline3" className={styles.heading}>
@@ -27,11 +26,17 @@ export default function CodePage({codeData}) {
       <Typography use="body2" className={styles.extra}>
         {codeData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1')}
       </Typography>
-      <Typography use="body1" className={`missing ${styles.content}`}>
-        Content rendered from README.md of the repository, or a custom override
-        specified by the 'details' field of your repository data in
-        '/data/repositories.yaml'
-      </Typography>
+      {codeData.details ? (
+        <Typography use="body1" className="markdown">
+          <div dangerouslySetInnerHTML={{__html: codeData.details}} />{' '}
+        </Typography>
+      ) : (
+        <Typography use="body1" className={`missing ${styles.content}`}>
+          Content rendered from README.md of the repository, or a custom
+          override specified by the 'details' field of your repository data in
+          '/data/repositories.yaml'
+        </Typography>
+      )}
     </Layout>
   );
 }
