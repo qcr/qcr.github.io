@@ -29,7 +29,7 @@ export default function DatasetPage({datasetData}) {
           <div dangerouslySetInnerHTML={{__html: datasetData.details}} />{' '}
         </Typography>
       ) : (
-        <Typography use="body1" className={styles.content}>
+        <Typography use="body1" className={`missing ${styles.content}`}>
           Content rendered markdown file specified by the 'details' field of
           your dataset data in '/data/datasets.yaml' (not sure what use as a
           default if no value is provided?)

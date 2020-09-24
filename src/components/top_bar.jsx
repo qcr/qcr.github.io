@@ -17,14 +17,14 @@ export default function TopBar() {
           </Link>
         </TopAppBarSection>
         <TopAppBarSection alignEnd className={styles.pages}>
+          <Link href="/projects">
+            <Button>Projects</Button>
+          </Link>
           <Link href="/code">
-            <Button theme={'secondary'}>Code</Button>
+            <Button>Code</Button>
           </Link>
           <Link href="/datasets">
             <Button>Datasets</Button>
-          </Link>
-          <Link href="/docs">
-            <Button>Docs</Button>
           </Link>
         </TopAppBarSection>
       </TopAppBarRow>

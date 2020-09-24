@@ -10,6 +10,7 @@
 
 # next.js
 /.next/
+/.next-out/
 /out/
 
 # production
@@ -35,3 +36,4 @@ yarn-error.log*
 
 # Manual additions
 *.sw*
+.repo-cache/

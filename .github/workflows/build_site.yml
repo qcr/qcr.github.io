@@ -1,0 +1,34 @@
+name: 'Builds Static website & hosts on https://qcr.github.io'
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout site code
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+      - name: Install dependencies
+        run: |
+          npm install
+      - name: Build
+        run: |
+          npm run build
+      - name: Push result to gh_pages branch
+        run: |
+          cp -r .next-out/ ../
+          git fetch --all
+          git checkout gh_pages
+          git clean -d -x -f
+          rm -rf .repo-cache
+          cp -r ../.next-out/* .
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Update static site with contents of '$(git rev-parse --short "$GITHUB_SHA")'"
+          git push
