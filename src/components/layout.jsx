@@ -5,7 +5,7 @@ import TopBar from './top_bar';
 
 import styles from '../styles/layout.module.scss';
 
-export default function Layout({children, home}) {
+export default function Layout({children, home, list}) {
   return (
     <>
       <TopBar />
@@ -17,7 +17,11 @@ export default function Layout({children, home}) {
         </a>
         &nbsp;for details about the QCR
       </Typography>
-      <div className={`${styles.main} ${home ? styles.home : styles.content}`}>
+      <div
+        className={`${styles.main} ${
+          home ? styles.home : list ? styles.list : styles.content
+        }`}
+      >
         {children}
       </div>
       {/*<BottomBar /> */}

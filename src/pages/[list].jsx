@@ -1,3 +1,4 @@
+import {TextField} from '@rmwc/textfield';
 import {Typography} from '@rmwc/typography';
 
 import Card from '../components/card';
@@ -9,7 +10,12 @@ import styles from '../styles/list.module.scss';
 
 export default function ListPage({listData}) {
   return (
-    <Layout home>
+    <Layout list>
+      <TextField
+        outlined
+        className={styles.filter}
+        label="Search (UNIMPLEMENTED)"
+      />
       <div className={styles.cards}>
         {Object.values(listData).map((d, i) => (
           <Card key={i} cardData={d} />
