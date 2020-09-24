@@ -1,8 +1,36 @@
 # QCR Open Source Website
 
+[![QUT Centre for Robotics Open Source](https://github.com/qcr/qcr.github.io/blob/master/misc/badge.svg)](https://qcr.github.io)
+
 This repository holds the QCR open source website; a central place where the [QUT Centre for Robotics](https://research.qut.edu.au/qcr/) lists all of its code and datasets available to the community.
 
 The site is designed to make it easy for any member of the QCR (and affiliated members) to share their projects with the community under the QCR banner. In turn, we hope that the community can grow to identify this as the go-to place to look for novel state-of-the-art open source robotics software and datasets.
+
+## Quickstart
+
+Here's some common things you may wish to do, and how to do them with our website:
+
+### Adding your GitHub repository to the website
+
+TODO
+
+### Showing your QCR affiliation on your repository
+
+[Shield Badges](https://github.com/badges/shields) at the top of your `README.md` are a great way to do this (see the top of this `README.md` for a demo). To add a QCR badge to your repository that links to this site, add the following below your title in your `README.md`:
+
+```markdown
+[![QUT Centre for Robotics Open Source](https://github.com/qcr/qcr.github.io/blob/master/misc/badge.svg)](https://qcr.github.io)
+```
+
+Alternatively, if you want to have a set of badges that are centred you can use raw HTML tags:
+
+```markdown
+<p align="center">
+  <a href="https://qcr.github.io" alt="QUT Centre for Robotics Open Source"><img src="https://github.com/qcr/qcr.github.io/blob/master/misc/badge.svg" /></a>
+</p>
+```
+
+_(as a reference, the current badge was generated [here](https://shields.io/) with #00407a used as the colour)_
 
 ## How the website works
 
