@@ -24,11 +24,12 @@ jobs:
           cp -r .next-out/ ../
           git fetch --all
           git checkout gh_pages
+          git reset --hard build_root
           git clean -d -x -f
           rm -rf .repo-cache
           cp -r ../.next-out/* .
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Update static site with contents of '$(git rev-parse --short "$GITHUB_SHA")'"
-          git push
+          git commit -m "Generated from contents of master commit: $(git rev-parse --short "$GITHUB_SHA")"
+          git push -f
