@@ -19,3 +19,16 @@ jobs:
       - name: Build
         run: |
           npm run build
+      - name: Push result to gh_pages branch
+        run: |
+          cp -r .next-out/ ../
+          git fetch --all
+          git checkout gh_pages
+          git clean -d -x -f
+          rm -rf .repo-cache
+          cp -r ../.next-out/* .
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Update static site with contents of '$(git rev-parse --short "$GITHUB_SHA")'"
+          git push
