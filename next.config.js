@@ -7,6 +7,7 @@ const nextConfig = {
   sassOptions: {
     includePaths: ['node_modules'].map(d => path.join(__dirname, d)),
   },
+  trailingSlash: true,
   webpack(config) {
     config.resolve.roots = [__dirname];
     config.module.rules.push({
