@@ -1,8 +1,15 @@
 .heading {
-  display: block;
   font-weight: bold;
   color: var(--mdc-theme-primary);
-  margin: 15px 0px;
+  margin: 40px 0px;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .entries {
@@ -17,3 +24,10 @@
   display: block;
   margin: 50px 20px;
 }
+
+.subheading {
+  font-weight: bold;
+  color: var(--mdc-theme-primary);
+  margin-top: 40px;
+}
+

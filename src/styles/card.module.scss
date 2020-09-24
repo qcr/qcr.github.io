@@ -1,21 +1,14 @@
 .card {
   margin: 10px 5px;
-  min-width: 400px;
+  width: 300px;
   border-radius: 10px;
 }
 
-.heading {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  color: var(--mdc-theme-primary);
-}
-
 .extra {
-  display: flex;
-  align-items: center;
-
+  margin-left: auto;
+  margin-bottom: 5px;
   font-style: italic;
+  color: var(--mdc-theme-primary);
   &.size {
     text-transform: capitalize;
   }
@@ -24,8 +17,14 @@
   }
 }
 
-.primary {
+.footer {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
+}
+
+.image-default {
+  background-image: url('../../content/images/dummy.jpg');
 }
 
 .type {
