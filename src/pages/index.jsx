@@ -1,7 +1,6 @@
 import {Typography} from '@rmwc/typography';
 
 import Layout from '../components/layout';
-import Project from '../components/project';
 
 import styles from '../styles/index.module.scss';
 
