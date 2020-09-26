@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import Layout from '../../components/layout';
 import styles from '../../styles/code.module.scss';
-import icon from '/content/images/icon_github.svg';
+import icon from '/assets/icon_github.svg';
 
 import {lookupEntry, repos} from '/lib/data';
 

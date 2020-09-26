@@ -4,7 +4,7 @@ import {TopAppBar, TopAppBarSection, TopAppBarRow} from '@rmwc/top-app-bar';
 
 import Link from 'next/link';
 
-import logo from '/content/images/qcr_logo_light.png';
+import logo from '/assets/qcr_logo_light.png';
 import styles from '../styles/top_bar.module.scss';
 
 export default function TopBar() {

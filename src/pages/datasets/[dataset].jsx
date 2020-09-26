@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import Layout from '../../components/layout';
 import styles from '../../styles/dataset.module.scss';
-import icon from '/content/images/icon_download.svg';
+import icon from '/assets/icon_download.svg';
 
 import {datasets, lookupEntry} from '/lib/data';
 
