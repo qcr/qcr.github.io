@@ -14,8 +14,8 @@ export default function CardCarousel({cardsData}) {
   return (
     <Slider {...settings} className={styles.carousel}>
       {Object.values(cardsData).map((c, i) => (
-        <div className={styles.item}>
-          <Card key={i} cardData={c} />
+        <div key={i} className={styles.item}>
+          <Card cardData={c} />
         </div>
       ))}
     </Slider>

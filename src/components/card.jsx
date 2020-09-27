@@ -20,7 +20,12 @@ export default function EntryCard({cardData}) {
       <Card className={styles.card}>
         <Link href={`/${section}/${cardData.id}`}>
           <CardPrimaryAction className={styles.clickable}>
-            <CardMedia sixteenByNine className={styles['image-default']} />
+            <CardMedia
+              sixteenByNine
+              style={{
+                backgroundImage: 'url(' + cardData.image + ')',
+              }}
+            />
             <div className={styles.footer}>
               <Typography
                 use="body2"
