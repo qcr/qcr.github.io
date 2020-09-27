@@ -11,6 +11,9 @@ import '@material/top-app-bar/dist/mdc.top-app-bar.css';
 import '@material/typography/dist/mdc.typography.css';
 import '@rmwc/icon/icon.css';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import {ThemeProvider} from '@rmwc/theme';
 
 import '../styles/globals.scss';

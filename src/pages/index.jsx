@@ -1,12 +1,16 @@
 import {Typography} from '@rmwc/typography';
 
+import CardCarousel from '../components/card_carousel';
 import Layout from '../components/layout';
 
 import styles from '../styles/index.module.scss';
 
-import {projects} from '/lib/content';
+import {randomContent} from '/lib/content';
 
-export default function HomePage(props) {
+export default function HomePage({mostPopular, mostRecent, featured}) {
+  if (typeof featured === 'string') featured = JSON.parse(featured);
+  if (typeof mostPopular === 'string') mostPopular = JSON.parse(mostPopular);
+  if (typeof mostRecent === 'string') mostRecent = JSON.parse(mostRecent);
   return (
     <Layout home>
       <Typography use="body1" className={`missing ${styles.main}`}>
@@ -18,24 +22,19 @@ export default function HomePage(props) {
       <Typography use="headline4" className={styles.heading}>
         Newest Additions
       </Typography>
-      <Typography use="body1" className={`missing ${styles.carousel}`}>
-        "Carousel" of the newest N repositories / datasets / projects
-      </Typography>
+      <CardCarousel cardsData={mostRecent} />
       <Typography use="headline4" className={styles.heading}>
         Most Popular
       </Typography>
-      <Typography use="body1" className={`missing ${styles.carousel}`}>
-        "Carousel" of the "most popular" N repositories / datasets / projects
-        <br />
-        (can determine via views on Google Analytics potentially?)
-      </Typography>
+      <CardCarousel cardsData={mostPopular} />
       <Typography use="headline4" className={styles.heading}>
         Featured Projects
       </Typography>
+      <CardCarousel cardsData={featured} />
       <Typography use="body1" className={`missing ${styles.carousel}`}>
-        "Carousel" of our most important projects that we really want to be seen
+        Note: carousels are randomly filled at the moment (need to decide what
         <br />
-        (determined by... )
+        criteria / sections we want before I implement them)
       </Typography>
     </Layout>
   );
@@ -44,7 +43,13 @@ export default function HomePage(props) {
 export function getStaticProps() {
   return {
     props: {
-      projects: projects,
+      featured: JSON.stringify([...Array(10).keys()].map(a => randomContent())),
+      mostPopular: JSON.stringify(
+        [...Array(10).keys()].map(a => randomContent())
+      ),
+      mostRecent: JSON.stringify(
+        [...Array(10).keys()].map(a => randomContent())
+      ),
     },
   };
 }
