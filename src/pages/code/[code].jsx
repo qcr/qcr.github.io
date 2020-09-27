@@ -11,7 +11,6 @@ import {code, lookupEntry} from '/lib/content';
 
 export default function CodePage({codeData}) {
   if (typeof codeData === 'string') codeData = JSON.parse(codeData);
-  console.log(codeData);
   return (
     <Layout>
       <Typography use="headline3" className={styles.heading}>
