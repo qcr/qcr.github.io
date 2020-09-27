@@ -6,6 +6,10 @@
   :global(.slick-dots li button:before) {
     color: var(--mdc-theme-primary);
   }
+
+  :global(.slick-slide div) {
+    outline: none;
+  }
 }
 
 .item {
