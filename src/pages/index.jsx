@@ -4,7 +4,7 @@ import Layout from '../components/layout';
 
 import styles from '../styles/index.module.scss';
 
-import {projects} from '/lib/data';
+import {projects} from '/lib/content';
 
 export default function HomePage(props) {
   return (

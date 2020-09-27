@@ -7,4 +7,4 @@ size: 7.5GB
 
 An image:
 
-![image](./images/dummy.jpg)
+![image](/assets/dummy.jpg)

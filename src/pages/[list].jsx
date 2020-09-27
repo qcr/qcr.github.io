@@ -4,11 +4,12 @@ import {Typography} from '@rmwc/typography';
 import Card from '../components/card';
 import Layout from '../components/layout';
 
-import {datasets, projects, repos} from '/lib/data';
+import {code, datasets, projects} from '/lib/content';
 
 import styles from '../styles/list.module.scss';
 
 export default function ListPage({listData}) {
+  if (typeof listData === 'string') listData = JSON.parse(listData);
   return (
     <Layout list>
       <TextField
@@ -38,13 +39,13 @@ export function getStaticPaths() {
 
 export function getStaticProps(ctx) {
   const listMap = {
-    code: repos,
+    code: code,
     datasets: datasets,
     projects: projects,
   };
   return {
     props: {
-      listData: listMap[ctx.params.list],
+      listData: JSON.stringify(listMap[ctx.params.list]),
     },
   };
 }

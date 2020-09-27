@@ -3,35 +3,44 @@ import {Typography} from '@rmwc/typography';
 import Card from '../../components/card';
 import Layout from '../../components/layout';
 
-import {lookupEntry, projects} from '/lib/data';
+import {lookupEntry, projects} from '/lib/content';
 
 import styles from '../../styles/project.module.scss';
 
 export default function ProjectPage({projectData}) {
-  const datasets = projectData.entries.filter(e => e.type === 'dataset');
-  const repos = projectData.entries.filter(e => e.type === 'repository');
+  if (typeof projectData === 'string') projectData = JSON.parse(projectData);
   return (
     <Layout>
       <Typography use="headline3" className={styles.heading}>
         {projectData.name}
       </Typography>
-      <p>{projectData.description}</p>
-      <Typography use="headline4" className={styles.subheading}>
-        Repositories
+      <Typography use="body1" className="markdown">
+        <div dangerouslySetInnerHTML={{__html: projectData.content}} />{' '}
       </Typography>
-      <div className={styles.cards}>
-        {repos.map((r, i) => (
-          <Card key={i} cardData={r} />
-        ))}
-      </div>
-      <Typography use="headline4" className={styles.subheading}>
-        Datasets
-      </Typography>
-      <div classname={styles.cards}>
-        {datasets.map((r, i) => (
-          <Card key={i} cardData={r} />
-        ))}
-      </div>
+      {projectData.code && (
+        <>
+          <Typography use="headline4" className={styles.subheading}>
+            Code Repositories
+          </Typography>
+          <div className={styles.cards}>
+            {projectData.code.map((r, i) => (
+              <Card key={i} cardData={r} />
+            ))}
+          </div>
+        </>
+      )}
+      {projectData.datasets && (
+        <>
+          <Typography use="headline4" className={styles.subheading}>
+            Datasets
+          </Typography>
+          <div className={styles.cards}>
+            {projectData.datasets.map((r, i) => (
+              <Card key={i} cardData={r} />
+            ))}
+          </div>
+        </>
+      )}
     </Layout>
   );
 }
@@ -50,7 +59,7 @@ export function getStaticPaths() {
 export function getStaticProps(ctx) {
   return {
     props: {
-      projectData: projects[ctx.params.project],
+      projectData: JSON.stringify(lookupEntry(ctx.params.project, 'project')),
     },
   };
 }

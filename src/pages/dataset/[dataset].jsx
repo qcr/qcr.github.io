@@ -7,9 +7,10 @@ import Layout from '../../components/layout';
 import styles from '../../styles/dataset.module.scss';
 import icon from '/assets/icon_download.svg';
 
-import {datasets, lookupEntry} from '/lib/data';
+import {datasets, lookupEntry} from '/lib/content';
 
 export default function DatasetPage({datasetData}) {
+  if (typeof datasetData === 'string') datasetData = JSON.parse(datasetData);
   return (
     <Layout>
       <Typography use="headline3" className={styles.heading}>
@@ -24,9 +25,9 @@ export default function DatasetPage({datasetData}) {
       <Typography use="body2" className={styles.extra}>
         {datasetData.size}
       </Typography>
-      {datasetData.details ? (
+      {datasetData.content ? (
         <Typography use="body1" className="markdown">
-          <div dangerouslySetInnerHTML={{__html: datasetData.details}} />{' '}
+          <div dangerouslySetInnerHTML={{__html: datasetData.content}} />{' '}
         </Typography>
       ) : (
         <Typography use="body1" className={`missing ${styles.content}`}>
@@ -53,7 +54,7 @@ export function getStaticPaths() {
 export function getStaticProps(ctx) {
   return {
     props: {
-      datasetData: lookupEntry(ctx.params.dataset),
+      datasetData: JSON.stringify(lookupEntry(ctx.params.dataset, 'dataset')),
     },
   };
 }
