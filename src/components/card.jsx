@@ -19,23 +19,29 @@ export default function EntryCard({cardData}) {
     <Elevation z={4} wrap>
       <Card className={styles.card}>
         <Link href={`/${section}/${cardData.id}`}>
-          <CardPrimaryAction>
-            <CardMedia sixteenByNine className={styles['image-default']} />
+          <CardPrimaryAction className={styles.clickable}>
+            <CardMedia
+              sixteenByNine
+              style={{
+                backgroundImage: 'url(' + cardData.image + ')',
+                backgroundPosition: cardData.image_position,
+              }}
+            />
             <div className={styles.footer}>
-              {cardData.type !== 'project' && (
-                <Typography
-                  use="body2"
-                  className={`${styles.extra} ${
-                    styles[section === 'dataset' ? 'size' : 'url']
-                  }`}
-                >
-                  {section === 'dataset'
+              <Typography
+                use="body2"
+                className={`${styles.extra} ${
+                  styles[section === 'code' ? 'url' : 'size']
+                }`}
+              >
+                {section === 'dataset'
+                  ? cardData.size
                     ? cardData.size
-                      ? cardData.size
-                      : '(size unspecified)'
-                    : cardData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1')}
-                </Typography>
-              )}
+                    : '(size unspecified)'
+                  : section === 'code'
+                  ? cardData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1')
+                  : 'Project'}
+              </Typography>
               <Typography use="body1" className={styles.name}>
                 {cardData.name}
               </Typography>

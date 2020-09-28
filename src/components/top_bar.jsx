@@ -3,11 +3,20 @@ import {Theme} from '@rmwc/theme';
 import {TopAppBar, TopAppBarSection, TopAppBarRow} from '@rmwc/top-app-bar';
 
 import Link from 'next/link';
+import {useRouter} from 'next/router';
 
-import logo from '/content/images/qcr_logo_light.png';
+import logo from '/assets/qcr_logo_light.png';
 import styles from '../styles/top_bar.module.scss';
 
 export default function TopBar() {
+  const r = useRouter();
+  const selected = r.asPath.startsWith('/code')
+    ? 'code'
+    : r.asPath.startsWith('/dataset')
+    ? 'dataset'
+    : r.asPath.startsWith('/project')
+    ? 'project'
+    : undefined;
   return (
     <TopAppBar className={styles.bar}>
       <TopAppBarRow>
@@ -17,14 +26,24 @@ export default function TopBar() {
           </Link>
         </TopAppBarSection>
         <TopAppBarSection alignEnd className={styles.pages}>
-          <Link href="/projects">
-            <Button>Projects</Button>
+          <Link href="/project">
+            <Button
+              className={selected === 'project' && styles['selected-tab']}
+            >
+              Projects
+            </Button>
           </Link>
           <Link href="/code">
-            <Button>Code</Button>
+            <Button className={selected === 'code' && styles['selected-tab']}>
+              Code
+            </Button>
           </Link>
-          <Link href="/datasets">
-            <Button>Datasets</Button>
+          <Link href="/dataset">
+            <Button
+              className={selected === 'dataset' && styles['selected-tab']}
+            >
+              Datasets
+            </Button>
           </Link>
         </TopAppBarSection>
       </TopAppBarRow>

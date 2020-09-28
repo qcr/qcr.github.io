@@ -1,0 +1,17 @@
+.carousel {
+  :global(.slick-arrow:before) {
+    color: var(--mdc-theme-primary);
+  }
+
+  :global(.slick-dots li button:before) {
+    color: var(--mdc-theme-primary);
+  }
+
+  :global(.slick-slide div) {
+    outline: none;
+  }
+}
+
+.item {
+  margin: auto;
+}

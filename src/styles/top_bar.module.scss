@@ -2,14 +2,12 @@
   height: 100px;
   align-items: center;
   justify-content: space-around;
-  :global(.mdc-top-app-bar__row) {
-    max-width: 1300px;
-  }
 }
 
 .logo {
   width: 150px;
   margin: 20px;
+  cursor: pointer;
 }
 
 .pages {
@@ -24,4 +22,11 @@
     text-transform: capitalize;
     color: white;
   }
+}
+
+.selected-tab {
+  border-radius: 0px;
+  border-bottom: white 3px solid;
+  padding-top: 3px;
+  font-weight: bold;
 }

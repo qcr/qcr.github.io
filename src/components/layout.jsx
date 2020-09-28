@@ -24,7 +24,7 @@ export default function Layout({children, home, list}) {
       >
         {children}
       </div>
-      {/*<BottomBar /> */}
+      <BottomBar />
     </>
   );
 }
