@@ -16,6 +16,8 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import '@fortawesome/fontawesome-free/css/all.css';
 
+import 'github-markdown-css/github-markdown.css';
+
 import {ThemeProvider} from '@rmwc/theme';
 
 import '../styles/globals.scss';

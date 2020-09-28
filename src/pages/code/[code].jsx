@@ -28,7 +28,7 @@ export default function CodePage({codeData}) {
         {codeData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1')}
       </Typography>
       {codeData.content ? (
-        <Typography use="body1" className="markdown">
+        <Typography use="body1" className="markdown-body">
           <div dangerouslySetInnerHTML={{__html: codeData.content}} />{' '}
         </Typography>
       ) : (

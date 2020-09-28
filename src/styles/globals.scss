@@ -21,20 +21,8 @@ a {
   --qut-blue: #00407a;
 }
 
-.markdown {
+.markdown-body {
   margin: 20px 0px;
-  p {
-    padding: 10px 0px;
-  }
-
-  li {
-    margin-left: 30px;
-  }
-
-  .embedded-block {
-    margin: 30px 0px;
-    text-align: center;
-  }
 }
 
 @mixin focus-box($color, $borderColor) {
