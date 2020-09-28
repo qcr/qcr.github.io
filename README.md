@@ -1,10 +1,12 @@
-# QCR Open Source Website
-
 [![QUT Centre for Robotics Open Source](https://github.com/qcr/qcr.github.io/blob/master/misc/badge.svg)](https://qcr.github.io)
+
+# QCR Open Source Website
 
 This repository holds the QCR open source website; a central place where the [QUT Centre for Robotics](https://research.qut.edu.au/qcr/) lists all of its code and datasets available to the community.
 
 The site is designed to make it easy for any member of the QCR (and affiliated members) to share their projects with the community under the QCR banner. In turn, we hope that the community can grow to identify this as the go-to place to look for novel state-of-the-art open source robotics software and datasets.
+
+We have created the website to be _content-driven_: you provide some content describing your cool stuff, and we produce a website to show it off for you. _Content_ is simply a Markdown file with some [front-matter](https://github.com/jxson/front-matter) containing settings for how you want your content displayed. See [below](#content-settings-specification) for a full outline of supported content settings.
 
 ## Quickstart
 
@@ -31,6 +33,29 @@ Alternatively, if you want to have a set of badges that are centred you can use 
 ```
 
 _(as a reference, the current badge was generated [here](https://shields.io/) with #00407a used as the colour)_
+
+## Content Settings Specification
+
+Settings for your content is displayed are provided in a 'fenced' [front-matter](https://github.com/jxson/front-matter) block at the start of a Markdown file. The syntax inside the fenced block is YAML. For example:
+
+```markdown
+---
+name: My awesome research project
+type: project
+id: awesome-research
+image_position: 50% 100%
+---
+
+... rest of file ...
+```
+
+As the above example shows, settings are a set of named keys with a corresponding values. The full list of supported keys, when they're required, and their description are as follows:
+
+| Key    | Description                                                                                                                                                                                           |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name` | (required)<br>The name given to your content which appears in cards & on the page title                                                                                                               |
+| `type` | (required)<br>The type of your content (must be one of `code`, `dataset`, or `project`)                                                                                                               |
+| `url`  | (required unless `type == 'project'`)<br>A URL associated with your content (i.e. the URL for the code's GitHub repository, the download link for a dataset, or an external website for your project) |
 
 ## How the website works
 
