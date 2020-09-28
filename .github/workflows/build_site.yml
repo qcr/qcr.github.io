@@ -23,7 +23,7 @@ jobs:
         run: |
           cp -r .next-out/ ../
           git fetch --all
-          git checkout gh_pages
+          git checkout -f gh_pages
           git reset --hard build_root
           git clean -d -x -f
           rm -rf .repo-cache
