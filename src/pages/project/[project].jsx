@@ -24,7 +24,7 @@ export default function ProjectPage({projectData}) {
           icon={icon}
         />
       )}
-      <Typography use="body1" className="markdown">
+      <Typography use="body1" className="markdown-body">
         <div dangerouslySetInnerHTML={{__html: projectData.content}} />{' '}
       </Typography>
       {projectData.code && (

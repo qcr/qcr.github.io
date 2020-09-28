@@ -28,7 +28,7 @@ export default function DatasetPage({datasetData}) {
         {datasetData.size}
       </Typography>
       {datasetData.content ? (
-        <Typography use="body1" className="markdown">
+        <Typography use="body1" className="markdown-body">
           <div dangerouslySetInnerHTML={{__html: datasetData.content}} />{' '}
         </Typography>
       ) : (
