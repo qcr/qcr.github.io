@@ -24,6 +24,7 @@ export default function EntryCard({cardData}) {
               sixteenByNine
               style={{
                 backgroundImage: 'url(' + cardData.image + ')',
+                backgroundPosition: cardData.image_position,
               }}
             />
             <div className={styles.footer}>
