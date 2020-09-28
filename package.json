@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "@rmwc/button": "^6.1.4",
     "@rmwc/card": "^6.1.4",
     "@rmwc/elevation": "^6.1.4",

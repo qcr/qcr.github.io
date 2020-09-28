@@ -1,3 +1,5 @@
+$maxWidth: 1300px;
+
 * {
   padding: 0;
   margin: 0;
@@ -59,4 +61,19 @@ a {
 
 .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
   color: var(--mdc-theme-primary);
+}
+
+.mdc-top-app-bar__row {
+  max-width: $maxWidth;
+}
+
+.site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-bottom-bar {
+  width: 100%;
+  max-width: $maxWidth;
 }

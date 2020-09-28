@@ -14,6 +14,8 @@ import '@rmwc/icon/icon.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import '@fortawesome/fontawesome-free/css/all.css';
+
 import {ThemeProvider} from '@rmwc/theme';
 
 import '../styles/globals.scss';
@@ -25,6 +27,7 @@ export default function Site({Component, pageProps}) {
         options={{
           primary: '#00407a',
         }}
+        className="site"
       >
         <Component {...pageProps} />
       </ThemeProvider>
