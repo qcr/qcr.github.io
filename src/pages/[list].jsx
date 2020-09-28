@@ -30,8 +30,8 @@ export function getStaticPaths() {
   return {
     paths: [
       {params: {list: 'code'}},
-      {params: {list: 'datasets'}},
-      {params: {list: 'projects'}},
+      {params: {list: 'dataset'}},
+      {params: {list: 'project'}},
     ],
     fallback: false,
   };
@@ -40,8 +40,8 @@ export function getStaticPaths() {
 export function getStaticProps(ctx) {
   const listMap = {
     code: code,
-    datasets: datasets,
-    projects: projects,
+    dataset: datasets,
+    project: projects,
   };
   return {
     props: {

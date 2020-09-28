@@ -23,3 +23,10 @@
     color: white;
   }
 }
+
+.selected-tab {
+  border-radius: 0px;
+  border-bottom: white 3px solid;
+  padding-top: 3px;
+  font-weight: bold;
+}
