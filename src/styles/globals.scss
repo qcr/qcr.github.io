@@ -23,6 +23,11 @@ a {
 
 .markdown-body {
   margin: 20px 0px;
+
+  .embedded-block {
+    margin: 20px;
+    text-align: center;
+  }
 }
 
 @mixin focus-box($color, $borderColor) {
