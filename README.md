@@ -60,6 +60,12 @@ Go to [http://localhost:3000](http://localhost:3000) in your browser, and you sh
 
 _(when you make changes some may appear immediately, some may require a manual page refresh, and the rare cases may require restarting the development server)_
 
+Want to be really sure your changes will successfully build? You can build the entire site locally by running:
+
+```
+npm run build
+```
+
 ### Showing your QCR affiliation on your repository
 
 [Shield Badges](https://github.com/badges/shields) at the top of your `README.md` are a great way to do this (see the top of this `README.md` for a demo). To add a QCR badge to your repository that links to this site, add the following below your title in your `README.md`:
