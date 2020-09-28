@@ -3,6 +3,7 @@ import {Typography} from '@rmwc/typography';
 
 import Link from 'next/link';
 
+import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 import styles from '../../styles/code.module.scss';
 import icon from '/assets/icon_github.svg';
@@ -17,13 +18,12 @@ export default function CodePage({codeData}) {
         {codeData.name}
       </Typography>
 
-      <Link href={codeData.url}>
-        <a target="_blank" className={styles['button-link']}>
-          <Button raised trailingIcon={icon} className={styles.button}>
-            View the code on GitHub
-          </Button>
-        </a>
-      </Link>
+      <FocusButton
+        newTab
+        url={codeData.url}
+        text="View the code on GitHub"
+        icon={icon}
+      />
       <Typography use="body2" className={styles.extra}>
         {codeData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1')}
       </Typography>

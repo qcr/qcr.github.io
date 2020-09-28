@@ -1,11 +1,13 @@
 import {Typography} from '@rmwc/typography';
 
 import Card from '../../components/card';
+import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 
-import {lookupEntry, projects} from '/lib/content';
-
+import icon from '/assets/icon_website.svg';
 import styles from '../../styles/project.module.scss';
+
+import {lookupEntry, projects} from '/lib/content';
 
 export default function ProjectPage({projectData}) {
   if (typeof projectData === 'string') projectData = JSON.parse(projectData);
@@ -14,6 +16,14 @@ export default function ProjectPage({projectData}) {
       <Typography use="headline3" className={styles.heading}>
         {projectData.name}
       </Typography>
+      {projectData.url && (
+        <FocusButton
+          newTab
+          url={projectData.url}
+          text="Go to project website"
+          icon={icon}
+        />
+      )}
       <Typography use="body1" className="markdown">
         <div dangerouslySetInnerHTML={{__html: projectData.content}} />{' '}
       </Typography>

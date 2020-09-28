@@ -1,6 +1,7 @@
 ---
 name: Human Cues for Robot Navigation
 type: project
+url: https://btalb.github.io/abstract_map
 code:
   - abstract-map
   - abstract-map-simulator

@@ -3,9 +3,11 @@ import {Typography} from '@rmwc/typography';
 
 import Link from 'next/link';
 
+import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
-import styles from '../../styles/dataset.module.scss';
+
 import icon from '/assets/icon_download.svg';
+import styles from '../../styles/dataset.module.scss';
 
 import {datasets, lookupEntry} from '/lib/content';
 
@@ -17,11 +19,11 @@ export default function DatasetPage({datasetData}) {
         {datasetData.name}
       </Typography>
 
-      <Link href={datasetData.url}>
-        <Button raised trailingIcon={icon} className={styles.button}>
-          Download the dataset
-        </Button>
-      </Link>
+      <FocusButton
+        url={datasetData.url}
+        text="Download the dataset"
+        icon={icon}
+      />
       <Typography use="body2" className={styles.extra}>
         {datasetData.size}
       </Typography>
