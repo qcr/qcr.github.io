@@ -1,4 +1,4 @@
-[![QUT Centre for Robotics Open Source](https://github.com/qcr/qcr.github.io/blob/master/misc/badge.svg)](https://qcr.github.io)
+[![QUT Centre for Robotics Open Source](https://github.com/qcr/qcr.github.io/raw/master/misc/badge.svg)](https://qcr.github.io)
 
 # QCR Open Source Website
 
@@ -71,14 +71,14 @@ npm run build
 [Shield Badges](https://github.com/badges/shields) at the top of your `README.md` are a great way to do this (see the top of this `README.md` for a demo). To add a QCR badge to your repository that links to this site, add the following below your title in your `README.md`:
 
 ```markdown
-[![QUT Centre for Robotics Open Source](https://github.com/qcr/qcr.github.io/blob/master/misc/badge.svg)](https://qcr.github.io)
+[![QUT Centre for Robotics Open Source](https://github.com/qcr/qcr.github.io/raw/master/misc/badge.svg)](https://qcr.github.io)
 ```
 
 Alternatively, if you want to have a set of badges that are centred you can use raw HTML tags:
 
 ```markdown
 <p align="center">
-  <a href="https://qcr.github.io" alt="QUT Centre for Robotics Open Source"><img src="https://github.com/qcr/qcr.github.io/blob/master/misc/badge.svg" /></a>
+  <a href="https://qcr.github.io" alt="QUT Centre for Robotics Open Source"><img src="https://github.com/qcr/qcr.github.io/raw/master/misc/badge.svg" /></a>
 </p>
 ```
 
@@ -92,7 +92,7 @@ _(as a reference, the current badge was generated [here](https://shields.io/) wi
 
 When `code` content on this site is displaying a Markdown file from your code repository it can be annoying to remember to manually update this site every time that Markdown file changes in your code repository. Instead, what you can do is add a [GitHub Action](https://github.com/features/actions) to your repository to remotely request rebuilding of this site when you push to `master`. To do this:
 
-1. Copy the contents of the action file: [https://github.com/qcr/tools/blob/develop/github_actions/trigger_site_update.yaml](https://github.com/qcr/tools/blob/develop/github_actions/trigger_site_update.yaml)
+1. Copy the contents of the action file: [https://github.com/qcr/tools/raw/develop/github_actions/trigger_site_update.yaml](https://github.com/qcr/tools/raw/develop/github_actions/trigger_site_update.yaml)
 2. Paste them into a YAML file in the `.github/workflows/` directory of your code repository
 3. Edit the YAML payload at the start of the action file to match your desired settings (syntax is the same as if you were manually adding a `code` content entry here)
 4. Push the changes to `master`
@@ -127,7 +127,7 @@ As the above example shows, settings are a set of named keys with a correspondin
 | `url`            | (required unless `type == 'project'`)<br>A URL associated with your content (i.e. the URL for the code's GitHub repository, the download link for a dataset, or an external website for your project)                                                                                                                                                                                                                                                                                                                              |
 | `id`             | (optional)<br>The ID for this piece of content that is used throughout the site, including in the URL (i.e. a `project` with `id` `'awesome-research'` will be available at `https://qcr.github.io/project/awesome-research`). Is pulled from the filename of this file without the extension if not provided. An error is thrown if there are duplicate ID & type pairs (e.g. there can be both a `project` and `code` with `id` `'benchbot'`, but not two `projects` with the `'benchbot'` `id`).                                |
 | `content`        | (optional)<br>Render this Markdown file for your content _instead_ of what follows in the current file. This is particularly useful for `code` content that wants to use a file like `repo.md` from its GitHub repository. To do this, set `content` to `repo:/repo.md`<sup>**1**</sup>. Rendered content is the first hit in this list:<ol><li>Value provided for this key<li>Markdown following front-matter in this file<li>`repo:/README.md` if type is `code`<li>Error is raised as we couldn't find any usable content!</ol> |
-| `image`          | (optional)<br>Image to use as the feature image on the content's card throughout the site. The chosen feature image is the first hit in this list:<ol><li>Value provided for this key<li>First _non-svg_ image in the Markdown content with a _local_ `src` (i.e. not `https://...`)<li>The [default fallback image](https://github.com/qcr/qcr.github.io/blob/master/assets/qcr_logo_light_filled.png)                                                                                                                            |
+| `image`          | (optional)<br>Image to use as the feature image on the content's card throughout the site. The chosen feature image is the first hit in this list:<ol><li>Value provided for this key<li>First _non-svg_ image in the Markdown content with a _local_ `src` (i.e. not `https://...`)<li>The [default fallback image](https://github.com/qcr/qcr.github.io/raw/master/assets/qcr_logo_light_filled.png)                                                                                                                             |
 | `image_position` | (optional)<br>Uses the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property to specify feature image position in the card. For example, `center 100%` focuses on the bottom half of an image, `center 0%` on the top half, `0% center` on the left half, and `center` or `center center` on the centre of the image. The default value is `center`.                                                                                                                                     |
 | `code`           | (optional, only valid when `type == 'project'`)<br>A list of IDs denoting the `code` content that is a part of this project.                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `datasets`       | (optional, only valid when `type == 'project'`)<br>A list of IDs denoting the `dataset` content that is a part of this project.                                                                                                                                                                                                                                                                                                                                                                                                    |
