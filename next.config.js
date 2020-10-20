@@ -5,7 +5,7 @@ const withPlugins = require('next-compose-plugins');
 
 const nextConfig = {
   sassOptions: {
-    includePaths: ['node_modules'].map(d => path.join(__dirname, d)),
+    includePaths: ['node_modules'].map((d) => path.join(__dirname, d)),
   },
   trailingSlash: true,
   webpack(config) {
@@ -22,11 +22,20 @@ const nextConfig = {
       test: /\.yaml$/,
       loader: ['./lib/loaders/yaml.js'],
     });
+    config.module.rules.push({
+      test: /\.gif$/,
+      loader: ['./lib/loaders/gif.js'],
+    });
     return config;
   },
 };
 
 module.exports = withPlugins(
-  [[optimisedImages, {optimizeImages: false}]],
-  nextConfig
+    [
+      [
+        optimisedImages,
+        {handleImages: ['jpeg', 'png', 'svg', 'webp'], optimizeImages: true},
+      ],
+    ],
+    nextConfig
 );

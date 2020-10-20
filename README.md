@@ -35,10 +35,10 @@ That's it. The repository should now be on the site, with the first image used a
 
 The previous method is not a great way to develop. You add content, blindly create commits on `master`, and hope for the best while it builds. Then painfully rinse and repeat until you get it as you want it.
 
-Instead, it's much better to add content locally & push it up to the main site when you're happy with your additions. To do this, you first need to make sure you have the latest LTS of NodeJs installed & Git:
+Instead, it's much better to add content locally & push it up to the main site when you're happy with your additions. To do this, you first need to make sure you have the latest LTS of NodeJs installed, ffmpeg, & Git:
 
 ```
-sudo apt install nodejs npm git
+sudo apt install nodejs npm ffmpeg git
 sudo npm --global install n
 sudo n lts
 ```

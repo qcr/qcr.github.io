@@ -17,6 +17,7 @@
     "@rmwc/top-app-bar": "^6.1.4",
     "@rmwc/typography": "^6.1.4",
     "github-markdown-css": "^4.0.0",
+    "image-trace-loader": "^1.0.2",
     "imagemin-gifsicle": "^7.0.0",
     "next": "9.5.2",
     "react": "16.13.1",
