@@ -28,6 +28,10 @@ a {
     margin: 20px;
     text-align: center;
   }
+
+  video {
+    width: 100%;
+  }
 }
 
 @mixin focus-box($color, $borderColor) {
