@@ -6,7 +6,6 @@ export default function LazyImage({images, className, style}) {
   const cleanImages = images.filter(Boolean);
 
   // TODO should handle videos in general... not just webm
-  console.log(cleanImages);
   if (cleanImages[cleanImages.length - 1].endsWith('.webm')) {
     return (
       <video
