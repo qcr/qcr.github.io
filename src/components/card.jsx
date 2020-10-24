@@ -22,7 +22,11 @@ export default function EntryCard({cardData}) {
       <Card className={styles.card}>
         <Link href={`/${section}/${cardData.id}`}>
           <CardPrimaryAction className={styles.clickable}>
-            <img src={cardData.image} />
+            <LazyImage
+              images={[cardData.image, cardData._image]}
+              className={styles.media}
+              style={{objectPosition: cardData.image_position}}
+            />
             <div className={styles.footer}>
               <Typography
                 use="body2"
