@@ -11,6 +11,7 @@ export default function LazyImage({images, className, style}) {
       <video
         autoPlay
         loop
+        muted
         poster={cleanImages[0]}
         className={className}
         style={style}
