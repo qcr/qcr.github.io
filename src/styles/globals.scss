@@ -52,6 +52,11 @@ a {
   @include focus-box(lightsalmon, salmon);
 }
 
+:not(pre) > code[class*='language-'] {
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+}
+
 .notify {
   @include focus-box(lightcoral, crimson);
 }
