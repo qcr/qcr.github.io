@@ -28,6 +28,10 @@ a {
     margin: 20px;
     text-align: center;
   }
+
+  video {
+    width: 100%;
+  }
 }
 
 @mixin focus-box($color, $borderColor) {
@@ -46,6 +50,11 @@ a {
 
 .missing {
   @include focus-box(lightsalmon, salmon);
+}
+
+:not(pre) > code[class*='language-'] {
+  padding-left: 0.3em;
+  padding-right: 0.3em;
 }
 
 .notify {

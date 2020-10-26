@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export -o .next-out",
+    "build": "next build && next export -o .next-out && rm .next-out/_next/static/gifs/*.gif",
     "start": "next start"
   },
   "dependencies": {
@@ -17,7 +17,9 @@
     "@rmwc/top-app-bar": "^6.1.4",
     "@rmwc/typography": "^6.1.4",
     "github-markdown-css": "^4.0.0",
+    "image-trace-loader": "^1.0.2",
     "imagemin-gifsicle": "^7.0.0",
+    "markdown-it-prism": "^2.1.3",
     "next": "9.5.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -36,6 +38,8 @@
     "next-optimized-images": "^2.6.2",
     "prettier": "^2.1.2",
     "sass": "^1.26.11",
+    "webpack-cli": "^4.1.0",
+    "webpack-stats-plugin": "^1.0.1",
     "yaml": "^1.10.0"
   }
 }

@@ -1,0 +1,20 @@
+name: 'Receives a remote update payload, & requests a rebuild'
+
+on:
+  workflow_dispatch:
+    types: remote-update
+    inputs:
+      debug:
+        description: 'Debugging'
+        required: true
+        default: 'blah'
+
+jobs:
+  update:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout site code
+        uses: actions/checkout@v2
+      - name: Add payload to registered remote data
+        run: |
+          echo "Hello ${{ toJson(github) }}"

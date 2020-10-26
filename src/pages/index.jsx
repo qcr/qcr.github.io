@@ -11,6 +11,10 @@ export default function HomePage({mostPopular, mostRecent, featured}) {
   if (typeof featured === 'string') featured = JSON.parse(featured);
   if (typeof mostPopular === 'string') mostPopular = JSON.parse(mostPopular);
   if (typeof mostRecent === 'string') mostRecent = JSON.parse(mostRecent);
+  console.log(
+      require('/var/tmp/qcr-site/btalb/abstract_map_app/docs/abstract_map_app.gif')
+          .default
+  );
   return (
     <Layout home>
       <Typography use="body1" className={`missing ${styles.main}`}>
@@ -43,12 +47,12 @@ export default function HomePage({mostPopular, mostRecent, featured}) {
 export function getStaticProps() {
   return {
     props: {
-      featured: JSON.stringify([...Array(10).keys()].map(a => randomContent())),
+      featured: JSON.stringify([...Array(10).keys()].map((a) => randomContent())),
       mostPopular: JSON.stringify(
-        [...Array(10).keys()].map(a => randomContent())
+          [...Array(10).keys()].map((a) => randomContent())
       ),
       mostRecent: JSON.stringify(
-        [...Array(10).keys()].map(a => randomContent())
+          [...Array(10).keys()].map((a) => randomContent())
       ),
     },
   };

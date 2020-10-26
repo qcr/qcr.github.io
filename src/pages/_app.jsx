@@ -18,6 +18,8 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 import 'github-markdown-css/github-markdown.css';
 
+import 'prismjs/themes/prism-tomorrow.css';
+
 import {ThemeProvider} from '@rmwc/theme';
 
 import '../styles/globals.scss';
