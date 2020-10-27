@@ -13,12 +13,16 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v1
+      # - name: Install local dependencies (ONLY FOR LOCAL BUILDING WITH ACT)
+      #   run: |
+      #     apt update && apt install -y build-essential autoconf
       - name: Install dependencies
         run: |
+          sudo apt update && sudo apt install -y ffmpeg
           npm install
       - name: Build
         run: |
-          npm run build
+          REPO_CACHE='.repo_cache' npm run build
       - name: Push result to gh_pages branch
         run: |
           cp -r .next-out/ ../
