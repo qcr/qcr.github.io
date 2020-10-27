@@ -11,10 +11,6 @@ export default function HomePage({mostPopular, mostRecent, featured}) {
   if (typeof featured === 'string') featured = JSON.parse(featured);
   if (typeof mostPopular === 'string') mostPopular = JSON.parse(mostPopular);
   if (typeof mostRecent === 'string') mostRecent = JSON.parse(mostRecent);
-  console.log(
-      require('/var/tmp/qcr-site/btalb/abstract_map_app/docs/abstract_map_app.gif')
-          .default
-  );
   return (
     <Layout home>
       <Typography use="body1" className={`missing ${styles.main}`}>
