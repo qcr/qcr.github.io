@@ -1,13 +1,23 @@
-name: 'Receives a remote update payload, & requests a rebuild'
+name: 'Receives a remote update payload, and requests a rebuild'
 
 on:
   workflow_dispatch:
-    types: remote-update
     inputs:
-      debug:
-        description: 'Debugging'
+      name:
+        description: 'Name given to your content in cards and page titles'
         required: true
-        default: 'blah'
+      id:
+        description: 'ID to be used throughout site, including in URL'
+        required: false
+      content:
+        description: 'Path of file to render for page content'
+        required: false
+      image:
+        description: 'Path of image to use as the feature image in cards'
+        required: false
+      image_position:
+        description: "Value for CSS 'background-position' of feature image"
+        required: false
 
 jobs:
   update:
@@ -17,4 +27,5 @@ jobs:
         uses: actions/checkout@v2
       - name: Add payload to registered remote data
         run: |
+          echo "TESTING:"
           echo "Hello ${{ toJson(github) }}"
