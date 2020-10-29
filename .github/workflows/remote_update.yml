@@ -43,15 +43,11 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-      - name: Debug
-        run: |
-          echo "CD:"
-          ls -al .
-          echo "~.npm:"
-          ls -al ~/.npm
       - name: Add a file corresponding to the payload (also check for errors)
         run: |
-          echo "Adding file"
+          inputs=$(echo "${{ toJSON(github.event.inputs) }}" | js)
+          echo "$inputs"
+          node -e "require('lib/tools').createRemoteEntry(\"$(echo "${{ toJSON(github.event.inputs)}}")\")"
       - name: Create a new commit, only if it is necessary
         run: |
           echo "Creating a new commit if necessary"
