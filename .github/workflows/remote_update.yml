@@ -48,7 +48,8 @@ jobs:
           node -e 'require("./lib/tools").createRemoteEntry(${{ toJSON(github.event.inputs)}})'
       - name: Create a new commit, only if it is necessary
         run: |
-          echo "Creating a new commit if necessary"
+          [ -z "$(git status --porcelain)" ] && echo "Skipping commit as entry already exists." && exit 0
+          echo "Creating the commit"
       - name: Request a rebuild if required
         run: |
           echo "Rebuilding if necessary"
