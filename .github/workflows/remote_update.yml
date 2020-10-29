@@ -30,12 +30,28 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v1
+      - name: Cache dependencies
+        id: cache-deps
+        uses: actions/cache@v2
+        env:
+          cache-name: node
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
       - name: Install dependencies
         run: |
           npm install
+      - name: Debug
+        run: |
+          echo "CD:"
+          ls -al .
+          echo "~.npm:"
+          ls -al ~/.npm
       - name: Add a file corresponding to the payload (also check for errors)
         run: |
-          node -e 'require("./lib/tools").createRemoteEntry(${{ toJSON(github.event.inputs) }})'
+          echo "Adding file"
       - name: Create a new commit, only if it is necessary
         run: |
           echo "Creating a new commit if necessary"
