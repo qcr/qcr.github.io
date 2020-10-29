@@ -6,6 +6,9 @@ on:
       name:
         description: 'Name given to your content in cards and page titles'
         required: true
+      url:
+        description: 'URL of requesting repository'
+        required: true
       id:
         description: 'ID to be used throughout site, including in URL'
         required: false
@@ -25,7 +28,14 @@ jobs:
     steps:
       - name: Checkout site code
         uses: actions/checkout@v2
-      - name: Add payload to registered remote data
+      - name: Setup Node
+        uses: actions/setup-node@v1
+      - name: Add a file corresponding to the payload (also check for errors)
         run: |
-          echo "TESTING:"
-          echo "Hello ${{ toJson(github) }}"
+          node -e "require('./lib/tools').createRemoteEntry(${{ toJSON(github.event.inputs) }})"
+      - name: Create a new commit, only if it is necessary
+        run: |
+          echo "Creating a new commit if necessary"
+      - name: Request a rebuild if required
+        run: |
+          echo "Rebuilding if necessary"
