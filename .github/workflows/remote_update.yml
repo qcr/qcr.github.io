@@ -45,7 +45,7 @@ jobs:
           npm install
       - name: Add a file corresponding to the payload (also check for errors)
         run: |
-          node -e 'require("./lib/tools").createRemoteEntry(${{ toJSON(github.event.inputs)}})'
+          node -e 'require("./lib/remote").createRemoteEntry(${{ toJSON(github.event.inputs)}})'
       - name: Create a new commit, only if it is necessary
         run: |
           [ -z "$(git status --porcelain)" ] && echo "Skipping commit as entry already exists." && exit 0
