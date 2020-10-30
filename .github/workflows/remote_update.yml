@@ -49,7 +49,12 @@ jobs:
       - name: Create a new commit, only if it is necessary
         run: |
           [ -z "$(git status --porcelain)" ] && echo "Skipping commit as entry already exists." && exit 0
-          echo "Creating the commit"
+          echo "Creating a new commit due to dirty state"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Remote entry update for '$(echo ${{ github.event.inputs.url }} | sed 's/.*\/\([^\/]*\/[^\/]*$\)/\1/')'"
+          git push
       - name: Request a rebuild if required
         run: |
           echo "Rebuilding if necessary"
