@@ -55,6 +55,8 @@ jobs:
           git add .
           git commit -m "Remote entry update for '$(echo ${{ github.event.inputs.url }} | sed 's/.*\/\([^\/]*\/[^\/]*$\)/\1/')'"
           git push
+          echo "::set-env name=REBUILD_REQUIRED::true"
       - name: Request a rebuild if required
         run: |
+          [ ! -z "$REBUILD_REQUIRED" ] && echo "Rebuild required!"
           echo "Rebuilding if necessary"
