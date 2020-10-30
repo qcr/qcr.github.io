@@ -6,6 +6,9 @@ on:
       name:
         description: 'Name given to your content in cards and page titles'
         required: true
+      url:
+        description: 'URL of requesting repository'
+        required: true
       id:
         description: 'ID to be used throughout site, including in URL'
         required: false
@@ -25,7 +28,33 @@ jobs:
     steps:
       - name: Checkout site code
         uses: actions/checkout@v2
-      - name: Add payload to registered remote data
+      - name: Setup Node
+        uses: actions/setup-node@v1
+      - name: Cache dependencies
+        id: cache-deps
+        uses: actions/cache@v2
+        env:
+          cache-name: node
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+      - name: Install dependencies
         run: |
-          echo "TESTING:"
-          echo "Hello ${{ toJson(github) }}"
+          npm install
+      - name: Add a file corresponding to the payload (also check for errors)
+        run: |
+          node -e 'require("./lib/remote").createRemoteEntry(${{ toJSON(github.event.inputs)}})'
+      - name: Create a new commit, only if it is necessary
+        run: |
+          [ -z "$(git status --porcelain)" ] && echo "Skipping commit as entry already exists." && exit 0
+          echo "Creating a new commit due to dirty state"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Remote entry update for '$(echo ${{ github.event.inputs.url }} | sed 's/.*\/\([^\/]*\/[^\/]*$\)/\1/')'"
+          git push
+      - name: Request a rebuild if required
+        run: |
+          echo "Rebuilding if necessary"
