@@ -62,8 +62,10 @@ jobs:
           echo "REBUILD_REQUIRED=true" >> $GITHUB_ENV
       - name: Request a rebuild if required
         run: |
+          repo_path="../latest"
+          git clone ${{ github.event.inputs.url }} "$repo_path"
           git fetch --all
           git checkout origin/gh_pages -- .repo_cache_info || true
-          [ -z "$REBUILD_REQUIRED" ] && ! node -e 'require("./lib/remote").rebuildRequired("qcr/ros_omron_driver", "HEAD") || require("process").exit(1)' && echo "No rebuild required. Skipping step." && exit 0
+          [ -z "$REBUILD_REQUIRED" ] && ! node -e 'require("./lib/remote").rebuildRequired("'$NAME_SHORT'", "'$repo_path'") || require("process").exit(1)' && echo "No rebuild required. Skipping step." && exit 0
           echo "Rebuild required. Starting a site rebuild"
           curl -sS --request POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.QCRBOT_TOKEN }}" https://api.github.com/repos/qcr/qcr.github.io/actions/workflows/build_site.yml/dispatches --data '{"ref": "master"}'
