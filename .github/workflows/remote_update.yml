@@ -30,6 +30,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v1
+        with:
+          node-version: '12'
       - name: Cache dependencies
         id: cache-deps
         uses: actions/cache@v2
@@ -48,13 +50,22 @@ jobs:
           node -e 'require("./lib/remote").createRemoteEntry(${{ toJSON(github.event.inputs)}})'
       - name: Create a new commit, only if it is necessary
         run: |
+          name_short="$(echo ${{ github.event.inputs.url }} | sed 's/.*\/\([^\/]*\/[^\/]*$\)/\1/')"
+          echo "NAME_SHORT=${name_short}" >> $GITHUB_ENV
           [ -z "$(git status --porcelain)" ] && echo "Skipping commit as entry already exists." && exit 0
           echo "Creating a new commit due to dirty state"
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Remote entry update for '$(echo ${{ github.event.inputs.url }} | sed 's/.*\/\([^\/]*\/[^\/]*$\)/\1/')'"
+          git commit -m "Remote entry update for '$name_short'"
           git push
+          echo "REBUILD_REQUIRED=true" >> $GITHUB_ENV
       - name: Request a rebuild if required
         run: |
-          echo "Rebuilding if necessary"
+          repo_path="../latest"
+          git clone ${{ github.event.inputs.url }} "$repo_path"
+          git fetch --all
+          git checkout origin/gh_pages -- .repo_cache_info || true
+          [ -z "$REBUILD_REQUIRED" ] && ! node -e 'require("./lib/remote").rebuildRequired("'$NAME_SHORT'", "'$repo_path'") || require("process").exit(1)' && echo "No rebuild required. Skipping step." && exit 0
+          echo "Rebuild required. Starting a site rebuild"
+          curl -sS --request POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.QCRBOT_TOKEN }}" https://api.github.com/repos/qcr/qcr.github.io/actions/workflows/build_site.yml/dispatches --data '{"ref": "master"}'

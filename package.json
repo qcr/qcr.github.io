@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export -o .next-out && rm .next-out/_next/static/gifs/*.gif",
+    "build": "export NEXT_OUT_DIR=.next-out && next build && next export -o $NEXT_OUT_DIR && node -e 'require(\"./lib/repo_cache\").dumpCacheInfo(\"'$NEXT_OUT_DIR'/.repo_cache_info\")' && rm $NEXT_OUT_DIR/_next/static/gifs/*.gif",
     "start": "next start"
   },
   "dependencies": {

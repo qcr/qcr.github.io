@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   build:
@@ -13,6 +14,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v1
+        with:
+          node-version: '12'
       - name: Cache dependencies
         id: cache-deps
         uses: actions/cache@v2
@@ -37,8 +40,9 @@ jobs:
           git checkout -f gh_pages
           git reset --hard build_root
           git clean -d -x -f
-          rm -rf .repo-cache
+          rm -rf .repo_cache
           cp -r ../.next-out/* .
+          cp ../.next-out/.repo* .
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Action"
           git add .
