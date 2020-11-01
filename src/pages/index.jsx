@@ -5,7 +5,12 @@ import Layout from '../components/layout';
 
 import styles from '../styles/index.module.scss';
 
+import {orderByNewest} from '/lib/analytics';
 import {randomContent} from '/lib/content';
+
+const LIMIT_FEATURE = 10;
+const LIMIT_MOST_POPULAR = 10;
+const LIMIT_MOST_RECENT = 10;
 
 export default function HomePage({mostPopular, mostRecent, featured}) {
   if (typeof featured === 'string') featured = JSON.parse(featured);
@@ -31,25 +36,19 @@ export default function HomePage({mostPopular, mostRecent, featured}) {
         Featured Projects
       </Typography>
       <CardCarousel cardsData={featured} />
-      <Typography use="body1" className={`missing ${styles.carousel}`}>
-        Note: carousels are randomly filled at the moment (need to decide what
-        <br />
-        criteria / sections we want before I implement them)
-      </Typography>
     </Layout>
   );
 }
 
 export function getStaticProps() {
+  orderByNewest();
   return {
     props: {
       featured: JSON.stringify([...Array(10).keys()].map((a) => randomContent())),
       mostPopular: JSON.stringify(
           [...Array(10).keys()].map((a) => randomContent())
       ),
-      mostRecent: JSON.stringify(
-          [...Array(10).keys()].map((a) => randomContent())
-      ),
+      mostRecent: orderByNewest().slice(0, LIMIT_MOST_RECENT),
     },
   };
 }
