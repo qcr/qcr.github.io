@@ -24,6 +24,8 @@ on:
 
 jobs:
   update:
+    env:
+      NEXT_OUT_DIR: .next-out
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout site code
