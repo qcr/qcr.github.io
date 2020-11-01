@@ -48,15 +48,17 @@ jobs:
           node -e 'require("./lib/remote").createRemoteEntry(${{ toJSON(github.event.inputs)}})'
       - name: Create a new commit, only if it is necessary
         run: |
+          name_short="$(echo ${{ github.event.inputs.url }} | sed 's/.*\/\([^\/]*\/[^\/]*$\)/\1/')"
+          echo "NAME_SHORT=${name_short}" >> $GITHUB_ENV
           [ -z "$(git status --porcelain)" ] && echo "Skipping commit as entry already exists." && exit 0
           echo "Creating a new commit due to dirty state"
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Remote entry update for '$(echo ${{ github.event.inputs.url }} | sed 's/.*\/\([^\/]*\/[^\/]*$\)/\1/')'"
+          git commit -m "Remote entry update for '$name_short'"
           git push
-          echo "::set-env name=REBUILD_REQUIRED::true"
+          echo "REBUILD_REQUIRED=true" >> $GITHUB_ENV
       - name: Request a rebuild if required
         run: |
-          [ ! -z "$REBUILD_REQUIRED" ] && echo "Rebuild required!"
-          echo "Rebuilding if necessary"
+          [ ! -z "$REBUILD_REQUIRED" ] && echo "Check if rebuild required!"
+          echo "Requesting a site rebuild"
