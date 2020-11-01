@@ -40,8 +40,9 @@ jobs:
           git checkout -f gh_pages
           git reset --hard build_root
           git clean -d -x -f
-          rm -rf .repo-cache
+          rm -rf .repo_cache
           cp -r ../.next-out/* .
+          cp ../.next-out/.repo* .
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Action"
           git add .
