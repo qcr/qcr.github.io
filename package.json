@@ -27,6 +27,7 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
+    "csv-loader": "^3.0.3",
     "eslint": "^7.9.0",
     "eslint-config-google": "^0.14.0",
     "gray-matter": "^4.0.2",

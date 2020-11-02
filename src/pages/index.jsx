@@ -5,8 +5,11 @@ import Layout from '../components/layout';
 
 import styles from '../styles/index.module.scss';
 
-import {orderByFeatured, orderByNewest} from '/lib/analytics';
-import {randomContent} from '/lib/content';
+import {
+  orderByFeatured,
+  orderByNewest,
+  orderByPopularity,
+} from '/lib/analytics';
 
 const LIMIT_FEATURE = 10;
 const LIMIT_MOST_POPULAR = 10;
@@ -45,13 +48,10 @@ export default function HomePage({mostPopular, mostRecent, featured}) {
 }
 
 export function getStaticProps() {
-  orderByFeatured();
   return {
     props: {
       featured: orderByFeatured().slice(0, LIMIT_FEATURE),
-      mostPopular: JSON.stringify(
-          [...Array(10).keys()].map((a) => randomContent())
-      ),
+      mostPopular: orderByPopularity().slice(0, LIMIT_MOST_POPULAR),
       mostRecent: orderByNewest().slice(0, LIMIT_MOST_RECENT),
     },
   };

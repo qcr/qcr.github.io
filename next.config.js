@@ -26,6 +26,10 @@ const nextConfig = {
       test: /\.gif$/,
       loader: ['./lib/loaders/gif.js'],
     });
+    config.module.rules.push({
+      test: /\.csv$/,
+      loader: 'csv-loader',
+    });
     return config;
   },
 };
