@@ -12,11 +12,6 @@ export default function ListPage({listData}) {
   if (typeof listData === 'string') listData = JSON.parse(listData);
   return (
     <Layout list>
-      <TextField
-        outlined
-        className={styles.filter}
-        label="Search (UNIMPLEMENTED)"
-      />
       <div className={styles.cards}>
         {Object.values(listData).map((d, i) => (
           <Card key={i} cardData={d} />
@@ -45,7 +40,11 @@ export function getStaticProps(ctx) {
   };
   return {
     props: {
-      listData: JSON.stringify(listMap[ctx.params.list]),
+      listData: JSON.stringify(
+          Object.values(listMap[ctx.params.list]).sort((a, b) =>
+            a.name.localeCompare(b.name)
+          )
+      ),
     },
   };
 }

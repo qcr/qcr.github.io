@@ -5,7 +5,15 @@ import Layout from '../components/layout';
 
 import styles from '../styles/index.module.scss';
 
-import {randomContent} from '/lib/content';
+import {
+  orderByFeatured,
+  orderByNewest,
+  orderByPopularity,
+} from '/lib/analytics';
+
+const LIMIT_FEATURE = 10;
+const LIMIT_MOST_POPULAR = 10;
+const LIMIT_MOST_RECENT = 10;
 
 export default function HomePage({mostPopular, mostRecent, featured}) {
   if (typeof featured === 'string') featured = JSON.parse(featured);
@@ -27,15 +35,14 @@ export default function HomePage({mostPopular, mostRecent, featured}) {
         Most Popular
       </Typography>
       <CardCarousel cardsData={mostPopular} />
-      <Typography use="headline4" className={styles.heading}>
-        Featured Projects
-      </Typography>
-      <CardCarousel cardsData={featured} />
-      <Typography use="body1" className={`missing ${styles.carousel}`}>
-        Note: carousels are randomly filled at the moment (need to decide what
-        <br />
-        criteria / sections we want before I implement them)
-      </Typography>
+      {featured.length > 0 && (
+        <>
+          <Typography use="headline4" className={styles.heading}>
+            Featured Projects
+          </Typography>
+          <CardCarousel cardsData={featured} />
+        </>
+      )}
     </Layout>
   );
 }
@@ -43,13 +50,9 @@ export default function HomePage({mostPopular, mostRecent, featured}) {
 export function getStaticProps() {
   return {
     props: {
-      featured: JSON.stringify([...Array(10).keys()].map((a) => randomContent())),
-      mostPopular: JSON.stringify(
-          [...Array(10).keys()].map((a) => randomContent())
-      ),
-      mostRecent: JSON.stringify(
-          [...Array(10).keys()].map((a) => randomContent())
-      ),
+      featured: orderByFeatured().slice(0, LIMIT_FEATURE),
+      mostPopular: orderByPopularity().slice(0, LIMIT_MOST_POPULAR),
+      mostRecent: orderByNewest().slice(0, LIMIT_MOST_RECENT),
     },
   };
 }
