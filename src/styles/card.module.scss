@@ -5,7 +5,12 @@ $height: 265px;
   height: $height;
   width: $width;
   margin: 10px 5px;
-  border-radius: 10px;
+  border-radius: 0;
+
+  :global(.mdc-card__primary-action)::before,
+  :global(.mdc-card__primary-action)::after {
+    background-color: var(--mdc-theme-primary);
+  }
 }
 
 .clickable {
