@@ -1,6 +1,7 @@
 ---
 name: BenchBot
 type: project
+url: http://benchbot.org
 id: benchbot
 code:
   - benchbot
