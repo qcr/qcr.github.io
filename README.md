@@ -78,14 +78,14 @@ python3 -m http.server --directory .next-out
 
 ### Automatically update the site whenever I update my code's README
 
-**_Note: you need to be a member of the [QCR GitHub organisation](https://github.com/qcr) for these steps_**
+**_Note: you need to be a member of the [QCR GitHub organisation](https://github.com/qcr) or have access to the internal [QUT Robotics Wiki](https://wiki.qut.edu.au/display/cyphy/QUT+Centre+for+Robotics) for these steps_**
 
-When `code` content on this site is displaying a Markdown file from your code repository it is annoying to manually update this site every time that Markdown file changes. Instead, you can add a [GitHub Action](https://github.com/features/actions) to your repository to remotely request rebuilding of this site when you push to `master` in your repository. To do this:
+It is annoying to manually update the site every time you make changes to your README in your `code` repository. Instead, you can add a [GitHub Action](https://github.com/features/actions) to your repository to remotely request rebuilding of this site when you push to `master` in your repository. To do this:
 
 1. Copy [this action file](https://github.com/qcr/tools/raw/develop/github_actions/trigger_site_update.yaml) into the `.github/workflows/` directory of your code repository
 2. Edit the YAML payload in the `env` section of the action file to match your desired settings (as a minimum all you have to do is set a `'name'`!)
 3. Push the changes to `master`
-4. The `trigger_site_update` action needs a token to request the site update remotely. The token is provided via [encrypted secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets). An organisation secret provides the token if your repository is owned by `qcr` (i.e. has a URL of the form `https://github.com/qcr/*`), otherwise follow the steps documented [here](https://github.com/qcr/tools/#using-the-qcrbot-access-token) (private to QCR members) to add the token as a secret to your repository.
+4. The `trigger_site_update` action needs a token to request the site update remotely. The token is provided via [encrypted secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets). An organisation secret provides the token if your repository is owned by `qcr` (i.e. has a URL of the form `https://github.com/qcr/*`), otherwise follow the steps documented [here](https://wiki.qut.edu.au/display/cyphy/Shared+account+for+QCR+members) (private to QCR members) to add the token as a secret to your repository.
 
 Done. Now whenever you edit the corresponding Markdown content (or any image files) a site rebuild will be triggered here.
 
