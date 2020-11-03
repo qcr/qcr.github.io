@@ -20,6 +20,8 @@ import 'github-markdown-css/github-markdown.css';
 
 import 'prismjs/themes/prism-tomorrow.css';
 
+import Head from 'next/head';
+
 import {ThemeProvider} from '@rmwc/theme';
 
 import '../styles/globals.scss';
@@ -27,6 +29,9 @@ import '../styles/globals.scss';
 export default function Site({Component, pageProps}) {
   return (
     <>
+      <Head>
+        <title>QUT Centre for Robotics Open Source</title>
+      </Head>
       <ThemeProvider
         options={{
           primary: '#00407a',
