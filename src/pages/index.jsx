@@ -21,28 +21,42 @@ export default function HomePage({mostPopular, mostRecent, featured}) {
   if (typeof mostRecent === 'string') mostRecent = JSON.parse(mostRecent);
   return (
     <Layout home>
-      <Typography use="body1" className={`missing ${styles.main}`}>
-        Something big & exciting that summarises who we are (a widescreen image
-        of all our
-        <br />
-        robots lined up could be cool), and maybe a blurb or something...
-      </Typography>
-      <Typography use="headline4" className={styles.heading}>
-        Newest Additions
-      </Typography>
-      <CardCarousel cardsData={mostRecent} />
-      <Typography use="headline4" className={styles.heading}>
-        Most Popular
-      </Typography>
-      <CardCarousel cardsData={mostPopular} />
-      {featured.length > 0 && (
-        <>
-          <Typography use="headline4" className={styles.heading}>
-            Featured Projects
-          </Typography>
-          <CardCarousel cardsData={featured} />
-        </>
-      )}
+      <img
+        alt="QUT Centre for Robotics Banner Image"
+        src={require('/assets/banner_image.jpg')}
+        className={styles['banner-image']}
+      />
+      <div className={styles.welcome}>
+        <p>
+          Welcome the QUT Centre for Robotics Open Source website. This is the
+          place where we share our public contributions with the wider robotics
+          communities. These contributions include projects, codebases, or
+          datasets.
+        </p>
+        <p>
+          Please see our{' '}
+          <a href="https://research.qut.edu.au/qcr/">main site</a> for more
+          details about the Centre.
+        </p>
+      </div>
+      <div className={styles.content}>
+        <Typography use="headline4" className={styles.heading}>
+          Newest Additions
+        </Typography>
+        <CardCarousel cardsData={mostRecent} />
+        <Typography use="headline4" className={styles.heading}>
+          Most Popular
+        </Typography>
+        <CardCarousel cardsData={mostPopular} />
+        {featured.length > 0 && (
+          <>
+            <Typography use="headline4" className={styles.heading}>
+              Featured Projects
+            </Typography>
+            <CardCarousel cardsData={featured} />
+          </>
+        )}
+      </div>
     </Layout>
   );
 }

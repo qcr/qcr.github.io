@@ -3,14 +3,13 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding: 0 50px;
 }
 .content {
   max-width: 100ch;
 }
 
 .home {
-  max-width: 1200px;
+  width: 100%;
 }
 
 .list {

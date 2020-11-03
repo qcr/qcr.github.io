@@ -1,6 +1,16 @@
+.banner-image {
+  height: 250px;
+  object-fit: cover;
+  object-position: 50% 52.5%;
+}
 .carousel {
   margin: 50px;
   height: 75px;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .heading {
@@ -13,4 +23,24 @@
 
 .main {
   height: 300px;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20ch;
+  background-color: var(--mdc-theme-primary);
+  color: white;
+  a {
+    font-weight: bolder;
+  }
+  p {
+    margin: 1ch 0;
+    text-align: center;
+    max-width: 100ch;
+    font-size: 1.15em;
+  }
 }
