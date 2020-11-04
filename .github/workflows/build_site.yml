@@ -32,6 +32,7 @@ jobs:
           npm install
       - name: Build
         run: |
+          git fetch --all
           REPO_CACHE='.repo_cache' npm run build
       - name: Push result to gh_pages branch
         run: |
