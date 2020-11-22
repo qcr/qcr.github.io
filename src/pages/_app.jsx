@@ -30,7 +30,7 @@ export default function Site({Component, pageProps}) {
   return (
     <>
       <Head>
-        <meta name="viewport" content="device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>QUT Centre for Robotics Open Source</title>
       </Head>
       <ThemeProvider
