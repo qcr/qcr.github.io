@@ -1,18 +1,23 @@
 .bar {
-  height: 100px;
+  height: auto;
   align-items: center;
   justify-content: space-around;
 }
 
 .logo {
-  width: 150px;
-  margin: 20px;
+  width: 100px;
+  margin: 6px;
   cursor: pointer;
 }
 
+.logo-section {
+  justify-content: center;
+}
+
 .pages {
+  margin: 6px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 
   :global(.mdc-button) {
     width: 100px;
@@ -29,4 +34,10 @@
   border-bottom: white 3px solid;
   padding-top: 3px;
   font-weight: bold;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  height: 128px;
 }
