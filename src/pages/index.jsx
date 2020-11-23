@@ -6,6 +6,9 @@ import Layout from '../components/layout';
 import styles from '../styles/index.module.scss';
 
 import {
+  numCode,
+  numDatasets,
+  numProjects,
   orderByFeatured,
   orderByNewest,
   orderByPopularity,
@@ -15,7 +18,14 @@ const LIMIT_FEATURE = 10;
 const LIMIT_MOST_POPULAR = 10;
 const LIMIT_MOST_RECENT = 10;
 
-export default function HomePage({mostPopular, mostRecent, featured}) {
+export default function HomePage({
+  mostPopular,
+  mostRecent,
+  featured,
+  projectCount,
+  codeCount,
+  datasetCount,
+}) {
   if (typeof featured === 'string') featured = JSON.parse(featured);
   if (typeof mostPopular === 'string') mostPopular = JSON.parse(mostPopular);
   if (typeof mostRecent === 'string') mostRecent = JSON.parse(mostRecent);
@@ -30,8 +40,10 @@ export default function HomePage({mostPopular, mostRecent, featured}) {
         <p>
           Welcome the QUT Centre for Robotics Open Source website. This is the
           place where we share our public contributions with the wider robotics
-          communities. These contributions include projects, codebases, or
-          datasets.
+          communities. These contributions include &nbsp;
+          <strong>{projectCount}</strong>&nbsp; projects, &nbsp;
+          <strong>{codeCount}</strong> codebases, and &nbsp;
+          <strong>{datasetCount}</strong>&nbsp; datasets.
         </p>
         <p>
           Please see our{' '}
@@ -67,6 +79,9 @@ export function getStaticProps() {
       featured: orderByFeatured().slice(0, LIMIT_FEATURE),
       mostPopular: orderByPopularity().slice(0, LIMIT_MOST_POPULAR),
       mostRecent: orderByNewest().slice(0, LIMIT_MOST_RECENT),
+      codeCount: numCode,
+      datasetCount: numDatasets,
+      projectCount: numProjects,
     },
   };
 }

@@ -21,6 +21,7 @@
 
   :global(.mdc-button) {
     width: 100px;
+    font-weight: bold;
   }
 
   :global(.mdc-button__label) {
@@ -33,7 +34,6 @@
   border-radius: 0px;
   border-bottom: white 3px solid;
   padding-top: 3px;
-  font-weight: bold;
 }
 
 .row {
