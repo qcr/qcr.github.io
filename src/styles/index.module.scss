@@ -10,7 +10,9 @@
 
 .content {
   margin: 0 auto;
+  padding: 0 16px;
   max-width: 1200px;
+  width: 100%;
 }
 
 .heading {
@@ -31,11 +33,12 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 20ch;
+  height: 100%;
+  padding: 36px;
   background-color: var(--mdc-theme-primary);
   color: white;
   a {
-    font-weight: bolder;
+    text-decoration: underline;
   }
   p {
     margin: 1ch 0;

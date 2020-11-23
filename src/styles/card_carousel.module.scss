@@ -1,10 +1,24 @@
 .carousel {
+  $font-size: 30px;
+  margin-left: $font-size;
+
   :global(.slick-arrow:before) {
     color: var(--mdc-theme-primary);
+    font-size: $font-size;
   }
 
   :global(.slick-dots li button:before) {
     color: var(--mdc-theme-primary);
+  }
+
+  :global(.slick-prev) {
+    left: -$font-size;
+  }
+
+  @media screen and (max-width: 1300px) {
+    :global(.slick-next) {
+      right: 0;
+    }
   }
 
   :global(.slick-slide div) {

@@ -6,6 +6,8 @@
 }
 .content {
   max-width: 100ch;
+  width: 100%;
+  padding: 10px;
 }
 
 .home {
@@ -29,5 +31,11 @@
 }
 
 .space {
-  height: 100px;
+  height: 128px;
+}
+
+@media screen and (min-width: 600px) {
+  .space {
+    height: 100px;
+  }
 }
