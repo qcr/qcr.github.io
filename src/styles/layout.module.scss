@@ -32,3 +32,9 @@
 .space {
   height: 128px;
 }
+
+@media screen and (min-width: 600px) {
+  .space {
+    height: 100px;
+  }
+}

@@ -9,13 +9,13 @@ import styles from '../styles/card_carousel.module.scss';
 export default function CardCarousel({cardsData}) {
   const slides = useMediaQuery({minWidth: 1300}) ?
     3.35 :
-    useMediaQuery({minWidth: 1200}) ?
+    useMediaQuery({minWidth: 1000}) ?
     3 :
-    useMediaQuery({minWidth: 800}) ?
+    useMediaQuery({minWidth: 600}) ?
     2 :
     1;
   const settings = {
-    arrows: useMediaQuery({query: '(any-hover: hover)'}),
+    arrows: useMediaQuery({query: '(hover: hover) and (pointer: fine)'}),
     dots: true,
     infinite: false,
     slidesToShow: slides,
