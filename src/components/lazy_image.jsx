@@ -15,6 +15,7 @@ export default function LazyImage({images, className, style}) {
         poster={cleanImages[0]}
         className={className}
         style={style}
+        key={cleanImages[0]}
       >
         <source src={cleanImages[cleanImages.length - 1]} type="video/webm" />
       </video>
@@ -25,6 +26,7 @@ export default function LazyImage({images, className, style}) {
         src={cleanImages[cleanImages.length - 1]}
         className={className}
         style={style}
+        key={cleanImages[cleanImages.length - 1]}
       />
     );
   }
