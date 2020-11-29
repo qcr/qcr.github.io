@@ -7,13 +7,10 @@ import Card from './card';
 import styles from '../styles/card_carousel.module.scss';
 
 export default function CardCarousel({cardsData}) {
-  const slides = useMediaQuery({minWidth: 1300}) ?
-    3.35 :
-    useMediaQuery({minWidth: 1000}) ?
-    3 :
-    useMediaQuery({minWidth: 600}) ?
-    2 :
-    1;
+  const isBig = useMediaQuery({minWidth: 1300});
+  const isMed = useMediaQuery({minWidth: 1000});
+  const isSmall = useMediaQuery({minWidth: 600});
+  const slides = isBig ? 3.35 : isMed ? 3 : isSmall ? 2 : 1;
   const settings = {
     arrows: useMediaQuery({query: '(hover: hover) and (pointer: fine)'}),
     dots: true,
