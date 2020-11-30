@@ -1,8 +1,9 @@
 ---
 name: Python Robotics
 type: project
-url: https://github.com/jhavl/swift
-image: repo:/.github/figures/panda.gif
+url: https://petercorke.github.io/robotics-toolbox-python/
+image: repo:petercorke/robotics-toolbox-python/docs/figs/RobToolBox_RoundLogoB.png
+image_fit: contain
 id: python_robotics
 code:
   - spatialmath-python
