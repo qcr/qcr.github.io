@@ -36,7 +36,10 @@ export default function EntryCard({cardData}) {
             <LazyImage
               images={[cardData.image, cardData._image]}
               className={styles.media}
-              style={{objectPosition: cardData.image_position}}
+              style={{
+                objectPosition: cardData.image_position,
+                objectFit: cardData.image_fit
+              }}
             />
             <div className={styles.footer}>
               <Typography
