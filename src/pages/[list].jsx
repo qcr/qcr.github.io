@@ -4,7 +4,7 @@ import {Typography} from '@rmwc/typography';
 import Card from '../components/card';
 import Layout from '../components/layout';
 
-import {code, datasets, projects} from '/lib/content';
+import {code, datasets, collections} from '/lib/content';
 
 import styles from '../styles/list.module.scss';
 
@@ -26,7 +26,7 @@ export function getStaticPaths() {
     paths: [
       {params: {list: 'code'}},
       {params: {list: 'dataset'}},
-      {params: {list: 'project'}},
+      {params: {list: 'collection'}},
     ],
     fallback: false,
   };
@@ -36,7 +36,7 @@ export function getStaticProps(ctx) {
   const listMap = {
     code: code,
     dataset: datasets,
-    project: projects,
+    collection: collections,
   };
   return {
     props: {
