@@ -1,6 +1,6 @@
 {
   "name": "qcr-open-source-site",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -20,7 +20,7 @@
     "image-trace-loader": "^1.0.2",
     "imagemin-gifsicle": "^7.0.0",
     "markdown-it-prism": "^2.1.3",
-    "next": "10.0.2",
+    "next": "^10.0.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-responsive": "^8.1.1",

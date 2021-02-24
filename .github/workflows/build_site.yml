@@ -1,6 +1,8 @@
 name: 'Builds Static website & hosts on https://qcr.github.io'
 
 on:
+  schedule:
+    - cron: '0 14 * * *' # run at ~midnight AEST
   push:
     branches:
       - master

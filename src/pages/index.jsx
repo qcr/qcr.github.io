@@ -8,7 +8,7 @@ import styles from '../styles/index.module.scss';
 import {
   numCode,
   numDatasets,
-  numProjects,
+  numCollections,
   orderByFeatured,
   orderByNewest,
   orderByPopularity,
@@ -22,7 +22,7 @@ export default function HomePage({
   mostPopular,
   mostRecent,
   featured,
-  projectCount,
+  collectionCount,
   codeCount,
   datasetCount,
 }) {
@@ -41,7 +41,7 @@ export default function HomePage({
           Welcome the QUT Centre for Robotics Open Source website. This is the
           place where we share our public contributions with the wider robotics
           communities. These contributions include &nbsp;
-          <strong>{projectCount}</strong>&nbsp; projects, &nbsp;
+          <strong>{collectionCount}</strong>&nbsp; collections, &nbsp;
           <strong>{codeCount}</strong> codebases, and &nbsp;
           <strong>{datasetCount}</strong>&nbsp; datasets.
         </p>
@@ -63,7 +63,7 @@ export default function HomePage({
         {featured.length > 0 && (
           <>
             <Typography use="headline4" className={styles.heading}>
-              Featured Projects
+              Featured Collections
             </Typography>
             <CardCarousel cardsData={featured} />
           </>
@@ -81,7 +81,7 @@ export function getStaticProps() {
       mostRecent: orderByNewest().slice(0, LIMIT_MOST_RECENT),
       codeCount: numCode,
       datasetCount: numDatasets,
-      projectCount: numProjects,
+      collectionCount: numCollections,
     },
   };
 }

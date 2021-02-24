@@ -5,47 +5,47 @@ import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 
 import icon from '/assets/icon_website.svg';
-import styles from '../../styles/project.module.scss';
+import styles from '../../styles/collection.module.scss';
 
-import {lookupEntry, projects} from '/lib/content';
+import {lookupEntry, collections} from '/lib/content';
 
-export default function ProjectPage({projectData}) {
-  if (typeof projectData === 'string') projectData = JSON.parse(projectData);
+export default function CollectionPage({collectionData}) {
+  if (typeof collectionData === 'string') collectionData = JSON.parse(collectionData);
   return (
     <Layout>
       <Typography use="headline3" className={styles.heading}>
-        {projectData.name}
+        {collectionData.name}
       </Typography>
-      {projectData.url && (
+      {collectionData.url && (
         <FocusButton
           newTab
-          url={projectData.url}
-          text="Go to project website"
+          url={collectionData.url}
+          text="Go to collection website"
           icon={icon}
         />
       )}
       <Typography use="body1" className="markdown-body">
-        <div dangerouslySetInnerHTML={{__html: projectData.content}} />{' '}
+        <div dangerouslySetInnerHTML={{__html: collectionData.content}} />{' '}
       </Typography>
-      {projectData.code && (
+      {collectionData.code && (
         <>
           <Typography use="headline4" className={styles.subheading}>
             Code Repositories
           </Typography>
           <div className={styles.cards}>
-            {projectData.code.map((r, i) => (
+            {collectionData.code.map((r, i) => (
               <Card key={i} cardData={r} />
             ))}
           </div>
         </>
       )}
-      {projectData.datasets && (
+      {collectionData.datasets && (
         <>
           <Typography use="headline4" className={styles.subheading}>
             Datasets
           </Typography>
           <div className={styles.cards}>
-            {projectData.datasets.map((r, i) => (
+            {collectionData.datasets.map((r, i) => (
               <Card key={i} cardData={r} />
             ))}
           </div>
@@ -57,9 +57,9 @@ export default function ProjectPage({projectData}) {
 
 export function getStaticPaths() {
   return {
-    paths: Object.values(projects).map(p => ({
+    paths: Object.values(collections).map(p => ({
       params: {
-        project: p.id,
+        collection: p.id,
       },
     })),
     fallback: false,
@@ -69,7 +69,7 @@ export function getStaticPaths() {
 export function getStaticProps(ctx) {
   return {
     props: {
-      projectData: JSON.stringify(lookupEntry(ctx.params.project, 'project')),
+      collectionData: JSON.stringify(lookupEntry(ctx.params.collection, 'collection')),
     },
   };
 }

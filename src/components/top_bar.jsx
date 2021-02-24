@@ -14,8 +14,8 @@ export default function TopBar() {
     'code' :
     r.asPath.startsWith('/dataset') ?
     'dataset' :
-    r.asPath.startsWith('/project') ?
-    'project' :
+    r.asPath.startsWith('/collection') ?
+    'collection' :
     undefined;
   return (
     <TopAppBar className={styles.bar}>
@@ -26,11 +26,11 @@ export default function TopBar() {
           </Link>
         </TopAppBarSection>
         <TopAppBarSection alignEnd className={styles.pages}>
-          <Link href="/project">
+          <Link href="/collection">
             <Button
-              className={selected === 'project' && styles['selected-tab']}
+              className={selected === 'collection' && styles['selected-tab']}
             >
-              Projects
+              Collections
             </Button>
           </Link>
           <Link href="/code">

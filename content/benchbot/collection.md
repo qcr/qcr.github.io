@@ -1,16 +1,15 @@
 ---
 name: BenchBot
-type: project
+type: collection
 url: http://benchbot.org
 id: benchbot
 code:
   - benchbot
   - benchbot-api
-  - benchbot-examples
+  - benchbot-addons
   - benchbot-eval
   - benchbot-supervisor
   - benchbot-simulator
-  - benchbot-batches
 datasets:
   - benchbot-develop
   - benchbot-challenge

@@ -54,7 +54,7 @@ export default function EntryCard({cardData}) {
                     '(size unspecified)' :
                   section === 'code' ?
                   cardData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1') :
-                  'Project'}
+                  'Collection'}
               </Typography>
               <Typography use="body1" className={styles.name}>
                 {cardData.name}
