@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "export NEXT_OUT_DIR=.next-out && next build && next export -o $NEXT_OUT_DIR && node -e 'require(\"./lib/repo_cache\").dumpCacheInfo(\"'$NEXT_OUT_DIR'/.repo_cache_info\")' && rm $NEXT_OUT_DIR/_next/static/gifs/*.gif",
-    "start": "next start"
+    "start": "npm run build && next start"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
