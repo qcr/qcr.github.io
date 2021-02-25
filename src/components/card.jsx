@@ -38,7 +38,7 @@ export default function EntryCard({cardData}) {
               className={styles.media}
               style={{
                 objectPosition: cardData.image_position,
-                objectFit: cardData.image_fit
+                objectFit: cardData.image_fit,
               }}
             />
             <div className={styles.footer}>
