@@ -1,4 +1,3 @@
-import {TextField} from '@rmwc/textfield';
 import {Typography} from '@rmwc/typography';
 
 import Card from '../components/card';
@@ -8,10 +7,13 @@ import {code, datasets, collections} from '/lib/content';
 
 import styles from '../styles/list.module.scss';
 
-export default function ListPage({listData}) {
+export default function ListPage({listData, title}) {
   if (typeof listData === 'string') listData = JSON.parse(listData);
   return (
     <Layout list>
+      <Typography use="headline4" className={`heading ${styles.centre}`}>
+        {title}
+      </Typography>
       <div className={styles.cards}>
         {Object.values(listData).map((d, i) => (
           <Card key={i} cardData={d} />
@@ -38,6 +40,11 @@ export function getStaticProps(ctx) {
     dataset: datasets,
     collection: collections,
   };
+  const titleMap = {
+    code: 'Our codebases',
+    dataset: 'Our datasets',
+    collection: 'Our open source collections',
+  };
   return {
     props: {
       listData: JSON.stringify(
@@ -45,6 +52,7 @@ export function getStaticProps(ctx) {
             a.name.localeCompare(b.name)
           )
       ),
+      title: titleMap[ctx.params.list],
     },
   };
 }
