@@ -52,17 +52,17 @@ export default function HomePage({
         </p>
       </div>
       <div className={styles.content}>
-        <Typography use="headline4" className={styles.heading}>
+        <Typography use="headline4" className="heading">
           Newest Additions
         </Typography>
         <CardCarousel cardsData={mostRecent} />
-        <Typography use="headline4" className={styles.heading}>
+        <Typography use="headline4" className="heading">
           Most Popular
         </Typography>
         <CardCarousel cardsData={mostPopular} />
         {featured.length > 0 && (
           <>
-            <Typography use="headline4" className={styles.heading}>
+            <Typography use="headline4" className="heading">
               Featured Collections
             </Typography>
             <CardCarousel cardsData={featured} />
