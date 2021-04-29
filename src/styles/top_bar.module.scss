@@ -11,13 +11,12 @@
 }
 
 .logo-section {
-  justify-content: center;
+  justify-content: left;
 }
 
 .pages {
   margin: 6px;
   display: flex;
-  justify-content: center;
 
   :global(.mdc-button) {
     width: 100px;
