@@ -5,6 +5,7 @@ url: https://github.com/qvpr
 id: vpr_overview
 code:
   - patchnetvlad_code
+  - seqnet_code
   - delta_descriptors_code
   - event_vpr_code
   - lost_code
