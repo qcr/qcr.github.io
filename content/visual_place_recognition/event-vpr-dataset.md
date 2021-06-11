@@ -2,7 +2,7 @@
 name: "Brisbane-Event-VPR"
 type: dataset
 url: https://zenodo.org/record/4302805
-size: 41GB
+size: 80GB
 id: brisbane_event_vpr_dataset
 image: repo:Tobias-Fischer/ensemble-event-vpr/dataset.png
 image_fit: contain
