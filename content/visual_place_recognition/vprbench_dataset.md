@@ -2,7 +2,10 @@
 name: VPR-Bench
 type: dataset
 url: https://github.com/MubarizZaffar/VPR-Bench
+size: 20GB
 id: vprbench
+image: repo:MubarizZaffar/VPR-Bench/VPRBench.jpg
+image_fit: contain
 ---
 
 ### List of Supported Datasets in VPR-Bench
@@ -20,3 +23,5 @@ id: vprbench
 12. 17 Places [Sahdev et al; https://ieeexplore.ieee.org/document/7801503]
 
 These can be downloaded from [here](https://surfdrive.surf.nl/files/index.php/s/sbZRXzYe3l0v67W). More details for benchmarking can be found [here](https://github.com/MubarizZaffar/VPR-Bench). Please cite the original sources of the datasets when using them in your work.
+
+![VPR-Bench datasets](./VPRBench.jpg)
