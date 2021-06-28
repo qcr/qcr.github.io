@@ -6,7 +6,7 @@ id: vpr_overview
 code:
   - patchnetvlad_code
   - seqnet_code
-  - vprbench_code
+  - vprbench
   - delta_descriptors_code
   - event_vpr_code
   - lost_code
@@ -14,7 +14,7 @@ code:
   - seq2single_code
 datasets:
   - brisbane_event_vpr_dataset
-  - vprbench_dataset
+  - vprbench
 feature: 4
 ---
 
