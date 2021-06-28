@@ -14,7 +14,6 @@ code:
   - seq2single_code
 datasets:
   - brisbane_event_vpr_dataset
-  - vprbench
 feature: 4
 ---
 
