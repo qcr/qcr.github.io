@@ -1,0 +1,243 @@
+<!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-H0HTWHNLPD"></script><script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-H0HTWHNLPD', {
+              page_path: window.location.pathname,
+            });
+          </script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>QUT Centre for Robotics Open Source</title><meta name="next-head-count" content="3"/><link rel="preload" href="/_next/static/css/8d505abf7a67c2467b43.css" as="style"/><link rel="stylesheet" href="/_next/static/css/8d505abf7a67c2467b43.css" data-n-g=""/><link rel="preload" href="/_next/static/css/a011091a2a71f740ede2.css" as="style"/><link rel="stylesheet" href="/_next/static/css/a011091a2a71f740ede2.css" data-n-p=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework.d2ae4074d0a54d95f68e.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.e21e18828a134291743a.js" as="script"/><link rel="preload" href="/_next/static/chunks/main-877934a927cbb61c2a2d.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-3b1e2cebd1a30c8da56a.js" as="script"/><link rel="preload" href="/_next/static/chunks/3d04e185781834a6bdd2cdc78a14cbdede4fee55.a08c888435ca7df81d18.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/code/%5Bcode%5D-8e35d88bd85b3a6ba887.js" as="script"/></head><body><div id="__next"><div class="site" style="--mdc-theme-on-primary:rgba(255, 255, 255, 1);--mdc-theme-primary:#00407a"><header class="top_bar_bar__3T8Pf mdc-top-app-bar"><div class="top_bar_row__2Br8o mdc-top-app-bar__row"><section class="top_bar_logo-section__-bkhv mdc-top-app-bar__section mdc-top-app-bar__section--align-start"><img class="top_bar_logo__27Lwl" alt="QCR Logo (light)" src="/_next/static/images/qcr_logo_light-3a0967f7c1a32ca7de4713af85481529.png"/></section><section class="top_bar_pages__3emYr mdc-top-app-bar__section mdc-top-app-bar__section--align-end"><button class="mdc-button"><div class="mdc-button__ripple"></div><span class="mdc-button__label">Collections</span></button><button class="top_bar_selected-tab__2hCGV mdc-button"><div class="mdc-button__ripple"></div><span class="mdc-button__label">Code</span></button><button class="mdc-button"><div class="mdc-button__ripple"></div><span class="mdc-button__label">Datasets</span></button></section></div></header><div class="layout_space__3mcnW"></div><div class="layout_main__1OEEk layout_content__3ZRgy"><span class="code_heading__1xc27 mdc-typography--headline3">Armer Driver</span><a href="https://github.com/qcr/armer" target="_blank" class="focus_button_link__3dooQ"><button class="focus_button_button__MO_3J mdc-button mdc-button--raised"><div class="mdc-button__ripple"></div><span class="mdc-button__label">View the code on GitHub</span><i class="rmwc-icon rmwc-icon--url material-icons mdc-button__icon" style="background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICAgc29kaXBvZGk6ZG9jbmFtZT0iZ2l0aHViLnN2ZyIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMS4wICgxLjArcjczKzEpIgogICBpZD0ic3ZnMTM4MyIKICAgdmVyc2lvbj0iMS4xIgogICB2aWV3Qm94PSIwIDAgMTEuNDkzMTQ3IDExLjIwOTQ2NyIKICAgaGVpZ2h0PSIxMS4yMDk0NjdtbSIKICAgd2lkdGg9IjExLjQ5MzE0N21tIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzMTM3NyIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaW5rc2NhcGU6d2luZG93LW1heGltaXplZD0iMSIKICAgICBpbmtzY2FwZTp3aW5kb3cteT0iMzYyIgogICAgIGlua3NjYXBlOndpbmRvdy14PSIwIgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9IjEwNTIiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxOTIwIgogICAgIHNob3dncmlkPSJmYWxzZSIKICAgICBpbmtzY2FwZTpkb2N1bWVudC1yb3RhdGlvbj0iMCIKICAgICBpbmtzY2FwZTpjdXJyZW50LWxheWVyPSJsYXllcjEiCiAgICAgaW5rc2NhcGU6ZG9jdW1lbnQtdW5pdHM9Im1tIgogICAgIGlua3NjYXBlOmN5PSIxMjYuMjk1MTUiCiAgICAgaW5rc2NhcGU6Y3g9IjE4Ljk2OTk1MSIKICAgICBpbmtzY2FwZTp6b29tPSIwLjk4ODg0NzEiCiAgICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIgogICAgIGJvcmRlcm9wYWNpdHk9IjEuMCIKICAgICBib3JkZXJjb2xvcj0iIzY2NjY2NiIKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgaWQ9ImJhc2UiIC8+CiAgPG1ldGFkYXRhCiAgICAgaWQ9Im1ldGFkYXRhMTM4MCI+CiAgICA8cmRmOlJERj4KICAgICAgPGNjOldvcmsKICAgICAgICAgcmRmOmFib3V0PSIiPgogICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PgogICAgICAgIDxkYzp0eXBlCiAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz4KICAgICAgICA8ZGM6dGl0bGU+PC9kYzp0aXRsZT4KICAgICAgPC9jYzpXb3JrPgogICAgPC9yZGY6UkRGPgogIDwvbWV0YWRhdGE+CiAgPGcKICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTAxLjMyMzAzLC05OC4yMTQ5NTkpIgogICAgIGlkPSJsYXllcjEiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpbmtzY2FwZTpsYWJlbD0iTGF5ZXIgMSI+CiAgICA8ZwogICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4zNTI3Nzc3NywwLDAsLTAuMzUyNzc3NzcsMTA3LjA2OTA3LDk4LjIxNDk1OSkiCiAgICAgICBpZD0iZzIyIj4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGgyNCIKICAgICAgICAgc3R5bGU9ImZpbGw6IzFiMTgxNztmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6bm9uZSIKICAgICAgICAgZD0ibSAwLDAgYyAtOC45OTUsMCAtMTYuMjg4LC03LjI5MyAtMTYuMjg4LC0xNi4yOSAwLC03LjE5NyA0LjY2NywtMTMuMzAyIDExLjE0LC0xNS40NTcgMC44MTUsLTAuMTQ5IDEuMTEyLDAuMzU0IDEuMTEyLDAuNzg2IDAsMC4zODYgLTAuMDE0LDEuNDExIC0wLjAyMiwyLjc3IC00LjUzMSwtMC45ODQgLTUuNDg3LDIuMTg0IC01LjQ4NywyLjE4NCAtMC43NDEsMS44ODEgLTEuODA5LDIuMzgyIC0xLjgwOSwyLjM4MiAtMS40NzksMS4wMTEgMC4xMTIsMC45OTEgMC4xMTIsMC45OTEgMS42MzUsLTAuMTE2IDIuNDk1LC0xLjY3OSAyLjQ5NSwtMS42NzkgMS40NTMsLTIuNDg5IDMuODEzLC0xLjc3IDQuNzQxLC0xLjM1NCAwLjE0OCwxLjA1MyAwLjU2OCwxLjc3MSAxLjAzNCwyLjE3OCAtMy42MTcsMC40MTEgLTcuNDIsMS44MDkgLTcuNDIsOC4wNTEgMCwxLjc3OCAwLjYzNSwzLjIzMiAxLjY3Nyw0LjM3MSAtMC4xNjgsMC40MTIgLTAuNzI3LDIuMDY4IDAuMTU5LDQuMzExIDAsMCAxLjM2OCwwLjQzOCA0LjQ4LC0xLjY3IDEuMjk5LDAuMzYxIDIuNjkzLDAuNTQyIDQuMDc4LDAuNTQ4IDEuMzgzLC0wLjAwNiAyLjc3NywtMC4xODcgNC4wNzgsLTAuNTQ4IDMuMTEsMi4xMDggNC40NzUsMS42NyA0LjQ3NSwxLjY3IDAuODg5LC0yLjI0MyAwLjMzLC0zLjg5OSAwLjE2MiwtNC4zMTEgMS4wNDQsLTEuMTM5IDEuNjc1LC0yLjU5MyAxLjY3NSwtNC4zNzEgMCwtNi4yNTggLTMuODA5LC03LjYzNSAtNy40MzgsLTguMDM4IDAuNTg1LC0wLjUwMyAxLjEwNiwtMS40OTcgMS4xMDYsLTMuMDE3IDAsLTIuMTc3IC0wLjAyLC0zLjkzNCAtMC4wMiwtNC40NjggMCwtMC40MzYgMC4yOTMsLTAuOTQzIDEuMTIsLTAuNzg0IDYuNDY4LDIuMTU5IDExLjEzMSw4LjI2IDExLjEzMSwxNS40NTUgQyAxNi4yOTEsLTcuMjkzIDguOTk3LDAgMCwwIiAvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==)"></i></button></a><span class="code_extra__yQqAk mdc-typography--body2">qcr/armer</span><span class="markdown-body mdc-typography--body1"><div><h1>Armer Driver</h1>
+<p><a href="https://qcr.github.io"><img src=https://github.com/qcr/qcr.github.io/raw/master/misc/badge.svg alt="QUT Centre for Robotics Open Source"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<a href=https://github.com/suddrey-qut/armer/actions?query=workflow%3ABuild><img src=https://github.com/suddrey-qut/armer/workflows/Build/badge.svg?branch=master alt="Build Status"></a>
+<a href="https://lgtm.com/projects/g/suddrey-qut/armer/context:python"><img src="https://img.shields.io/lgtm/grade/python/g/suddrey-qut/armer.svg?logo=lgtm&amp;logoWidth=18" alt="Language grade: Python"></a>
+<a href="https://codecov.io/gh/suddrey-qut/armer"><img src="https://codecov.io/gh/suddrey-qut/armer/branch/master/graph/badge.svg" alt="Coverage"></a></p>
+<p><video autoplay loop poster=https://github.com/qcr/armer/raw/master/docs/armer_example.gif?image><source src=https://github.com/qcr/armer/raw/master/docs/armer_example.gif?webm type="video/webm"/></video></p>
+<h2>Overview</h2>
+<p>The Armer driver provides a simple mechanism for building high-level configurations to seamlessly control a broad range of manipulators under different actuation modes (simulation or physical).</p>
+<p>Several ROS action servers, topics and services are set up by this package to enable this functionality. A summary of these can be found <a href=https:/github.com/qcr/armer/#driver-component-summary>here</a>.</p>
+<p>Additionally, the driver is built off the <a href="https://qcr.github.io/code/robotics-toolbox-python/">Python Robotics Toolbox</a> and uses <a href="https://qcr.github.io/code/swift/">Swift</a> as a backend to simulate supported manipulators.</p>
+<h2>Installation</h2>
+<p><em>Requires ROS Noetic preinstalled</em></p>
+<ol>
+<li>Create a catkin workspace.</li>
+</ol>
+<pre class="language-sh"><code class="language-sh">mkdir -p ~/armer_ws/src &amp;&amp; cd ~/armer_ws/src
+</code></pre>
+<ol start="2">
+<li>Clone this repository and https://github.com/qcr/armer_msgs into the armer_ws/src folder.</li>
+</ol>
+<pre class="language-sh"><code class="language-sh">git clone https://github.com/qcr/armer.git &amp;&amp; git clone https://github.com/qcr/armer_msgs
+</code></pre>
+<ol start="3">
+<li>Install the required dependencies.</li>
+</ol>
+<pre class="language-sh"><code class="language-sh">cd .. &amp;&amp; rosdep install --from-paths src --ignore-src -r -y
+</code></pre>
+<ol start="4">
+<li>Build the packages.</li>
+</ol>
+<pre class="language-sh"><code class="language-sh">catkin_make 
+</code></pre>
+<ol start="5">
+<li>Source the workspace.</li>
+</ol>
+<pre class="language-sh"><code class="language-sh">source devel/setup.sh
+</code></pre>
+<p>To make this automatically occur in any terminal that is launched, run the follwing line.</p>
+<pre class="language-sh"><code class="language-sh">echo &quot;source ~/armer_ws/devel/setup.bash&quot; &gt;&gt; ~/.bashrc
+</code></pre>
+<ol start="6">
+<li>Run the following code block to start the simulation. By default the configuration for the Panda model sim will be launched.</li>
+</ol>
+<pre class="language-sh"><code class="language-sh">roslaunch armer armer.launch
+</code></pre>
+<h2>Usage</h2>
+<p>The driver can be configured use with different arms, a simulation or a physical enviroment. To define these settings and allow for easy reuse, settings can be saved and loaded from a YAML file in the cfg folder.</p>
+<p>A simple example configuration for the Franka-Emika Panda simulation can be seen below:</p>
+<pre class="language-none"><code class="language-none">robots:
+  - name: arm 
+    model: roboticstoolbox.models.Panda 
+backend: 
+  type: roboticstoolbox.backends.Swift.Swift 
+</code></pre>
+<p>The key parameters to define here are:</p>
+<ul>
+<li>name: namespace to be used</li>
+<li>model: robotics toolbox robot model to use</li>
+<li>backend type: roboticstoolbox.backends.Swift.Swift will launch the Swift simulator. Use armer.backends.ROS.ROS to use a physical system</li>
+</ul>
+<p>Other parameters can also be set:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Field Name</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">robots: joint_state_topic</td>
+<td style="text-align:left">topic to listen to joint states on</td>
+<td style="text-align:left"><code class="language-none">&quot;/joint_states&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">robots: joint_velocity_topic</td>
+<td style="text-align:left">topic to listen to velocity on</td>
+<td style="text-align:left"><code class="language-none">&quot;/joint_group_velocity_controller/joint_velocity&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">robots: origin</td>
+<td style="text-align:left">Set a different origin for the robot</td>
+<td style="text-align:left">[-1, 0, 0, 0, 0, 0]</td>
+</tr>
+<tr>
+<td style="text-align:left">robots: gripper</td>
+<td style="text-align:left">Specify the end effector link</td>
+<td style="text-align:left"><code class="language-none">&quot;tool0&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">logging: frequency</td>
+<td style="text-align:left">Sets the frequency of logging</td>
+<td style="text-align:left">false</td>
+</tr>
+</tbody>
+</table>
+<p>Certain arms (such as the UR3) have multiple end effectors so specifying the link must be done by adding a &quot;gripper&quot; field to the robots section with the link name as a string.</p>
+<p>To launch a driver instance with a preset config, the config parameter is added to the roslaunch command with the name of the desired YAML config.</p>
+<p>The following example shows how driver instance can be launched with a <a href=https://github.com/qcr/armer/blob/master/cfg/panda_sim.yaml>saved Panda sim config</a>:</p>
+<pre class="language-none"><code class="language-none">roslaunch armer armer.launch config:=/path/to/cfg/panda_sim.yaml
+</code></pre>
+<h2>Examples</h2>
+<p>Examples of interfacing with the driver can be found in the <a href=https://github.com/qcr/armer/tree/master/examples>examples folder</a>.</p>
+<p>An example<a href=https://github.com/qcr/armer/blob/master/examples/panda_example.py>(panda_example.py)</a> for interacting with a Panda sim can be run from the workspace main directory via the following command after roslaunching the Panda model sim config.</p>
+<pre class="language-none"><code class="language-none">python3 armer/examples/panda_example.py
+</code></pre>
+<p>Alternatively, an example<a href=https://github.com/qcr/armer/blob/master/examples/ur5_example.py>(ur5_example.py)</a> for interacting with a UR5 sim can be run from the workspace main directory via the following command after roslaunching the UR5 model sim config.</p>
+<pre class="language-none"><code class="language-none">python3 armer/examples/ur5_example.py
+</code></pre>
+<h2>Code Examples</h2>
+<h3>Move a manipulator to a specified pose</h3>
+<p>To communicate with the driver, a ROS action client must be created to communicate with the driver.</p>
+<pre class="language-none"><code class="language-none">pose_cli = actionlib.SimpleActionClient('/arm/cartesian/pose', MoveToPoseAction)
+pose_cli.wait_for_server()
+</code></pre>
+<p>In this example we will set the pose of a simulated Panda arm. The pose action server uses the PoseStamped message type from the geometry messages package.</p>
+<pre class="language-none"><code class="language-none"># Create an empty PoseStamped message
+target = PoseStamped()
+</code></pre>
+<p>To request a pose the frame_id of the header field should be filled out with the target robot's base link.</p>
+<pre class="language-none"><code class="language-none">target.header.frame_id = 'panda_link0'
+</code></pre>
+<p>The desired pose's position and orientation should be filled out in the corresponding fields.</p>
+<pre class="language-none"><code class="language-none">target.pose.position.x = 0.307
+target.pose.position.y = 0.400
+target.pose.position.z = 0.490
+
+target.pose.orientation.x = -1.00
+target.pose.orientation.y =  0.00
+target.pose.orientation.z =  0.00
+target.pose.orientation.w =  0.00
+</code></pre>
+<p>Create a goal from the target pose.</p>
+<pre class="language-none"><code class="language-none">goal = MoveToPoseGoal()
+goal.pose_stamped=target
+</code></pre>
+<p>The desired pose is then sent to the action server as a goal and waits for it to finish.</p>
+<pre class="language-none"><code class="language-none">pose_cli.send_goal(goal)
+pose_cli.wait_for_result()
+</code></pre>
+<h3>Move a manipulator's end effector w.r.t the target frame's ID</h3>
+<p>A target robot can also be manipulated by publishing directly to the cartesian velocity topic. This topic uses the message type TwistStamped.</p>
+<p>Set up the publisher pointed to the velocity topic.</p>
+<pre class="language-none"><code class="language-none">vel_pub = rospy.Publisher('/arm/cartesian/velocity', TwistStamped, queue_size=1)
+</code></pre>
+<p>Create an empty message.</p>
+<pre class="language-none"><code class="language-none">ts = TwistStamped()
+</code></pre>
+<p>Populate the message with desired variables.</p>
+<pre class="language-none"><code class="language-none">ts.twist.linear.z = 0.1
+</code></pre>
+<p>Publish the message to the velocity topic.</p>
+<pre class="language-none"><code class="language-none">vel_pub.publish(ts)
+</code></pre>
+<h2>Driver Component Summary</h2>
+<h3>Subscribed Topics</h3>
+<ul>
+<li>
+<p><strong>/arm/cartesian/velocity</strong> (<a href="https://docs.ros.org/api/geometry_msgs/html/msg/Twist.html">geometry_msgs/TwistStamped</a>)
+Moves the end-effector in cartesian space w.r.t. the target frame_id (base frame if no frame_id is set).</p>
+</li>
+<li>
+<p><strong>/arm/joint/velocity</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/msg/JointVelocity.html>armer_msgs/JointVelocity</a>)
+Moves the joints of the manipulator at the requested velocity.</p>
+</li>
+</ul>
+<h3>Published Topics</h3>
+<ul>
+<li><strong>/arm/state</strong>  (<a href=https://github.com/qcr/armer_msgs/blob/main/msg/ManipulatorState.msg>armer_msgs/ManipulatorState</a>)
+Provides information on the current state of the manipulator including the pose of the end-effector w.r.t. to the base link, whether the manipulator is experiencing a cartesian contact and collision as a bit-wised error state flag.</li>
+</ul>
+<h3>Services</h3>
+<ul>
+<li>
+<p><strong>/arm/home</strong> (<a href="http://docs.ros.org/noetic/api/std_srvs/html/srv/Empty.html">std_srvs/Empty</a>)
+Moves the robot back to its initial ready pose.</p>
+</li>
+<li>
+<p><strong>/arm/recover</strong> (<a href="http://docs.ros.org/noetic/api/std_srvs/html/srv/Empty.html">std_srvs/Empty</a>)
+Recovers from collision or limit violation error states that will put the robot into a non-operable state.</p>
+</li>
+<li>
+<p><strong>/arm/stop</strong> (<a href="http://docs.ros.org/noetic/api/std_srvs/html/srv/Empty.html">std_srvs/Empty</a>)
+Stops the current motion of the current.</p>
+</li>
+<li>
+<p><strong>/arm/get_named_poses</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/srv/GetNamesList.srv>armer_msgs/GetNamesList</a>)
+Gets a list of currently stored named poses (includes both moveit and driver stored named poses).</p>
+</li>
+<li>
+<p><strong>/arm/set_named_pose</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/srv/SetNamedPose.srv>armer_msgs/SetNamedPose</a>)
+Saves the current joint configuration of the robot with the provided pose name.</p>
+</li>
+<li>
+<p><strong>/arm/remove_named_pose</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/srv/RemoveNamedPose.srv>armer_msgs/RemoveNamedPose</a>)
+Removes the joint configuration of the provided pose name.</p>
+</li>
+<li>
+<p><strong>/arm/set_cartesian_impedance</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/srv/SetCartesianImpedance.srv>armer_msgs/SetCartesianImpedance</a>
+Adjusts the impedance of the end-effector position in cartesian space.</p>
+</li>
+<li>
+<p><strong>/arm/add_named_pose_config</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/srv/SetNamedPoseConfig.srv>armer_msgs/SetNamedPoseConfig</a>)
+Instructs the driver to load named poses stored in the indicated config file.</p>
+</li>
+<li>
+<p><strong>/arm/get_named_pose_configs</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/srv/GetNamedPoseConfigs.srv>armer_msgs/GetNamedPoseConfigs</a>)
+Gets the list of config files to check for named poses.</p>
+</li>
+<li>
+<p><strong>/arm/remove_named_pose_config</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/srv/SetNamedPoseConfig.srv>armer_msgs/SetNamedPoseConfig</a>)
+Instructs the driver to remove named poses stored in the indicated config file.</p>
+</li>
+</ul>
+<h3>Action API</h3>
+<ul>
+<li>
+<p><strong>/arm/cartesian/pose</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/action/MoveToPose.action>armer_msgs/MoveToPose.action</a>)
+Moves the end-effector to the requested goal pose w.r.t. the indicated frame id.</p>
+</li>
+<li>
+<p><strong>/arm/cartesian/servo_pose</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/action/ServoToPose.action>armer_msgs/ServoToPose.action</a>)
+Servos the end-effector to the requested goal pose with real time object avoidance.</p>
+</li>
+<li>
+<p><strong>/arm/joint/named</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/action/MoveToNamedPose.action>armer_msgs/MoveToNamedPose.action</a>)
+Moves the end-effector to a pre-defined joint configuration.</p>
+</li>
+<li>
+<p><strong>/arm/joint/pose</strong> (<a href=https://github.com/qcr/armer_msgs/blob/main/action/MoveToJointPose.action>armer_msgs/MoveToJointPoseAction</a>)
+Moves the joints of the robot to the indicated positions (radians).</p>
+</li>
+</ul>
+</div> </span></div><div class="bottom_bar_bar__B7RGm"><div class="site-bottom-bar bottom_bar_content__2DVtD"><div></div><div></div><div><span class="mdc-typography--body2">CRICOS No. 00213J</span></div></div></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"codeData":"{\"content\":\"\u003ch1\u003eArmer Driver\u003c/h1\u003e\\n\u003cp\u003e\u003ca href=\\\"https://qcr.github.io\\\"\u003e\u003cimg src=https://github.com/qcr/qcr.github.io/raw/master/misc/badge.svg alt=\\\"QUT Centre for Robotics Open Source\\\"\u003e\u003c/a\u003e\\n\u003ca href=\\\"https://opensource.org/licenses/MIT\\\"\u003e\u003cimg src=\\\"https://img.shields.io/badge/License-MIT-yellow.svg\\\" alt=\\\"License: MIT\\\"\u003e\u003c/a\u003e\\n\u003ca href=https://github.com/suddrey-qut/armer/actions?query=workflow%3ABuild\u003e\u003cimg src=https://github.com/suddrey-qut/armer/workflows/Build/badge.svg?branch=master alt=\\\"Build Status\\\"\u003e\u003c/a\u003e\\n\u003ca href=\\\"https://lgtm.com/projects/g/suddrey-qut/armer/context:python\\\"\u003e\u003cimg src=\\\"https://img.shields.io/lgtm/grade/python/g/suddrey-qut/armer.svg?logo=lgtm\u0026amp;logoWidth=18\\\" alt=\\\"Language grade: Python\\\"\u003e\u003c/a\u003e\\n\u003ca href=\\\"https://codecov.io/gh/suddrey-qut/armer\\\"\u003e\u003cimg src=\\\"https://codecov.io/gh/suddrey-qut/armer/branch/master/graph/badge.svg\\\" alt=\\\"Coverage\\\"\u003e\u003c/a\u003e\u003c/p\u003e\\n\u003cp\u003e\u003cvideo autoplay loop poster=https://github.com/qcr/armer/raw/master/docs/armer_example.gif?image\u003e\u003csource src=https://github.com/qcr/armer/raw/master/docs/armer_example.gif?webm type=\\\"video/webm\\\"/\u003e\u003c/video\u003e\u003c/p\u003e\\n\u003ch2\u003eOverview\u003c/h2\u003e\\n\u003cp\u003eThe Armer driver provides a simple mechanism for building high-level configurations to seamlessly control a broad range of manipulators under different actuation modes (simulation or physical).\u003c/p\u003e\\n\u003cp\u003eSeveral ROS action servers, topics and services are set up by this package to enable this functionality. A summary of these can be found \u003ca href=https:/github.com/qcr/armer/#driver-component-summary\u003ehere\u003c/a\u003e.\u003c/p\u003e\\n\u003cp\u003eAdditionally, the driver is built off the \u003ca href=\\\"https://qcr.github.io/code/robotics-toolbox-python/\\\"\u003ePython Robotics Toolbox\u003c/a\u003e and uses \u003ca href=\\\"https://qcr.github.io/code/swift/\\\"\u003eSwift\u003c/a\u003e as a backend to simulate supported manipulators.\u003c/p\u003e\\n\u003ch2\u003eInstallation\u003c/h2\u003e\\n\u003cp\u003e\u003cem\u003eRequires ROS Noetic preinstalled\u003c/em\u003e\u003c/p\u003e\\n\u003col\u003e\\n\u003cli\u003eCreate a catkin workspace.\u003c/li\u003e\\n\u003c/ol\u003e\\n\u003cpre class=\\\"language-sh\\\"\u003e\u003ccode class=\\\"language-sh\\\"\u003emkdir -p ~/armer_ws/src \u0026amp;\u0026amp; cd ~/armer_ws/src\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003col start=\\\"2\\\"\u003e\\n\u003cli\u003eClone this repository and https://github.com/qcr/armer_msgs into the armer_ws/src folder.\u003c/li\u003e\\n\u003c/ol\u003e\\n\u003cpre class=\\\"language-sh\\\"\u003e\u003ccode class=\\\"language-sh\\\"\u003egit clone https://github.com/qcr/armer.git \u0026amp;\u0026amp; git clone https://github.com/qcr/armer_msgs\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003col start=\\\"3\\\"\u003e\\n\u003cli\u003eInstall the required dependencies.\u003c/li\u003e\\n\u003c/ol\u003e\\n\u003cpre class=\\\"language-sh\\\"\u003e\u003ccode class=\\\"language-sh\\\"\u003ecd .. \u0026amp;\u0026amp; rosdep install --from-paths src --ignore-src -r -y\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003col start=\\\"4\\\"\u003e\\n\u003cli\u003eBuild the packages.\u003c/li\u003e\\n\u003c/ol\u003e\\n\u003cpre class=\\\"language-sh\\\"\u003e\u003ccode class=\\\"language-sh\\\"\u003ecatkin_make \\n\u003c/code\u003e\u003c/pre\u003e\\n\u003col start=\\\"5\\\"\u003e\\n\u003cli\u003eSource the workspace.\u003c/li\u003e\\n\u003c/ol\u003e\\n\u003cpre class=\\\"language-sh\\\"\u003e\u003ccode class=\\\"language-sh\\\"\u003esource devel/setup.sh\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003cp\u003eTo make this automatically occur in any terminal that is launched, run the follwing line.\u003c/p\u003e\\n\u003cpre class=\\\"language-sh\\\"\u003e\u003ccode class=\\\"language-sh\\\"\u003eecho \u0026quot;source ~/armer_ws/devel/setup.bash\u0026quot; \u0026gt;\u0026gt; ~/.bashrc\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003col start=\\\"6\\\"\u003e\\n\u003cli\u003eRun the following code block to start the simulation. By default the configuration for the Panda model sim will be launched.\u003c/li\u003e\\n\u003c/ol\u003e\\n\u003cpre class=\\\"language-sh\\\"\u003e\u003ccode class=\\\"language-sh\\\"\u003eroslaunch armer armer.launch\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003ch2\u003eUsage\u003c/h2\u003e\\n\u003cp\u003eThe driver can be configured use with different arms, a simulation or a physical enviroment. To define these settings and allow for easy reuse, settings can be saved and loaded from a YAML file in the cfg folder.\u003c/p\u003e\\n\u003cp\u003eA simple example configuration for the Franka-Emika Panda simulation can be seen below:\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003erobots:\\n  - name: arm \\n    model: roboticstoolbox.models.Panda \\nbackend: \\n  type: roboticstoolbox.backends.Swift.Swift \\n\u003c/code\u003e\u003c/pre\u003e\\n\u003cp\u003eThe key parameters to define here are:\u003c/p\u003e\\n\u003cul\u003e\\n\u003cli\u003ename: namespace to be used\u003c/li\u003e\\n\u003cli\u003emodel: robotics toolbox robot model to use\u003c/li\u003e\\n\u003cli\u003ebackend type: roboticstoolbox.backends.Swift.Swift will launch the Swift simulator. Use armer.backends.ROS.ROS to use a physical system\u003c/li\u003e\\n\u003c/ul\u003e\\n\u003cp\u003eOther parameters can also be set:\u003c/p\u003e\\n\u003ctable\u003e\\n\u003cthead\u003e\\n\u003ctr\u003e\\n\u003cth style=\\\"text-align:left\\\"\u003eField Name\u003c/th\u003e\\n\u003cth style=\\\"text-align:left\\\"\u003eDescription\u003c/th\u003e\\n\u003cth style=\\\"text-align:left\\\"\u003eExample\u003c/th\u003e\\n\u003c/tr\u003e\\n\u003c/thead\u003e\\n\u003ctbody\u003e\\n\u003ctr\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003erobots: joint_state_topic\u003c/td\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003etopic to listen to joint states on\u003c/td\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003e\u0026quot;/joint_states\u0026quot;\u003c/code\u003e\u003c/td\u003e\\n\u003c/tr\u003e\\n\u003ctr\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003erobots: joint_velocity_topic\u003c/td\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003etopic to listen to velocity on\u003c/td\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003e\u0026quot;/joint_group_velocity_controller/joint_velocity\u0026quot;\u003c/code\u003e\u003c/td\u003e\\n\u003c/tr\u003e\\n\u003ctr\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003erobots: origin\u003c/td\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003eSet a different origin for the robot\u003c/td\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003e[-1, 0, 0, 0, 0, 0]\u003c/td\u003e\\n\u003c/tr\u003e\\n\u003ctr\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003erobots: gripper\u003c/td\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003eSpecify the end effector link\u003c/td\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003e\u0026quot;tool0\u0026quot;\u003c/code\u003e\u003c/td\u003e\\n\u003c/tr\u003e\\n\u003ctr\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003elogging: frequency\u003c/td\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003eSets the frequency of logging\u003c/td\u003e\\n\u003ctd style=\\\"text-align:left\\\"\u003efalse\u003c/td\u003e\\n\u003c/tr\u003e\\n\u003c/tbody\u003e\\n\u003c/table\u003e\\n\u003cp\u003eCertain arms (such as the UR3) have multiple end effectors so specifying the link must be done by adding a \u0026quot;gripper\u0026quot; field to the robots section with the link name as a string.\u003c/p\u003e\\n\u003cp\u003eTo launch a driver instance with a preset config, the config parameter is added to the roslaunch command with the name of the desired YAML config.\u003c/p\u003e\\n\u003cp\u003eThe following example shows how driver instance can be launched with a \u003ca href=https://github.com/qcr/armer/blob/master/cfg/panda_sim.yaml\u003esaved Panda sim config\u003c/a\u003e:\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003eroslaunch armer armer.launch config:=/path/to/cfg/panda_sim.yaml\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003ch2\u003eExamples\u003c/h2\u003e\\n\u003cp\u003eExamples of interfacing with the driver can be found in the \u003ca href=https://github.com/qcr/armer/tree/master/examples\u003eexamples folder\u003c/a\u003e.\u003c/p\u003e\\n\u003cp\u003eAn example\u003ca href=https://github.com/qcr/armer/blob/master/examples/panda_example.py\u003e(panda_example.py)\u003c/a\u003e for interacting with a Panda sim can be run from the workspace main directory via the following command after roslaunching the Panda model sim config.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003epython3 armer/examples/panda_example.py\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003cp\u003eAlternatively, an example\u003ca href=https://github.com/qcr/armer/blob/master/examples/ur5_example.py\u003e(ur5_example.py)\u003c/a\u003e for interacting with a UR5 sim can be run from the workspace main directory via the following command after roslaunching the UR5 model sim config.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003epython3 armer/examples/ur5_example.py\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003ch2\u003eCode Examples\u003c/h2\u003e\\n\u003ch3\u003eMove a manipulator to a specified pose\u003c/h3\u003e\\n\u003cp\u003eTo communicate with the driver, a ROS action client must be created to communicate with the driver.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003epose_cli = actionlib.SimpleActionClient('/arm/cartesian/pose', MoveToPoseAction)\\npose_cli.wait_for_server()\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003cp\u003eIn this example we will set the pose of a simulated Panda arm. The pose action server uses the PoseStamped message type from the geometry messages package.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003e# Create an empty PoseStamped message\\ntarget = PoseStamped()\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003cp\u003eTo request a pose the frame_id of the header field should be filled out with the target robot's base link.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003etarget.header.frame_id = 'panda_link0'\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003cp\u003eThe desired pose's position and orientation should be filled out in the corresponding fields.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003etarget.pose.position.x = 0.307\\ntarget.pose.position.y = 0.400\\ntarget.pose.position.z = 0.490\\n\\ntarget.pose.orientation.x = -1.00\\ntarget.pose.orientation.y =  0.00\\ntarget.pose.orientation.z =  0.00\\ntarget.pose.orientation.w =  0.00\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003cp\u003eCreate a goal from the target pose.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003egoal = MoveToPoseGoal()\\ngoal.pose_stamped=target\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003cp\u003eThe desired pose is then sent to the action server as a goal and waits for it to finish.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003epose_cli.send_goal(goal)\\npose_cli.wait_for_result()\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003ch3\u003eMove a manipulator's end effector w.r.t the target frame's ID\u003c/h3\u003e\\n\u003cp\u003eA target robot can also be manipulated by publishing directly to the cartesian velocity topic. This topic uses the message type TwistStamped.\u003c/p\u003e\\n\u003cp\u003eSet up the publisher pointed to the velocity topic.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003evel_pub = rospy.Publisher('/arm/cartesian/velocity', TwistStamped, queue_size=1)\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003cp\u003eCreate an empty message.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003ets = TwistStamped()\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003cp\u003ePopulate the message with desired variables.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003ets.twist.linear.z = 0.1\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003cp\u003ePublish the message to the velocity topic.\u003c/p\u003e\\n\u003cpre class=\\\"language-none\\\"\u003e\u003ccode class=\\\"language-none\\\"\u003evel_pub.publish(ts)\\n\u003c/code\u003e\u003c/pre\u003e\\n\u003ch2\u003eDriver Component Summary\u003c/h2\u003e\\n\u003ch3\u003eSubscribed Topics\u003c/h3\u003e\\n\u003cul\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/cartesian/velocity\u003c/strong\u003e (\u003ca href=\\\"https://docs.ros.org/api/geometry_msgs/html/msg/Twist.html\\\"\u003egeometry_msgs/TwistStamped\u003c/a\u003e)\\nMoves the end-effector in cartesian space w.r.t. the target frame_id (base frame if no frame_id is set).\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/joint/velocity\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/msg/JointVelocity.html\u003earmer_msgs/JointVelocity\u003c/a\u003e)\\nMoves the joints of the manipulator at the requested velocity.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003c/ul\u003e\\n\u003ch3\u003ePublished Topics\u003c/h3\u003e\\n\u003cul\u003e\\n\u003cli\u003e\u003cstrong\u003e/arm/state\u003c/strong\u003e  (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/msg/ManipulatorState.msg\u003earmer_msgs/ManipulatorState\u003c/a\u003e)\\nProvides information on the current state of the manipulator including the pose of the end-effector w.r.t. to the base link, whether the manipulator is experiencing a cartesian contact and collision as a bit-wised error state flag.\u003c/li\u003e\\n\u003c/ul\u003e\\n\u003ch3\u003eServices\u003c/h3\u003e\\n\u003cul\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/home\u003c/strong\u003e (\u003ca href=\\\"http://docs.ros.org/noetic/api/std_srvs/html/srv/Empty.html\\\"\u003estd_srvs/Empty\u003c/a\u003e)\\nMoves the robot back to its initial ready pose.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/recover\u003c/strong\u003e (\u003ca href=\\\"http://docs.ros.org/noetic/api/std_srvs/html/srv/Empty.html\\\"\u003estd_srvs/Empty\u003c/a\u003e)\\nRecovers from collision or limit violation error states that will put the robot into a non-operable state.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/stop\u003c/strong\u003e (\u003ca href=\\\"http://docs.ros.org/noetic/api/std_srvs/html/srv/Empty.html\\\"\u003estd_srvs/Empty\u003c/a\u003e)\\nStops the current motion of the current.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/get_named_poses\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/srv/GetNamesList.srv\u003earmer_msgs/GetNamesList\u003c/a\u003e)\\nGets a list of currently stored named poses (includes both moveit and driver stored named poses).\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/set_named_pose\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/srv/SetNamedPose.srv\u003earmer_msgs/SetNamedPose\u003c/a\u003e)\\nSaves the current joint configuration of the robot with the provided pose name.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/remove_named_pose\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/srv/RemoveNamedPose.srv\u003earmer_msgs/RemoveNamedPose\u003c/a\u003e)\\nRemoves the joint configuration of the provided pose name.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/set_cartesian_impedance\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/srv/SetCartesianImpedance.srv\u003earmer_msgs/SetCartesianImpedance\u003c/a\u003e\\nAdjusts the impedance of the end-effector position in cartesian space.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/add_named_pose_config\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/srv/SetNamedPoseConfig.srv\u003earmer_msgs/SetNamedPoseConfig\u003c/a\u003e)\\nInstructs the driver to load named poses stored in the indicated config file.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/get_named_pose_configs\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/srv/GetNamedPoseConfigs.srv\u003earmer_msgs/GetNamedPoseConfigs\u003c/a\u003e)\\nGets the list of config files to check for named poses.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/remove_named_pose_config\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/srv/SetNamedPoseConfig.srv\u003earmer_msgs/SetNamedPoseConfig\u003c/a\u003e)\\nInstructs the driver to remove named poses stored in the indicated config file.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003c/ul\u003e\\n\u003ch3\u003eAction API\u003c/h3\u003e\\n\u003cul\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/cartesian/pose\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/action/MoveToPose.action\u003earmer_msgs/MoveToPose.action\u003c/a\u003e)\\nMoves the end-effector to the requested goal pose w.r.t. the indicated frame id.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/cartesian/servo_pose\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/action/ServoToPose.action\u003earmer_msgs/ServoToPose.action\u003c/a\u003e)\\nServos the end-effector to the requested goal pose with real time object avoidance.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/joint/named\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/action/MoveToNamedPose.action\u003earmer_msgs/MoveToNamedPose.action\u003c/a\u003e)\\nMoves the end-effector to a pre-defined joint configuration.\u003c/p\u003e\\n\u003c/li\u003e\\n\u003cli\u003e\\n\u003cp\u003e\u003cstrong\u003e/arm/joint/pose\u003c/strong\u003e (\u003ca href=https://github.com/qcr/armer_msgs/blob/main/action/MoveToJointPose.action\u003earmer_msgs/MoveToJointPoseAction\u003c/a\u003e)\\nMoves the joints of the robot to the indicated positions (radians).\u003c/p\u003e\\n\u003c/li\u003e\\n\u003c/ul\u003e\\n\",\"name\":\"Armer Driver\",\"type\":\"code\",\"url\":\"https://github.com/qcr/armer\",\"src\":\"/content/armer.md\",\"id\":\"armer\",\"image_position\":\"center\",\"image\":\"/_next/static/images/qcr_logo_light_filled-b2f2ba81b0ef111afdf9fa7264fb4adf.png\"}"},"__N_SSG":true},"page":"/code/[code]","query":{"code":"armer"},"buildId":"MKfisAkdLhawU886GfrUX","isFallback":false,"gsp":true}</script><script nomodule="" src="/_next/static/chunks/polyfills-ff94e68042added27a93.js"></script><script src="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" async=""></script><script src="/_next/static/chunks/framework.d2ae4074d0a54d95f68e.js" async=""></script><script src="/_next/static/chunks/commons.e21e18828a134291743a.js" async=""></script><script src="/_next/static/chunks/main-877934a927cbb61c2a2d.js" async=""></script><script src="/_next/static/chunks/pages/_app-3b1e2cebd1a30c8da56a.js" async=""></script><script src="/_next/static/chunks/3d04e185781834a6bdd2cdc78a14cbdede4fee55.a08c888435ca7df81d18.js" async=""></script><script src="/_next/static/chunks/pages/code/%5Bcode%5D-8e35d88bd85b3a6ba887.js" async=""></script><script src="/_next/static/MKfisAkdLhawU886GfrUX/_buildManifest.js" async=""></script><script src="/_next/static/MKfisAkdLhawU886GfrUX/_ssgManifest.js" async=""></script></body></html>
