@@ -19,7 +19,7 @@
     "github-markdown-css": "^4.0.0",
     "imagemin-gifsicle": "^7.0.0",
     "markdown-it-prism": "^2.1.4",
-    "next": "^10.0.7",
+    "next": "^11.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-responsive": "^8.1.1",
