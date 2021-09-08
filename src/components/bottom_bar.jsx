@@ -1,3 +1,5 @@
+import {Typography} from '@material-ui/core';
+
 import styles from '../styles/bottom_bar.module.scss';
 
 export default function BottomBar() {

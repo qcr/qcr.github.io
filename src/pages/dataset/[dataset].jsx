@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import {Typography} from '@material-ui/core';
+
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 

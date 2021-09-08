@@ -1,3 +1,5 @@
+import {Typography} from '@material-ui/core';
+
 import Card from '../../components/card';
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';

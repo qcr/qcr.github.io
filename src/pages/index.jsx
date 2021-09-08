@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import {Typography} from '@material-ui/core';
+
 import CardCarousel from '../components/card_carousel';
 import Layout from '../components/layout';
 
@@ -35,6 +37,7 @@ export default function HomePage({
         alt="QUT Centre for Robotics Banner Image"
         src={require('/assets/banner_image.jpg')}
         className={styles['banner-image']}
+        layout="fill"
       />
       <div className={styles.welcome}>
         <p>
