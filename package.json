@@ -9,19 +9,11 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
-    "@rmwc/button": "^6.1.4",
-    "@rmwc/card": "^6.1.4",
-    "@rmwc/elevation": "^6.1.4",
-    "@rmwc/textfield": "^6.1.4",
-    "@rmwc/theme": "^6.1.4",
-    "@rmwc/top-app-bar": "^6.1.4",
-    "@rmwc/typography": "^6.1.4",
     "github-markdown-css": "^4.0.0",
-    "imagemin-gifsicle": "^7.0.0",
     "markdown-it-prism": "^2.1.4",
-    "next": "^10.0.7",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "next": "^11.1.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-responsive": "^8.1.1",
     "react-slick": "^0.27.13",
     "slick-carousel": "^1.8.1"
@@ -36,11 +28,8 @@
     "markdown-it-block-embed": "0.0.3",
     "markdown-it-replace-link": "^1.1.0",
     "next-compose-plugins": "^2.2.1",
-    "next-optimized-images": "^2.6.2",
     "prettier": "^2.2.0",
     "sass": "^1.29.0",
-    "webpack-cli": "^4.2.0",
-    "webpack-stats-plugin": "^1.0.2",
     "yaml": "^1.10.0"
   }
 }
