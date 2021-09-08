@@ -4,6 +4,7 @@ const path = require('path');
 const withPlugins = require('next-compose-plugins');
 
 const nextConfig = {
+  images: {disableStaticImages: true},
   sassOptions: {
     includePaths: ['node_modules'].map((d) => path.join(__dirname, d)),
   },

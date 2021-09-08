@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 
@@ -18,7 +19,7 @@ export default function TopBar() {
       <TopAppBarRow className={styles.row}>
         <TopAppBarSection alignStart className={styles['logo-section']}>
           <Link href="/">
-            <img className={styles.logo} alt="QCR Logo (light)" src={logo} />
+            <Image className={styles.logo} alt="QCR Logo (light)" src={logo} />
           </Link>
         </TopAppBarSection>
         <TopAppBarSection alignEnd className={styles.pages}>
