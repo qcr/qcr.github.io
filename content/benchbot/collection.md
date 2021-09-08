@@ -11,8 +11,7 @@ code:
   - benchbot-supervisor
   - benchbot-simulator
 datasets:
-  - benchbot-develop
-  - benchbot-challenge
+  - benchbot-bear-data
 feature: 1
 ---
 

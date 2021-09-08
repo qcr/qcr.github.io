@@ -12,6 +12,7 @@ code:
   - lost_code
   - openseqslam2_code
   - seq2single_code
+  - teach_repeat
 datasets:
   - brisbane_event_vpr_dataset
   - vprbench
