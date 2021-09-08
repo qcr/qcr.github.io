@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import {Typography} from '@material-ui/core';
 
 import CardCarousel from '../components/card_carousel';
@@ -33,7 +31,7 @@ export default function HomePage({
   if (typeof mostRecent === 'string') mostRecent = JSON.parse(mostRecent);
   return (
     <Layout home>
-      <Image
+      <img
         alt="QUT Centre for Robotics Banner Image"
         src={require('/assets/banner_image.jpg')}
         className={styles['banner-image']}

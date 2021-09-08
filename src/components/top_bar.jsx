@@ -1,50 +1,63 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 
-import {AppBar, Button, Toolbar} from '@material-ui/core';
+import {AppBar, Tab, Tabs, makeStyles} from '@material-ui/core';
 
 import logo from '/assets/qcr_logo_light.png';
 import styles from '../styles/top_bar.module.scss';
 
+const appBarStyle = makeStyles((theme) => ({
+  root: {
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    [theme.breakpoints.up(800)]: {
+      flexDirection: 'row',
+    },
+  },
+}));
+
+const tabStyle = makeStyles({
+  root: {
+    color: 'white',
+    opacity: 1.0,
+    textTransform: 'capitalize',
+  },
+});
+
+const tabsStyle = makeStyles({
+  indicator: {
+    backgroundColor: 'white',
+  },
+});
+
 export default function TopBar() {
+  const csAppBar = appBarStyle();
+  const csTab = tabStyle();
+  const csTabs = tabsStyle();
   const r = useRouter();
-  const selected = r.asPath.startsWith('/code') ?
-    'code' :
+  const selected = r.asPath.startsWith('/collection') ?
+    0 :
+    r.asPath.startsWith('/code') ?
+    1 :
     r.asPath.startsWith('/dataset') ?
-    'dataset' :
-    r.asPath.startsWith('/collection') ?
-    'collection' :
-    undefined;
+    2 :
+    false;
   return (
-    <AppBar className={styles.bar}>
-      <Toolbar className={styles['logo-section']}>
-        <Link href="/">
-          <Image
-            className={styles.logo}
-            alt="QCR Logo (light)"
-            src={logo}
-            layout="fill"
-          />
-        </Link>
+    <AppBar className={styles.bar} classes={csAppBar}>
+      <Link href="/">
+        <img className={styles.logo} alt="QCR Logo (light)" src={logo} />
+      </Link>
+      <Tabs className={styles['tabs']} classes={csTabs} value={selected}>
         <Link href="/collection">
-          <Button
-            className={selected === 'collection' && styles['selected-tab']}
-          >
-            Collections
-          </Button>
+          <Tab classes={csTab} label="Collections" />
         </Link>
         <Link href="/code">
-          <Button className={selected === 'code' && styles['selected-tab']}>
-            Code
-          </Button>
+          <Tab classes={csTab} label="Code" />
         </Link>
         <Link href="/dataset">
-          <Button className={selected === 'dataset' && styles['selected-tab']}>
-            Datasets
-          </Button>
+          <Tab classes={csTab} label="Datasets" />
         </Link>
-      </Toolbar>
+      </Tabs>
     </AppBar>
   );
 }
