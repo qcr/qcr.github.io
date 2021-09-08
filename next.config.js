@@ -1,5 +1,5 @@
 const fs = require('fs');
-// const optimisedImages = require('next-optimized-images');
+const nextImages = require('next-images');
 const path = require('path');
 const withPlugins = require('next-compose-plugins');
 
@@ -38,12 +38,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins(
-    [
-    // [
-    //   optimisedImages,
-    //   {handleImages: ['jpeg', 'png', 'svg', 'webp'], optimizeImages: true},
-    // ],
-    ],
-    nextConfig
-);
+module.exports = withPlugins([[nextImages]], nextConfig);
