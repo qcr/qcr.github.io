@@ -1,5 +1,3 @@
-import {Typography} from '@rmwc/typography';
-
 import CardCarousel from '../components/card_carousel';
 import Layout from '../components/layout';
 

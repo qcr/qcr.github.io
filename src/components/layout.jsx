@@ -1,5 +1,3 @@
-import {Typography} from '@rmwc/typography';
-
 import BottomBar from './bottom_bar';
 import TopBar from './top_bar';
 

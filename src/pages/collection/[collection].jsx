@@ -1,5 +1,3 @@
-import {Typography} from '@rmwc/typography';
-
 import Card from '../../components/card';
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
@@ -10,7 +8,9 @@ import styles from '../../styles/collection.module.scss';
 import {lookupEntry, collections} from '/lib/content';
 
 export default function CollectionPage({collectionData}) {
-  if (typeof collectionData === 'string') collectionData = JSON.parse(collectionData);
+  if (typeof collectionData === 'string') {
+    collectionData = JSON.parse(collectionData);
+  }
   return (
     <Layout>
       <Typography use="headline3" className={styles.heading}>
@@ -57,7 +57,7 @@ export default function CollectionPage({collectionData}) {
 
 export function getStaticPaths() {
   return {
-    paths: Object.values(collections).map(p => ({
+    paths: Object.values(collections).map((p) => ({
       params: {
         collection: p.id,
       },
@@ -69,7 +69,9 @@ export function getStaticPaths() {
 export function getStaticProps(ctx) {
   return {
     props: {
-      collectionData: JSON.stringify(lookupEntry(ctx.params.collection, 'collection')),
+      collectionData: JSON.stringify(
+          lookupEntry(ctx.params.collection, 'collection')
+      ),
     },
   };
 }

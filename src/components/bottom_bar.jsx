@@ -1,6 +1,3 @@
-import {IconButton} from '@rmwc/icon-button';
-import {Typography} from '@rmwc/typography';
-
 import styles from '../styles/bottom_bar.module.scss';
 
 export default function BottomBar() {

@@ -1,6 +1,3 @@
-import {Button} from '@rmwc/button';
-import {Typography} from '@rmwc/typography';
-
 import Link from 'next/link';
 
 import FocusButton from '../../components/focus_button';
@@ -44,7 +41,7 @@ export default function CodePage({codeData}) {
 
 export function getStaticPaths() {
   return {
-    paths: Object.values(code).map(c => ({
+    paths: Object.values(code).map((c) => ({
       params: {
         code: c.id,
       },

@@ -1,5 +1,3 @@
-import {Button} from '@rmwc/button';
-
 import styles from '../styles/focus_button.module.scss';
 
 export default function FocusButton({url, text, icon, newTab}) {

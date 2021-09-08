@@ -1,14 +1,3 @@
-import {
-  Card,
-  CardActionIcon,
-  CardActionIcons,
-  CardActions,
-  CardMedia,
-  CardPrimaryAction,
-} from '@rmwc/card';
-import {Elevation} from '@rmwc/elevation';
-import {Typography} from '@rmwc/typography';
-
 import Link from 'next/link';
 import {useState} from 'react';
 
