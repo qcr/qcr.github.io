@@ -14,7 +14,7 @@ export default function BottomBar() {
         <div className={styles.left}></div>
         <div className={styles.center}></div>
         <div className={styles.right}>
-          <Typography use="body2">CRICOS No. 00213J</Typography>
+          <Typography variant="button">CRICOS No. 00213J</Typography>
         </div>
       </div>
     </div>
