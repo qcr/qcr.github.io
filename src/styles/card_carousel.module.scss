@@ -3,12 +3,12 @@
   margin-left: $font-size;
 
   :global(.slick-arrow:before) {
-    color: var(--mdc-theme-primary);
+    color: var(--qut-blue);
     font-size: $font-size;
   }
 
   :global(.slick-dots li button:before) {
-    color: var(--mdc-theme-primary);
+    color: var(--qut-blue);
   }
 
   :global(.slick-prev) {
