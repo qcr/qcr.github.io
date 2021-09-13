@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 
 import {AppBar, Tab, Tabs, makeStyles} from '@material-ui/core';
 
-import logo from '/assets/qcr_logo_light.png';
+import logo from '/assets/qcr_logo_light.svg';
 import styles from '../styles/top_bar.module.scss';
 
 const appBarStyle = makeStyles((theme) => ({
