@@ -18,7 +18,7 @@ a {
 }
 
 :root {
-  --qut-blue: v.$qutBlue;
+  --qut-blue: #{v.$qutBlue};
 }
 
 .heading {
