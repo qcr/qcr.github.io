@@ -1,4 +1,4 @@
-$maxWidth: 1300px;
+@use './variables.scss' as v;
 
 * {
   padding: 0;
@@ -18,7 +18,7 @@ a {
 }
 
 :root {
-  --qut-blue: #00407a;
+  --qut-blue: v.$qutBlue;
 }
 
 .heading {
@@ -76,7 +76,7 @@ a {
 }
 
 .mdc-top-app-bar__row {
-  max-width: $maxWidth;
+  max-width: v.$maxWidth;
 }
 
 .slick-slider {
@@ -91,5 +91,5 @@ a {
 
 .site-bottom-bar {
   width: 100%;
-  max-width: $maxWidth;
+  max-width: v.$maxWidth;
 }

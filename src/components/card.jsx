@@ -7,8 +7,8 @@ import LazyImage from '../components/lazy_image';
 
 import styles from '../styles/card.module.scss';
 
-const ELEVATION_DEFAULT = 4;
-const ELEVATION_HIGHLIGHT = 8;
+const ELEVATION_DEFAULT = 2;
+const ELEVATION_HIGHLIGHT = 16;
 
 export default function EntryCard({cardData}) {
   const [elevation, setElevation] = useState(ELEVATION_DEFAULT);
@@ -19,6 +19,7 @@ export default function EntryCard({cardData}) {
       elevation={elevation}
       onMouseOver={() => setElevation(ELEVATION_HIGHLIGHT)}
       onMouseOut={() => setElevation(ELEVATION_DEFAULT)}
+      square={true}
     >
       <Link href={`/${section}/${cardData.id}`}>
         <CardActionArea className={styles.clickable}>
@@ -32,7 +33,7 @@ export default function EntryCard({cardData}) {
           />
           <div className={styles.footer}>
             <Typography
-              use="body2"
+              variant="body2"
               className={`${styles.extra} ${
                 styles[section === 'code' ? 'url' : 'size']
               }`}
@@ -45,9 +46,11 @@ export default function EntryCard({cardData}) {
                 cardData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1') :
                 'Collection'}
             </Typography>
-            <Typography use="body1" className={styles.name}>
-              {cardData.name}
-            </Typography>
+            <div className={styles['name-outer']}>
+              <Typography variant="body1" className={styles.name}>
+                {cardData.name}
+              </Typography>
+            </div>
           </div>
         </CardActionArea>
       </Link>
