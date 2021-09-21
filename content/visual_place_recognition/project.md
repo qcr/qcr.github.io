@@ -13,6 +13,7 @@ code:
   - openseqslam2_code
   - seq2single_code
   - teach_repeat
+  - heaputil_code
 datasets:
   - brisbane_event_vpr_dataset
   - vprbench
