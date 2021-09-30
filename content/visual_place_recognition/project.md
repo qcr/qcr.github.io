@@ -14,6 +14,7 @@ code:
   - seq2single_code
   - teach_repeat
   - heaputil_code
+  - topometric_localization
 datasets:
   - brisbane_event_vpr_dataset
   - vprbench
