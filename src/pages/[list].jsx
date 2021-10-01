@@ -11,7 +11,11 @@ export default function ListPage({listData, title}) {
   if (typeof listData === 'string') listData = JSON.parse(listData);
   return (
     <Layout list>
-      <Typography use="headline4" className={`heading ${styles.centre}`}>
+      <Typography
+        variant="h3"
+        className={`heading ${styles.centre}`}
+        color="primary"
+      >
         {title}
       </Typography>
       <div className={styles.cards}>
