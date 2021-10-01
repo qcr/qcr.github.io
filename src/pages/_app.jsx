@@ -14,7 +14,22 @@ import 'prismjs/themes/prism-tomorrow.css';
 
 import '../styles/globals.scss';
 
-const theme = createTheme({palette: {primary: {main: '#00407a'}}});
+const theme = createTheme({
+  palette: {primary: {main: '#00407a'}},
+  typography: {
+    h3: {
+      fontWeight: 'bold',
+      marginBottom: '40px',
+      marginTop: '16px',
+      textAlign: 'center',
+    },
+    subtitle1: {
+      fontWeight: 'bold',
+      textAlign: 'center',
+      marginBottom: '16px',
+    },
+  },
+});
 
 export default function Site({Component, pageProps}) {
   return (
