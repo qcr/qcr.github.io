@@ -24,6 +24,7 @@ const theme = createTheme({
       textAlign: 'center',
     },
     subtitle1: {
+      fontStyle: 'normal',
       fontWeight: 'bold',
       textAlign: 'center',
       marginBottom: '16px',

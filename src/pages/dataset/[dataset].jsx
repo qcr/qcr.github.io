@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import {Typography} from '@material-ui/core';
+import {Typography, makeStyles} from '@material-ui/core';
 
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
@@ -10,7 +10,15 @@ import styles from '../../styles/dataset.module.scss';
 
 import {datasets, lookupEntry} from '/lib/content';
 
+const bodyStyle = makeStyles(() => ({
+  root: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+}));
+
 export default function DatasetPage({datasetData}) {
+  const csBody = bodyStyle();
   if (typeof datasetData === 'string') datasetData = JSON.parse(datasetData);
   return (
     <Layout>
@@ -27,11 +35,11 @@ export default function DatasetPage({datasetData}) {
         {datasetData.size}
       </Typography>
       {datasetData.content ? (
-        <Typography use="body1" className="markdown-body">
+        <Typography variant="body1" classes={csBody} className="markdown-body">
           <div dangerouslySetInnerHTML={{__html: datasetData.content}} />{' '}
         </Typography>
       ) : (
-        <Typography use="body1" className={`missing ${styles.content}`}>
+        <Typography variant="body1" className={`missing ${styles.content}`}>
           Content rendered markdown file specified by the 'details' field of
           your dataset data in '/data/datasets.yaml' (not sure what use as a
           default if no value is provided?)
