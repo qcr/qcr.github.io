@@ -22,20 +22,12 @@ const nextConfig = {
             loader: './lib/loaders/markdown.js',
           },
           {
-            test: /\.yaml$/,
-            loader: './lib/loaders/yaml.js',
-          },
-          {
             test: /\.gif$/,
             loader: './lib/loaders/gif.js',
           },
           {
             test: /\.csv$/,
             loader: 'csv-loader',
-          },
-          {
-            test: /\.svg$/,
-            loader: '@svgr/webpack',
           },
         ]
     );
@@ -57,6 +49,7 @@ module.exports = withPlugins(
             'webp',
             'jp2',
             'avif',
+            'svg',
           ],
         },
       ],

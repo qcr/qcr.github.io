@@ -5,7 +5,7 @@ import {Typography, makeStyles} from '@material-ui/core';
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 
-import DownloadIcon from '/assets/icon_download.svg';
+import DownloadIcon from '!@svgr/webpack!/assets/icon_download.svg';
 import styles from '../../styles/dataset.module.scss';
 
 import {datasets, lookupEntry} from '/lib/content';
