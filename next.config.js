@@ -33,10 +33,33 @@ const nextConfig = {
             test: /\.csv$/,
             loader: 'csv-loader',
           },
+          {
+            test: /\.svg$/,
+            loader: '@svgr/webpack',
+          },
         ]
     );
     return config;
   },
 };
 
-module.exports = withPlugins([[nextImages]], nextConfig);
+module.exports = withPlugins(
+    [
+      [
+        nextImages,
+        {
+          fileExtensions: [
+            'jpg',
+            'jpeg',
+            'png',
+            'gif',
+            'ico',
+            'webp',
+            'jp2',
+            'avif',
+          ],
+        },
+      ],
+    ],
+    nextConfig
+);

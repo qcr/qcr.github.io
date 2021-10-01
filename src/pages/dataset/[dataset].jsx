@@ -5,7 +5,7 @@ import {Typography} from '@material-ui/core';
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 
-import icon from '/assets/icon_download.svg';
+import DownloadIcon from '/assets/icon_download.svg';
 import styles from '../../styles/dataset.module.scss';
 
 import {datasets, lookupEntry} from '/lib/content';
@@ -21,7 +21,7 @@ export default function DatasetPage({datasetData}) {
       <FocusButton
         url={datasetData.url}
         text="Download the dataset"
-        icon={icon}
+        icon={<DownloadIcon />}
       />
       <Typography use="body2" className={styles.extra}>
         {datasetData.size}

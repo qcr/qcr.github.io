@@ -1,8 +1,9 @@
 .button {
-  text-transform: none;
+  text-transform: capitalize !important;
   width: 300px;
-  i {
-    filter: brightness(0) invert(1);
+
+  svg {
+    fill: white;
   }
 }
 
