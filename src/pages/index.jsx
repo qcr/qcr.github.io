@@ -1,4 +1,4 @@
-import {Typography} from '@material-ui/core';
+import {Typography} from '@mui/material';
 
 import CardCarousel from '../components/card_carousel';
 import Layout from '../components/layout';

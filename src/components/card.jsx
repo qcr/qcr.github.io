@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import {useState} from 'react';
 
-import {Card, CardActionArea, Typography} from '@material-ui/core';
+import {Card, CardActionArea, Typography} from '@mui/material';
 
 import LazyImage from '../components/lazy_image';
 

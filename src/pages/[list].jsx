@@ -1,4 +1,4 @@
-import {Typography} from '@material-ui/core';
+import {Typography} from '@mui/material';
 
 import Card from '../components/card';
 import Layout from '../components/layout';
@@ -11,11 +11,7 @@ export default function ListPage({listData, title}) {
   if (typeof listData === 'string') listData = JSON.parse(listData);
   return (
     <Layout list>
-      <Typography
-        variant="h3"
-        className={`heading ${styles.centre}`}
-        color="primary"
-      >
+      <Typography variant="h3" color="primary">
         {title}
       </Typography>
       <div className={styles.cards}>

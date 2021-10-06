@@ -1,39 +1,25 @@
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 
-import {AppBar, Tab, Tabs, makeStyles} from '@material-ui/core';
+import {AppBar, Tab, Tabs} from '@mui/material';
 
 import QcrLogo from '!@svgr/webpack!/assets/qcr_logo_light.svg';
 import styles from '../styles/top_bar.module.scss';
 
-const appBarStyle = makeStyles((theme) => ({
-  root: {
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    [theme.breakpoints.up(800)]: {
-      flexDirection: 'row',
-    },
-  },
-}));
-
-const tabStyle = makeStyles({
-  root: {
-    color: 'white',
-    opacity: 1.0,
-    textTransform: 'capitalize',
-  },
-});
-
-const tabsStyle = makeStyles({
-  indicator: {
-    backgroundColor: 'white',
-  },
-});
+const tabStyle = {
+  color: 'white',
+  opacity: 1.0,
+  textTransform: 'capitalize',
+};
+// const tabStyle = makeStyles({
+//   root: {
+//     color: 'white',
+//     opacity: 1.0,
+//     textTransform: 'capitalize',
+//   },
+// });
 
 export default function TopBar() {
-  const csAppBar = appBarStyle();
-  const csTab = tabStyle();
-  const csTabs = tabsStyle();
   const r = useRouter();
   const selected = r.asPath.startsWith('/collection') ?
     0 :
@@ -43,19 +29,36 @@ export default function TopBar() {
     2 :
     false;
   return (
-    <AppBar className={styles.bar} classes={csAppBar}>
+    <AppBar
+      className={styles.bar}
+      sx={{
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        flexDirection: {
+          md: 'row',
+        },
+      }}
+    >
       <Link href="/">
         <QcrLogo className={styles.logo} />
       </Link>
-      <Tabs className={styles['tabs']} classes={csTabs} value={selected}>
+      <Tabs
+        className={styles['tabs']}
+        value={selected}
+        TabIndicatorProps={{
+          style: {
+            backgroundColor: 'white',
+          },
+        }}
+      >
         <Link href="/collection">
-          <Tab classes={csTab} label="Collections" />
+          <Tab label="Collections" sx={tabStyle} />
         </Link>
         <Link href="/code">
-          <Tab classes={csTab} label="Code" />
+          <Tab label="Code" sx={tabStyle} />
         </Link>
         <Link href="/dataset">
-          <Tab classes={csTab} label="Datasets" />
+          <Tab label="Datasets" sx={tabStyle} />
         </Link>
       </Tabs>
     </AppBar>

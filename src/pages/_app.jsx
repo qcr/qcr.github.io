@@ -1,7 +1,6 @@
 import Head from 'next/head';
 
-import {ThemeProvider} from '@material-ui/styles';
-import {createTheme} from '@material-ui/core';
+import {ThemeProvider, createTheme} from '@mui/material/styles';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

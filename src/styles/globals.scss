@@ -21,14 +21,6 @@ a {
   --qut-blue: #{v.$qutBlue};
 }
 
-.heading {
-  display: block;
-  font-weight: bold;
-  color: var(--mdc-theme-primary);
-  margin-top: 30px;
-  margin-bottom: 15px;
-}
-
 .markdown-body {
   max-width: 80ch;
 
