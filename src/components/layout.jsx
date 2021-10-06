@@ -5,7 +5,7 @@ import styles from '../styles/layout.module.scss';
 
 export default function Layout({children, home, list}) {
   return (
-    <>
+    <div className={styles.page}>
       <TopBar />
       <div className={styles.space} />
       <div
@@ -16,6 +16,6 @@ export default function Layout({children, home, list}) {
         {children}
       </div>
       <BottomBar />
-    </>
+    </div>
   );
 }

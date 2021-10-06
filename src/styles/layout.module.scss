@@ -4,6 +4,7 @@
   flex-direction: column;
   margin: 0 auto;
 }
+
 .content {
   max-width: 100ch;
   width: 100%;
@@ -16,6 +17,12 @@
 
 .list {
   max-width: 1700px;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .progress {
