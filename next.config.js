@@ -44,7 +44,6 @@ module.exports = withPlugins(
             'jpg',
             'jpeg',
             'png',
-            'gif',
             'ico',
             'webp',
             'jp2',
