@@ -1,13 +1,21 @@
-import {Typography} from '@material-ui/core';
+import {Typography} from '@mui/material';
 
 import Card from '../../components/card';
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 
-import icon from '/assets/icon_website.svg';
+import WebsiteIcon from '!@svgr/webpack!/assets/icon_website.svg';
 import styles from '../../styles/collection.module.scss';
 
 import {lookupEntry, collections} from '/lib/content';
+
+const sectionStyle = {
+  fontWeight: 'bold',
+  marginTop: '36px',
+  marginBottom: '12px',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+};
 
 export default function CollectionPage({collectionData}) {
   if (typeof collectionData === 'string') {
@@ -15,7 +23,7 @@ export default function CollectionPage({collectionData}) {
   }
   return (
     <Layout>
-      <Typography use="headline3" className={styles.heading}>
+      <Typography variant="h3" color="primary">
         {collectionData.name}
       </Typography>
       {collectionData.url && (
@@ -23,16 +31,22 @@ export default function CollectionPage({collectionData}) {
           newTab
           url={collectionData.url}
           text="Go to collection website"
-          icon={icon}
+          icon={<WebsiteIcon />}
+          className={styles.button}
         />
       )}
-      <Typography use="body1" className="markdown-body">
-        <div dangerouslySetInnerHTML={{__html: collectionData.content}} />{' '}
-      </Typography>
+      <div className={styles.space} />
+      <Typography
+        use="body1"
+        className="markdown-body"
+        sx={{marginLeft: 'auto', marginRight: 'auto'}}
+        component="div"
+        dangerouslySetInnerHTML={{__html: collectionData.content}}
+      />
       {collectionData.code && (
         <>
-          <Typography use="headline4" className={styles.subheading}>
-            Code Repositories
+          <Typography variant="h5" color="primary" sx={sectionStyle}>
+            Codebases
           </Typography>
           <div className={styles.cards}>
             {collectionData.code.map((r, i) => (
@@ -43,7 +57,7 @@ export default function CollectionPage({collectionData}) {
       )}
       {collectionData.datasets && (
         <>
-          <Typography use="headline4" className={styles.subheading}>
+          <Typography variant="h5" color="primary" sx={sectionStyle}>
             Datasets
           </Typography>
           <div className={styles.cards}>
