@@ -1,31 +1,22 @@
+@use 'sass:color';
+
+@use 'variables.scss' as v;
+
 .carousel {
-  $font-size: 30px;
-  margin-left: $font-size;
-
-  :global(.slick-arrow:before) {
-    color: var(--qut-blue);
-    font-size: $font-size;
+  :global(.react-multiple-carousel__arrow) {
+    background-color: color.adjust(v.$qutBlue, $alpha: -0.5);
   }
 
-  :global(.slick-dots li button:before) {
-    color: var(--qut-blue);
+  :global(.react-multi-carousel-dot button) {
+    border: none;
+    background-color: lightgrey;
   }
 
-  :global(.slick-prev) {
-    left: -$font-size;
-  }
-
-  @media screen and (max-width: 1300px) {
-    :global(.slick-next) {
-      right: 0;
-    }
-  }
-
-  :global(.slick-slide div) {
-    outline: none;
+  :global(.react-multi-carousel-dot--active button) {
+    background-color: var(--qut-blue);
   }
 }
 
 .item {
-  margin: auto;
+  margin-bottom: 30px;
 }
