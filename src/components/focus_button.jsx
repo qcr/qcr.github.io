@@ -11,7 +11,7 @@ export default function FocusButton({url, text, icon, newTab}) {
         // classes={csIcon}
         className={styles.button}
         endIcon={icon}
-        sx={{'.MuiButton-endIcon': {marginLeft: '12px'}}}
+        sx={{'.MuiButton-endIcon': {height: '24px', marginLeft: '12px'}}}
       >
         {text}
       </Button>

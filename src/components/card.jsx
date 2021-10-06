@@ -8,7 +8,7 @@ import LazyImage from '../components/lazy_image';
 import styles from '../styles/card.module.scss';
 
 const ELEVATION_DEFAULT = 2;
-const ELEVATION_HIGHLIGHT = 16;
+const ELEVATION_HIGHLIGHT = 8;
 
 export default function EntryCard({cardData}) {
   const [elevation, setElevation] = useState(ELEVATION_DEFAULT);

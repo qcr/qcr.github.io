@@ -14,7 +14,7 @@ export default function DatasetPage({datasetData}) {
   if (typeof datasetData === 'string') datasetData = JSON.parse(datasetData);
   return (
     <Layout>
-      <Typography variant="h3" className={styles.heading} color="primary">
+      <Typography variant="h3" color="primary">
         {datasetData.name}
       </Typography>
 

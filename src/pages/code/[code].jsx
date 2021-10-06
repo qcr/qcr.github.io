@@ -1,11 +1,11 @@
 import Link from 'next/link';
 
-import {Typography} from '@material-ui/core';
+import {Typography} from '@mui/material';
 
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 import styles from '../../styles/code.module.scss';
-import icon from '/assets/icon_github.svg';
+import GitHubIcon from '!@svgr/webpack!/assets/icon_github.svg';
 
 import {code, lookupEntry} from '/lib/content';
 
@@ -13,7 +13,7 @@ export default function CodePage({codeData}) {
   if (typeof codeData === 'string') codeData = JSON.parse(codeData);
   return (
     <Layout>
-      <Typography use="headline3" className={styles.heading}>
+      <Typography variant="h3" color="primary">
         {codeData.name}
       </Typography>
 
@@ -21,13 +21,21 @@ export default function CodePage({codeData}) {
         newTab
         url={codeData.url}
         text="View the code on GitHub"
-        icon={icon}
+        icon={<GitHubIcon />}
       />
-      <Typography use="body2" className={styles.extra}>
+      <Typography
+        variant="subtitle1"
+        color="primary"
+        sx={{fontStyle: 'italic', marginBottom: '36px'}}
+      >
         {codeData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1')}
       </Typography>
       {codeData.content ? (
-        <Typography use="body1" className="markdown-body">
+        <Typography
+          use="body1"
+          className="markdown-body"
+          sx={{marginLeft: 'auto', marginRight: 'auto'}}
+        >
           <div dangerouslySetInnerHTML={{__html: codeData.content}} />{' '}
         </Typography>
       ) : (
