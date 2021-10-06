@@ -18,6 +18,12 @@ const LIMIT_FEATURE = 10;
 const LIMIT_MOST_POPULAR = 10;
 const LIMIT_MOST_RECENT = 10;
 
+const sectionStyle = {
+  fontWeight: 'bold',
+  marginBottom: '12px',
+  marginTop: '36px',
+};
+
 export default function HomePage({
   mostPopular,
   mostRecent,
@@ -37,7 +43,14 @@ export default function HomePage({
         className={styles['banner-image']}
         layout="fill"
       />
-      <div className={styles.welcome}>
+      <Typography
+        variant="body1"
+        className={styles.welcome}
+        sx={{
+          color: 'white',
+          backgroundColor: 'primary.main',
+        }}
+      >
         <p>
           Welcome the QUT Centre for Robotics Open Source website. This is the
           place where we share our public contributions with the wider robotics
@@ -51,19 +64,19 @@ export default function HomePage({
           <a href="https://research.qut.edu.au/qcr/">main site</a> for more
           details about the Centre.
         </p>
-      </div>
+      </Typography>
       <div className={styles.content}>
-        <Typography use="headline4" className="heading">
+        <Typography variant="h4" color="primary" sx={sectionStyle}>
           Newest Additions
         </Typography>
         <CardCarousel cardsData={mostRecent} />
-        <Typography use="headline4" className="heading">
+        <Typography variant="h4" color="primary" sx={sectionStyle}>
           Most Popular
         </Typography>
         <CardCarousel cardsData={mostPopular} />
         {featured.length > 0 && (
           <>
-            <Typography use="headline4" className="heading">
+            <Typography variant="h4" color="primary" sx={sectionStyle}>
               Featured Collections
             </Typography>
             <CardCarousel cardsData={featured} />
