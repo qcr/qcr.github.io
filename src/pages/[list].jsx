@@ -11,7 +11,7 @@ export default function ListPage({listData, title}) {
   if (typeof listData === 'string') listData = JSON.parse(listData);
   return (
     <Layout list>
-      <Typography variant="h3" color="primary">
+      <Typography variant="h3" color="primary" sx={{marginTop: '48px'}}>
         {title}
       </Typography>
       <div className={styles.cards}>
@@ -41,9 +41,9 @@ export function getStaticProps(ctx) {
     collection: collections,
   };
   const titleMap = {
-    code: 'Our codebases',
-    dataset: 'Our datasets',
-    collection: 'Our open source collections',
+    code: 'Codebases on GitHub',
+    dataset: 'Downloadable datasets',
+    collection: 'Open source collections',
   };
   return {
     props: {
