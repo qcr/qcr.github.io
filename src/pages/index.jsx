@@ -61,8 +61,9 @@ export default function HomePage({
         </p>
         <p>
           Please see our{' '}
+          <a href="https://github.com/qcr">GitHub organisation</a> and{' '}
           <a href="https://research.qut.edu.au/qcr/">main site</a> for more
-          details about the Centre.
+          details about the Centre&apos;s work.
         </p>
       </Typography>
       <div className={styles.content}>
