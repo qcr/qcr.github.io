@@ -23,7 +23,11 @@ export default function CollectionPage({collectionData}) {
   }
   return (
     <Layout>
-      <Typography variant="h3" color="primary">
+      <Typography
+        variant="h3"
+        color="primary"
+        sx={{maxWidth: '45rem', marginLeft: 'auto', marginRight: 'auto'}}
+      >
         {collectionData.name}
       </Typography>
       {collectionData.url && (

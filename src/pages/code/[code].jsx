@@ -13,7 +13,11 @@ export default function CodePage({codeData}) {
   if (typeof codeData === 'string') codeData = JSON.parse(codeData);
   return (
     <Layout>
-      <Typography variant="h3" color="primary">
+      <Typography
+        variant="h3"
+        color="primary"
+        sx={{maxWidth: '45rem', marginLeft: 'auto', marginRight: 'auto'}}
+      >
         {codeData.name}
       </Typography>
 
@@ -35,9 +39,9 @@ export default function CodePage({codeData}) {
           use="body1"
           className="markdown-body"
           sx={{marginLeft: 'auto', marginRight: 'auto'}}
-        >
-          <div dangerouslySetInnerHTML={{__html: codeData.content}} />{' '}
-        </Typography>
+          component="div"
+          dangerouslySetInnerHTML={{__html: codeData.content}}
+        />
       ) : (
         <Typography use="body1" className={`missing ${styles.content}`}>
           Content rendered from README.md of the repository, or a custom

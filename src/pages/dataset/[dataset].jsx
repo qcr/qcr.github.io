@@ -14,7 +14,11 @@ export default function DatasetPage({datasetData}) {
   if (typeof datasetData === 'string') datasetData = JSON.parse(datasetData);
   return (
     <Layout>
-      <Typography variant="h3" color="primary">
+      <Typography
+        variant="h3"
+        color="primary"
+        sx={{maxWidth: '45rem', marginLeft: 'auto', marginRight: 'auto'}}
+      >
         {datasetData.name}
       </Typography>
 
@@ -35,9 +39,9 @@ export default function DatasetPage({datasetData}) {
           variant="body1"
           className="markdown-body"
           sx={{marginLeft: 'auto', marginRight: 'auto'}}
-        >
-          <div dangerouslySetInnerHTML={{__html: datasetData.content}} />{' '}
-        </Typography>
+          component="div"
+          dangerouslySetInnerHTML={{__html: datasetData.content}}
+        />
       ) : (
         <Typography variant="body1" className={`missing ${styles.content}`}>
           Content rendered markdown file specified by the 'details' field of
