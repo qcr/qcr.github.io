@@ -11,13 +11,6 @@ const tabStyle = {
   opacity: 1.0,
   textTransform: 'capitalize',
 };
-// const tabStyle = makeStyles({
-//   root: {
-//     color: 'white',
-//     opacity: 1.0,
-//     textTransform: 'capitalize',
-//   },
-// });
 
 export default function TopBar() {
   const r = useRouter();

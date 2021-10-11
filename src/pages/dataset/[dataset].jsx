@@ -1,9 +1,11 @@
+import {useState} from 'react';
 import Link from 'next/link';
 
 import {Typography} from '@mui/material';
 
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
+import SimpleDialog from '../../components/simple_dialog';
 
 import DownloadIcon from '!@svgr/webpack!/assets/icon_download.svg';
 import ListIcon from '!@svgr/webpack!/assets/icon_list.svg';
@@ -13,6 +15,7 @@ import styles from '../../styles/dataset.module.scss';
 import {datasets, lookupEntry} from '/lib/content';
 
 export default function DatasetPage({datasetData}) {
+  const [open, setOpen] = useState(false);
   if (typeof datasetData === 'string') datasetData = JSON.parse(datasetData);
   return (
     <Layout>
@@ -24,13 +27,16 @@ export default function DatasetPage({datasetData}) {
         {datasetData.name}
       </Typography>
 
+      {datasetData.url_type == 'list' && (
+        <SimpleDialog open={open} urls={datasetData.url} />
+      )}
       <FocusButton
-        url={datasetData.url}
+        url={datasetData.url_type != 'list' ? datasetData.url : undefined}
         text={
           datasetData.url_type == 'external' ?
             'Visit dataset website' :
             datasetData.url_type == 'list' ?
-            'Select dataset' :
+            'Select dataset variant' :
             'Download the dataset'
         }
         icon={
@@ -41,6 +47,9 @@ export default function DatasetPage({datasetData}) {
           ) : (
             <DownloadIcon />
           )
+        }
+        onClick={
+          datasetData.url_type == 'list' ? () => setOpen(true) : undefined
         }
       />
       <Typography
