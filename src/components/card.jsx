@@ -41,7 +41,7 @@ export default function EntryCard({cardData}) {
               {section === 'dataset' ?
                 cardData.size ?
                   cardData.size :
-                  '(size unspecified)' :
+                  '' :
                 section === 'code' ?
                 cardData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1') :
                 'Collection'}

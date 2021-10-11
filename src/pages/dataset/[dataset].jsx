@@ -46,7 +46,7 @@ export default function DatasetPage({datasetData}) {
       <Typography
         variant="subtitle1"
         color="primary"
-        sx={{fontStyle: 'italic', marginBottom: '36px'}}
+        sx={{marginBottom: '36px'}}
       >
         {datasetData.size}
       </Typography>
