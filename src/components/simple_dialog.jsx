@@ -6,9 +6,13 @@ import {
   ListItemText,
 } from '@mui/material';
 
-export default function SimpleDialog({open, urls}) {
+export default function SimpleDialog({open, onClose, urls}) {
   return (
-    <Dialog open={open} sx={{'.MuiDialog-paper': {borderRadius: '0px'}}}>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      sx={{'.MuiDialog-paper': {borderRadius: '0px'}}}
+    >
       <DialogTitle sx={{backgroundColor: 'primary.main', color: 'white'}}>
         Select dataset variant
       </DialogTitle>

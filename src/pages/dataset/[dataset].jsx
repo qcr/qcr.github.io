@@ -28,7 +28,13 @@ export default function DatasetPage({datasetData}) {
       </Typography>
 
       {datasetData.url_type == 'list' && (
-        <SimpleDialog open={open} urls={datasetData.url} />
+        <SimpleDialog
+          open={open}
+          onClose={() => {
+            setOpen(false);
+          }}
+          urls={datasetData.url}
+        />
       )}
       <FocusButton
         url={datasetData.url_type != 'list' ? datasetData.url : undefined}
