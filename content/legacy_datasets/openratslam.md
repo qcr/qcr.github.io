@@ -8,6 +8,7 @@ url:
     url: https://mega.co.nz/#!od8xVbKJ!E81hKj-M1-CybBkX1dLe3htAJw-gP9MAQIEeZkPwuUY
   - name: Oxford's New College 2008
     url: https://mega.co.nz/#!oJdwxTAJ!EB-M_gLWq8Sy2uFvmER-D_uTZ7_Rd4v-5ZUhu1YGNCQ
+url_type: list
 ---
 
 A ROS and OpenCV version of RatSLAM is available at: [Google Code](https://code.google.com/archive/p/ratslam/)

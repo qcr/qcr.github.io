@@ -8,6 +8,7 @@ url:
     url: https://mega.nz/#!EUlmQRqD!pOD6Ob7i2G5SDdmC7cvcjBK0K4cxx-drjHlFqWhBMgo
   - name: Short sample segment (~314MB)
     url: https://mega.nz/#!1YUHzTIR!46f0xwKy57_9Zdbay466u-vWkMUgIJjgPbJW5lqLjyQ
+url_type: list
 size: 15.5GB
 image: ./gold_coast_sample.jpg
 ---

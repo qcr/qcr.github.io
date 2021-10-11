@@ -1,7 +1,7 @@
 ---
 name: Multimodal Rock Surface Images
 type: dataset
-url: https://cloudstor.aarnet.edu.au/plus/index.php/s/nX1rhsKMehp1h6N
+url: https://cloudstor.aarnet.edu.au/plus/index.php/s/nX1rhsKMehp1h6N/download
 image: ./multimodal_rock_surface.png
 ---
 

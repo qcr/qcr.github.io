@@ -2,6 +2,7 @@
 name: Kagaru Airborne Vision
 type: dataset
 url: https://michaelwarren.info/docs/datasets/kagaru-airborne-stereo/
+url_type: external
 image: ./kagaru.png
 ---
 

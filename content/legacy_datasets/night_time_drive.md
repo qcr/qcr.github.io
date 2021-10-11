@@ -6,6 +6,7 @@ url:
     url: https://mega.nz/#!IY90HQJY!HQrsdXRLN6FkeLpBIrPDZ3xX6k2ajaKO7OUbzpG7AzM
   - name: Low resolution, highly compressed video (~64MB)
     url: https://mega.nz/#!lF90UBZS!Dhyt-DiY4PfuGB-HXG4XAjhMGu5rP0NRYJyrprIoBrA
+url_type: list
 size: 2.85GB
 image: ./night_drive_sample.jpg
 ---

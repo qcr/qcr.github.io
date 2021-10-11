@@ -6,6 +6,7 @@ url:
     url: https://mega.nz/#!UBkhiL7L!xppCjeRaadUqK1ESk36O_ZdObpC0C3ETXmXaonweIF0
   - name: Outbound route (part 2)
     url: https://mega.nz/#!8ZFQEZDC!mDcOPs5g6V1Ad4SSJ5_6SCUcxIveI8JnK7LEZe696Mg
+url_type: list
 size: 9.7GB
 image: ./city_sunset_sample.jpg
 ---

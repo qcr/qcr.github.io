@@ -2,6 +2,7 @@
 name: Indoor Level 7 S-Block
 type: dataset
 url: https://wiki.qut.edu.au/display/cyphy/Indoor+Level+7+S-Block+Dataset
+url_type: external
 image: ./indoor_level_7.png
 ---
 

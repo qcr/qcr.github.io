@@ -2,6 +2,7 @@
 name: UQ St Lucia Vision
 type: dataset
 url: https://michaelwarren.info/docs/datasets/uq-st-lucia-stereo-dataset/
+url_type: external
 image: ./uq_st_lucia.jpg
 ---
 

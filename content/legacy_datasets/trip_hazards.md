@@ -1,7 +1,7 @@
 ---
 name: Trip Hazards on a Construction Site
 type: dataset
-url: https://cloudstor.aarnet.edu.au/plus/index.php/s/kVAh7G8V4mwdtp4
+url: https://cloudstor.aarnet.edu.au/plus/index.php/s/kVAh7G8V4mwdtp4/download
 image: ./trip_hazards.png
 ---
 

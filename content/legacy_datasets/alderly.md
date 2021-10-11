@@ -2,6 +2,7 @@
 name: Alderly Day and Night
 type: dataset
 url: https://wiki.qut.edu.au/pages/viewpage.action?pageId=181178395
+url_type: external
 image: ./alderly.jpg
 ---
 

@@ -2,6 +2,7 @@
 name: Fish images
 type: dataset
 url: https://wiki.qut.edu.au/display/cyphy/Fish+Dataset
+url_type: external
 image: ./fish_image.png
 size: 512MB
 ---

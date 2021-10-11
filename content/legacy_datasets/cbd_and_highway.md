@@ -6,6 +6,7 @@ url:
     url: https://mega.co.nz/#F!FEM2zBzb!D72oxkUG2jDhaIDxsig1iQ
   - name: Highway
     url: https://mega.co.nz/#F!xRsxCZ4Y!s1Lq4KmtmZfR5MLBLw4a2g
+url_type: list
 image: ./cbd_and_highway.png
 ---
 

@@ -10,6 +10,7 @@ url:
     url: https://mega.nz/#!8Fdgkabb!S_FFvCmuH3RvebV9NBx5m28o8PMOp1eBwRVW0-LVcb4
   - name: Nighttime drive recorded on a Niko D5100
     url: https://mega.nz/#!dQEQRSRI!cm_Xgm1ceGbHara8xX4vbn3X5gYtpPXamtS5WzABfJk
+url_type: list
 image: ./mt_cootha.jpg
 ---
 

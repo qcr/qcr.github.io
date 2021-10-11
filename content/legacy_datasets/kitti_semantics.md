@@ -2,6 +2,7 @@
 name: KITTI images with semantic labels
 type: dataset
 url: https://wiki.qut.edu.au/display/cyphy/KITTI+Semantic+Labels
+url_type: external
 image: ./kitti_semantics.png
 ---
 
