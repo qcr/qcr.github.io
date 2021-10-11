@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
 import {Typography} from '@mui/material';
-import {FormatListBulleted} from '@mui/icons-material';
 
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 
 import DownloadIcon from '!@svgr/webpack!/assets/icon_download.svg';
+import ListIcon from '!@svgr/webpack!/assets/icon_list.svg';
 import WebsiteIcon from '!@svgr/webpack!/assets/icon_website.svg';
 import styles from '../../styles/dataset.module.scss';
 
@@ -30,14 +30,14 @@ export default function DatasetPage({datasetData}) {
           datasetData.url_type == 'external' ?
             'Visit dataset website' :
             datasetData.url_type == 'list' ?
-            'Pick variant to download' :
+            'Select dataset' :
             'Download the dataset'
         }
         icon={
           datasetData.url_type == 'external' ? (
             <WebsiteIcon />
           ) : datasetData.url_type == 'list' ? (
-            <FormatListBulleted />
+            <ListIcon />
           ) : (
             <DownloadIcon />
           )
