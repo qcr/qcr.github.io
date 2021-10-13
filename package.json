@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "export NEXT_OUT_DIR=.next-out && next build && next export -o $NEXT_OUT_DIR && node -e 'require(\"./lib/repo_cache\").dumpCacheInfo(\"'$NEXT_OUT_DIR'/.repo_cache_info\")' && rm $NEXT_OUT_DIR/_next/static/gifs/*.gif",
+    "lint": "next lint",
     "start": "npm run build && next start"
   },
   "dependencies": {
@@ -28,6 +29,7 @@
     "csv-loader": "^3.0.3",
     "eslint": "^7.14.0",
     "eslint-config-google": "^0.14.0",
+    "eslint-config-next": "^11.1.2",
     "eslint-plugin-react": "^7.26.1",
     "gray-matter": "^4.0.2",
     "jsdom": "^16.4.0",
