@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import {Typography} from '@mui/material';
 
 import CardCarousel from '../components/card_carousel';
@@ -24,7 +27,7 @@ const sectionStyle = {
   marginTop: '36px',
 };
 
-export default function HomePage({
+function HomePage({
   mostPopular,
   mostRecent,
   featured,
@@ -88,6 +91,15 @@ export default function HomePage({
   );
 }
 
+HomePage.propTypes = {
+  mostPopular: PropTypes.string,
+  mostRecent: PropTypes.string,
+  featured: PropTypes.string,
+  collectionCount: PropTypes.number,
+  codeCount: PropTypes.number,
+  datasetCount: PropTypes.number,
+};
+
 export function getStaticProps() {
   return {
     props: {
@@ -100,3 +112,5 @@ export function getStaticProps() {
     },
   };
 }
+
+export default HomePage;
