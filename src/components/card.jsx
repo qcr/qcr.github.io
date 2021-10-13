@@ -43,7 +43,7 @@ export default function EntryCard({cardData}) {
                   cardData.size :
                   '' :
                 section === 'code' ?
-                cardData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1') :
+                cardData.url.replace(/.*\/([^/]*\/[^/]*)$/, '$1') :
                 'Collection'}
             </Typography>
             <div className={styles['name-outer']}>

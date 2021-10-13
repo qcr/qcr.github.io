@@ -49,8 +49,8 @@ export function getStaticProps(ctx) {
     props: {
       listData: JSON.stringify(
           Object.values(listMap[ctx.params.list]).sort((a, b) =>
-            a.name.localeCompare(b.name)
-          )
+            a.name.localeCompare(b.name),
+          ),
       ),
       title: titleMap[ctx.params.list],
     },

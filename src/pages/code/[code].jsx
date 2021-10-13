@@ -32,7 +32,7 @@ export default function CodePage({codeData}) {
         color="primary"
         sx={{fontStyle: 'italic', marginBottom: '36px'}}
       >
-        {codeData.url.replace(/.*\/([^\/]*\/[^\/]*)$/, '$1')}
+        {codeData.url.replace(/.*\/([^/]*\/[^/]*)$/, '$1')}
       </Typography>
       {codeData.content ? (
         <Typography

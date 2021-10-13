@@ -90,7 +90,7 @@ export function getStaticProps(ctx) {
   return {
     props: {
       collectionData: JSON.stringify(
-          lookupEntry(ctx.params.collection, 'collection')
+          lookupEntry(ctx.params.collection, 'collection'),
       ),
     },
   };
