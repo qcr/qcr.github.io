@@ -93,9 +93,9 @@ function HomePage({
 }
 
 HomePage.propTypes = {
-  mostPopular: PropTypes.string,
-  mostRecent: PropTypes.string,
-  featured: PropTypes.string,
+  mostPopular: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  mostRecent: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  featured: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   collectionCount: PropTypes.number,
   codeCount: PropTypes.number,
   datasetCount: PropTypes.number,

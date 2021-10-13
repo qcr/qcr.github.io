@@ -24,7 +24,7 @@ function Layout({children, home, list}) {
 }
 
 Layout.propTypes = {
-  children: PropTypes.elementType,
+  children: PropTypes.array,
   home: PropTypes.bool,
   list: PropTypes.bool,
 };
