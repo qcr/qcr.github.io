@@ -4,6 +4,7 @@ type: dataset
 url: https://michaelwarren.info/docs/datasets/kagaru-airborne-stereo/
 url_type: external
 image: ./kagaru.png
+size: 22.9GB
 ---
 
 <p align="center"><img src="./kagaru.png" alt="Overview of traversed path in Kagaru dataset"/></p>

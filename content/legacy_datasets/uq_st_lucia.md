@@ -4,6 +4,7 @@ type: dataset
 url: https://michaelwarren.info/docs/datasets/uq-st-lucia-stereo-dataset/
 url_type: external
 image: ./uq_st_lucia.jpg
+size: 38.1GB
 ---
 
 <p align="center"><img src="./uq_st_lucia.jpg" alt="Overview of traversed path in UQ St Lucia dataset"/></p>

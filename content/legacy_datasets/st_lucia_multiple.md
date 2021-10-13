@@ -4,6 +4,7 @@ type: dataset
 url: https://wiki.qut.edu.au/display/cyphy/St+Lucia+Multiple+Times+of+Day
 url_type: external
 image: ./st_lucia_multiple.jpg
+size: 1.46GB
 ---
 
 <p align="center"><img src="./st_lucia_multiple.jpg" alt="Overview of traversed path in St Lucia multiple times of day dataset"/></p>

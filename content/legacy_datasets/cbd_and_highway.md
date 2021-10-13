@@ -4,10 +4,13 @@ type: dataset
 url:
   - name: CBD
     url: https://mega.co.nz/#F!FEM2zBzb!D72oxkUG2jDhaIDxsig1iQ
+    size: 2.20GB
   - name: Highway
     url: https://mega.co.nz/#F!xRsxCZ4Y!s1Lq4KmtmZfR5MLBLw4a2g
+    size: 2.46GB
 url_type: list
 image: ./cbd_and_highway.png
+size: 4.66GB
 ---
 
 <p align="center"><img src="./cbd_and_highway.png" alt="Overview of paths travelled in the CBD and Highway datasets"/></p>

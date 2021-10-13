@@ -12,12 +12,12 @@ The BenchBot Environments for Active Robotics (BEAR) are a set of Unreal Engine 
 Features of the dataset include:
 
 - a total of 25 different environments
-- 5 different places: 
-    - house: A Scandanavian house - approx. 164 m<sup>2</sup>
-    - miniroom: A small apartment room - approx. 19 m<sup>2</sup>
-    - apartment: A luxurious penthouse apartment - approx. 110 m<sup>2</sup>
-    - company: A large corporate building - approx. 480 m<sup>2</sup>
-    - office: An office workspace - approx. 201 m<sup>2</sup>
+- 5 different places:
+  - house: A Scandanavian house - approx. 164 m<sup>2</sup>
+  - miniroom: A small apartment room - approx. 19 m<sup>2</sup>
+  - apartment: A luxurious penthouse apartment - approx. 110 m<sup>2</sup>
+  - company: A large corporate building - approx. 480 m<sup>2</sup>
+  - office: An office workspace - approx. 201 m<sup>2</sup>
 - each place has 5 different variations
 - between variations there are changes in lighting, time of day, starting location, robot trajectory, and object placements
 

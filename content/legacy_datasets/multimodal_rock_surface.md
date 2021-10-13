@@ -3,6 +3,7 @@ name: Multimodal Rock Surface Images
 type: dataset
 url: https://cloudstor.aarnet.edu.au/plus/index.php/s/nX1rhsKMehp1h6N/download
 image: ./multimodal_rock_surface.png
+size: 2.0GB
 ---
 
 <p align="center"><img src="./multilane_sideways.png" alt="Example images from the multimodal rock surface images dataset"/></p>

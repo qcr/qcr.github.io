@@ -4,6 +4,7 @@ type: dataset
 url: https://wiki.qut.edu.au/display/cyphy/Indoor+Level+7+S-Block+Dataset
 url_type: external
 image: ./indoor_level_7.png
+size: 42.2GB
 ---
 
 <p align="center"><img src="./indoor_level_7.png" alt="Overview of traversed path in indoor level 7 S-Block dataset"/></p>

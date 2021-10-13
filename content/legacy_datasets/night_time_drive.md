@@ -2,12 +2,14 @@
 name: Night time drive
 type: dataset
 url:
-  - name: Full video (~2.84GB)
+  - name: Full video
     url: https://mega.nz/#!IY90HQJY!HQrsdXRLN6FkeLpBIrPDZ3xX6k2ajaKO7OUbzpG7AzM
-  - name: Low resolution, highly compressed video (~64MB)
+    size: 2.50GB
+  - name: Low resolution, highly compressed video
     url: https://mega.nz/#!lF90UBZS!Dhyt-DiY4PfuGB-HXG4XAjhMGu5rP0NRYJyrprIoBrA
+    size: 65.7MB
 url_type: list
-size: 2.85GB
+size: 2.57GB
 image: ./night_drive_sample.jpg
 ---
 

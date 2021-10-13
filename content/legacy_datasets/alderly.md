@@ -4,6 +4,7 @@ type: dataset
 url: https://wiki.qut.edu.au/pages/viewpage.action?pageId=181178395
 url_type: external
 image: ./alderly.jpg
+size: 2.07GB
 ---
 
 <p align="center"><img src="./alderly.jpg" alt="Alderley day and night sample image"/></p>

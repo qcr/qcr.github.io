@@ -4,6 +4,7 @@ type: dataset
 url: https://wiki.qut.edu.au/display/cyphy/KITTI+Semantic+Labels
 url_type: external
 image: ./kitti_semantics.png
+size: 31.8MB
 ---
 
 <p align="center"><img src="./kitti_semantics.png" alt="Example images and corresponding labelled images for KITTI semantic labels"/></p>
