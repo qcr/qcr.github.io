@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import {Typography} from '@mui/material';
 
@@ -9,7 +10,7 @@ import GitHubIcon from '!@svgr/webpack!/assets/icon_github.svg';
 
 import {code, lookupEntry} from '/lib/content';
 
-export default function CodePage({codeData}) {
+function CodePage({codeData}) {
   if (typeof codeData === 'string') codeData = JSON.parse(codeData);
   return (
     <Layout>
@@ -45,13 +46,17 @@ export default function CodePage({codeData}) {
       ) : (
         <Typography use="body1" className={`missing ${styles.content}`}>
           Content rendered from README.md of the repository, or a custom
-          override specified by the 'details' field of your repository data in
-          '/data/repositories.yaml'
+          override specified by the &apos;details&apos; field of your repository
+          data in &apos;/data/repositories.yaml&apos;
         </Typography>
       )}
     </Layout>
   );
 }
+
+CodePage.propTypes = {
+  codeData: PropTypes.object,
+};
 
 export function getStaticPaths() {
   return {
@@ -71,3 +76,5 @@ export function getStaticProps(ctx) {
     },
   };
 }
+
+export default CodePage;
