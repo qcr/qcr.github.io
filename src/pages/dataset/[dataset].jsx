@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import Link from 'next/link';
+import PropTypes from 'prop-types';
+import React, {useState} from 'react';
 
 import {Typography} from '@mui/material';
 
@@ -14,7 +14,7 @@ import styles from '../../styles/dataset.module.scss';
 
 import {datasets, lookupEntry} from '/lib/content';
 
-export default function DatasetPage({datasetData}) {
+function DatasetPage({datasetData}) {
   const [open, setOpen] = useState(false);
   if (typeof datasetData === 'string') datasetData = JSON.parse(datasetData);
   return (
@@ -75,14 +75,18 @@ export default function DatasetPage({datasetData}) {
         />
       ) : (
         <Typography variant="body1" className={`missing ${styles.content}`}>
-          Content rendered markdown file specified by the 'details' field of
-          your dataset data in '/data/datasets.yaml' (not sure what use as a
-          default if no value is provided?)
+          Content rendered markdown file specified by the &apos;details&apos;
+          field of your dataset data in &apos;/data/datasets.yaml&apos; (not
+          sure what use as a default if no value is provided?)
         </Typography>
       )}
     </Layout>
   );
 }
+
+DatasetPage.propTypes = {
+  datasetData: PropTypes.object,
+};
 
 export function getStaticPaths() {
   return {
@@ -102,3 +106,5 @@ export function getStaticProps(ctx) {
     },
   };
 }
+
+export default DatasetPage;
