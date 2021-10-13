@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import {
   Dialog,
   DialogTitle,
@@ -6,7 +9,7 @@ import {
   ListItemText,
 } from '@mui/material';
 
-export default function SimpleDialog({open, onClose, urls}) {
+function SimpleDialog({open, onClose, urls}) {
   return (
     <Dialog
       open={open}
@@ -17,9 +20,9 @@ export default function SimpleDialog({open, onClose, urls}) {
         Select dataset variant
       </DialogTitle>
       <List>
-        {urls.map((u) => (
-          <ListItemButton sx={{paddingRight: '48px'}}>
-            <a href={u.url} target="_blank">
+        {urls.map((u, i) => (
+          <ListItemButton key={i} sx={{paddingRight: '48px'}}>
+            <a href={u.url} target="_blank" rel="noreferrer">
               <ListItemText
                 primary={u.name}
                 secondary={u.size ? u.size : ' '}
@@ -31,3 +34,11 @@ export default function SimpleDialog({open, onClose, urls}) {
     </Dialog>
   );
 }
+
+SimpleDialog.propTypes = {
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
+  urls: PropTypes.array,
+};
+
+export default SimpleDialog;

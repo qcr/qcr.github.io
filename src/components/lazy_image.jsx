@@ -1,4 +1,7 @@
-export default function LazyImage({images, className, style}) {
+import PropTypes from 'prop-types';
+import React from 'react';
+
+function LazyImage({images, className, style}) {
   // TODO actually handle the case when we have two images (i.e. low-res then
   // high-res... we only handle image then video at the moment...)
   // Expects a list of images in the order to be loaded (we should drop out any
@@ -31,3 +34,11 @@ export default function LazyImage({images, className, style}) {
     );
   }
 }
+
+LazyImage.propTypes = {
+  images: PropTypes.array,
+  className: PropTypes.string,
+  style: PropTypes.object,
+};
+
+export default LazyImage;

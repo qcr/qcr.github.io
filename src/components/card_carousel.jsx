@@ -1,12 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import {useMediaQuery} from 'react-responsive';
 import Carousel from 'react-multi-carousel';
 
 import Card from './card';
 
 import styles from '../styles/card_carousel.module.scss';
 
-export default function CardCarousel({cardsData}) {
+function CardCarousel({cardsData}) {
   return (
     <Carousel
       className={styles.carousel}
@@ -27,3 +27,9 @@ export default function CardCarousel({cardsData}) {
     </Carousel>
   );
 }
+
+CardCarousel.propTypes = {
+  cardsData: PropTypes.array,
+};
+
+export default CardCarousel;

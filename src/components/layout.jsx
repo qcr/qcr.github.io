@@ -1,9 +1,12 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import BottomBar from './bottom_bar';
 import TopBar from './top_bar';
 
 import styles from '../styles/layout.module.scss';
 
-export default function Layout({children, home, list}) {
+function Layout({children, home, list}) {
   return (
     <div className={styles.page}>
       <TopBar />
@@ -19,3 +22,11 @@ export default function Layout({children, home, list}) {
     </div>
   );
 }
+
+Layout.propTypes = {
+  children: PropTypes.elementType,
+  home: PropTypes.bool,
+  list: PropTypes.bool,
+};
+
+export default Layout;
