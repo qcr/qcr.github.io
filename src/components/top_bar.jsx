@@ -33,7 +33,7 @@ export default function TopBar() {
         },
       }}
     >
-      <Link href="/">
+      <Link href="/" passHref>
         <QcrLogo className={styles.logo} />
       </Link>
       <Tabs
@@ -45,13 +45,13 @@ export default function TopBar() {
           },
         }}
       >
-        <Link href="/collection">
+        <Link href="/collection" passHref>
           <Tab label="Collections" sx={tabStyle} />
         </Link>
-        <Link href="/code">
+        <Link href="/code" passHref>
           <Tab label="Code" sx={tabStyle} />
         </Link>
-        <Link href="/dataset">
+        <Link href="/dataset" passHref>
           <Tab label="Datasets" sx={tabStyle} />
         </Link>
       </Tabs>

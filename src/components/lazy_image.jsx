@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -25,7 +26,8 @@ function LazyImage({images, className, style}) {
     );
   } else {
     return (
-      <img
+      <Image
+        alt=""
         src={cleanImages[cleanImages.length - 1]}
         className={className}
         style={style}

@@ -22,7 +22,7 @@ function ContentCard({cardData}) {
       onMouseOut={() => setElevation(ELEVATION_DEFAULT)}
       square={true}
     >
-      <Link href={`/${section}/${cardData.id}`}>
+      <Link href={`/${section}/${cardData.id}`} passHref>
         <CardActionArea className={styles.clickable}>
           <LazyImage
             images={[cardData.image, cardData._image]}

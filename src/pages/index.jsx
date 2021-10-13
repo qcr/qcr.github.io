@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -40,7 +41,7 @@ function HomePage({
   if (typeof mostRecent === 'string') mostRecent = JSON.parse(mostRecent);
   return (
     <Layout home>
-      <img
+      <Image
         alt="QUT Centre for Robotics Banner Image"
         src={require('/assets/banner_image.jpg')}
         className={styles['banner-image']}
