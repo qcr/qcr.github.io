@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+import React from 'react';
 import {Typography} from '@mui/material';
 
 import Card from '../components/card';
@@ -7,7 +9,7 @@ import {code, datasets, collections} from '/lib/content';
 
 import styles from '../styles/list.module.scss';
 
-export default function ListPage({listData, title}) {
+function ListPage({listData, title}) {
   if (typeof listData === 'string') listData = JSON.parse(listData);
   return (
     <Layout list>
@@ -22,6 +24,11 @@ export default function ListPage({listData, title}) {
     </Layout>
   );
 }
+
+ListPage.propTypes = {
+  listData: PropTypes.object,
+  title: PropTypes.string,
+};
 
 export function getStaticPaths() {
   return {
@@ -56,3 +63,5 @@ export function getStaticProps(ctx) {
     },
   };
 }
+
+export default ListPage;
