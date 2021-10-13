@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import {Typography} from '@mui/material';
 
 import Card from '../../components/card';
@@ -17,7 +20,7 @@ const sectionStyle = {
   marginRight: 'auto',
 };
 
-export default function CollectionPage({collectionData}) {
+function CollectionPage({collectionData}) {
   if (typeof collectionData === 'string') {
     collectionData = JSON.parse(collectionData);
   }
@@ -75,6 +78,10 @@ export default function CollectionPage({collectionData}) {
   );
 }
 
+CollectionPage.propTypes = {
+  collectionData: PropTypes.object,
+};
+
 export function getStaticPaths() {
   return {
     paths: Object.values(collections).map((p) => ({
@@ -95,3 +102,5 @@ export function getStaticProps(ctx) {
     },
   };
 }
+
+export default CollectionPage;
