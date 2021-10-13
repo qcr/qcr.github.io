@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import {useState} from 'react';
+import PropTypes from 'prop-types';
+import React, {useState} from 'react';
 
 import {Card, CardActionArea, Typography} from '@mui/material';
 
@@ -10,7 +11,7 @@ import styles from '../styles/card.module.scss';
 const ELEVATION_DEFAULT = 2;
 const ELEVATION_HIGHLIGHT = 8;
 
-export default function EntryCard({cardData}) {
+function ContentCard({cardData}) {
   const [elevation, setElevation] = useState(ELEVATION_DEFAULT);
   const section = cardData.type === 'repository' ? 'code' : cardData.type;
   return (
@@ -57,3 +58,9 @@ export default function EntryCard({cardData}) {
     </Card>
   );
 }
+
+ContentCard.propTypes = {
+  cardData: PropTypes.object,
+};
+
+export default ContentCard;
