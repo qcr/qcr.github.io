@@ -9,6 +9,8 @@ import Layout from '../components/layout';
 
 import styles from '../styles/index.module.scss';
 
+import bannerImage from '/assets/banner_image.jpg';
+
 import {
   numCode,
   numDatasets,
@@ -43,9 +45,9 @@ function HomePage({
     <Layout home>
       <Image
         alt="QUT Centre for Robotics Banner Image"
-        src={require('/assets/banner_image.jpg')}
+        src={bannerImage}
         className={styles['banner-image']}
-        layout="fill"
+        height={300}
       />
       <Typography
         variant="body1"

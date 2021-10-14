@@ -32,6 +32,7 @@ function LazyImage({images, className, style}) {
         className={className}
         style={style}
         key={cleanImages[cleanImages.length - 1]}
+        layout="fill"
       />
     );
   }
