@@ -10,6 +10,8 @@ const nextConfig = {
   trailingSlash: true,
   webpack: (config) => {
     config.resolve.roots = [__dirname];
+    config.module.rules.find((r) => r.loader == 'next-image-loader').test =
+      /\.(png|jpg|jpeg|webp|ico|bmp|svg)$/i;
     config.module.rules.push(
       ...[
         {
