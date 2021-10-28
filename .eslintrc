@@ -11,6 +11,8 @@
     // TODO: Remove when https://github.com/babel/babel-eslint/issues/530 fixed
     "template-curly-spacing": "off",
     "indent": "off"
+
+      "no-invalid-this": "off",
   },
   "env": {
     "browser": true,
