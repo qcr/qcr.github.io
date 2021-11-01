@@ -1,58 +1,70 @@
-'use strict';
+import fs from 'fs';
+import matter from 'gray-matter';
+import md from 'markdown-it';
 
-const fs = require('fs');
-const matter = require('gray-matter');
-const md = require('markdown-it');
+import type Renderer from 'markdown-it/lib/renderer';
+import type * as webpack from 'webpack';
 
-const rc = require('../repo_cache');
+import rc from '../repo_cache';
 
 const inst = md({
   html: true,
-  replaceLink: function(link, env) {
-    // Here we determine whether the asset should be required or not (we cast
-    // this net as wide as required here, as we can later reject requiring the
-    // asset in the subRequires() fn)
-    return rc.shouldMark(link) ? rc.markPath(link) : link;
-  },
 })
-    .use(require('markdown-it-block-embed'), {
-      containerClassName: 'embedded-block',
-    })
-    .use(require('markdown-it-prism'))
-    .use(require('markdown-it-replace-link'));
+  .use(require('markdown-it-block-embed'), {
+    containerClassName: 'embedded-block',
+  })
+  .use(require('markdown-it-prism'))
+  .use(require('markdown-it-replace-link'), {
+    replaceLink: function (link: string) {
+      // Here we determine whether the asset should be required or not (we cast
+      // this net as wide as required here, as we can later reject requiring the
+      // asset in the subRequires() fn)
+      return rc.shouldMark(link) ? rc.markPath(link) : link;
+    },
+  });
 
 const highlightDefault = inst.options.highlight;
-inst.options.highlight = function(str, lang) {
-  return highlightDefault(str, lang).replace(
-      /^<pre><code>/,
-      '<pre class="language-none"><code class="language-none">',
+inst.options.highlight = function (str, lang, attrs) {
+  return highlightDefault!(str, lang, '').replace(
+    /^<pre><code>/,
+    '<pre class="language-none"><code class="language-none">'
   );
 };
 
 const codeInlineRendererDefault = inst.renderer.rules.code_inline;
-inst.renderer.rules.code_inline = function(tokens, idx, options, env, slf) {
-  return codeInlineRendererDefault(tokens, idx, options, env, slf).replace(
-      /^<code/,
-      '<code class="language-none"',
+inst.renderer.rules.code_inline = function (tokens, idx, options, env, slf) {
+  return codeInlineRendererDefault!(tokens, idx, options, env, slf).replace(
+    /^<code/,
+    '<code class="language-none"'
   );
 };
 
-const imageRendererDefault = inst.renderer.rules.image;
-const imageRendererCustom = function(tokens, idx, options, env, slf) {
-  const srcAttr = tokens[idx].attrs.find((a) => a[0] === 'src');
-  const src = rc.unmark(srcAttr[1]);
+const imageRendererDefault = inst.renderer.rules.image!;
+const imageRendererCustom: Renderer.RenderRule = function (
+  tokens,
+  idx,
+  options,
+  env,
+  slf
+) {
+  const srcAttr = tokens[idx].attrs!.find((a) => a[0] === 'src');
+  const src = rc.unmark(srcAttr![1]);
   if (src.endsWith('.gif')) {
     return `<video autoplay loop poster="${rc.markPath(
-        `${src}?image`,
+      `${src}?image`
     )}"><source src="${rc.markPath(
-        `${src}?webm`,
+      `${src}?webm`
     )}" type="video/webm"/></video>`;
   } else {
     return imageRendererDefault(tokens, idx, options, env, slf);
   }
 };
 
-async function buildOutput(input, resPath, cb) {
+async function buildOutput(
+  input: string,
+  resPath: string,
+  cb: (err: string | null, result: string) => void
+) {
   const out = matter(input);
   processInput(out);
   if (Object.keys(out.data).length === 0) {
@@ -63,8 +75,8 @@ async function buildOutput(input, resPath, cb) {
   const implicitContent = Boolean(out.data.content);
   if (implicitContent) {
     out.data.content = fs.readFileSync(
-        rc.removeRequire(await rc.subRequires(out.data.content, out.data.url)),
-        {encoding: 'utf8'},
+      rc.removeRequire(await rc.subRequires(out.data.content, out.data.url)),
+      {encoding: 'utf8'}
     );
   } else {
     delete out.data.content;
@@ -72,21 +84,26 @@ async function buildOutput(input, resPath, cb) {
 
   // Tidy up the front-matter data format
   Object.assign(out, out.data);
-  ['data', 'empty', 'excerpt', 'isEmpty'].forEach((f) => delete out[f]);
+  const out_tidy = out as {[key: string]: any};
+  ['data', 'empty', 'excerpt', 'isEmpty'].forEach((f) => delete out_tidy[f]);
 
   // Render markdown & return an importable result (including a dirty hack to
   // get rid of quotations around the 'image' key require...)
-  out.content = renderMarkdown(out.content);
+  out_tidy.content = renderMarkdown(out_tidy.content);
   cb(
-      null,
-      `export default ${(
-        await rc.subRequires(JSON.stringify(out), out.url, implicitContent)
-      ).replace(/("image": *)(https?[^,}]*)/, '$1"$2"')}`,
+    null,
+    `export default ${(
+      await rc.subRequires(
+        JSON.stringify(out_tidy),
+        out_tidy.url,
+        implicitContent
+      )
+    ).replace(/("image": *)(https?[^,}]*)/, '$1"$2"')}`
   );
   return;
 }
 
-function processInput(input) {
+function processInput(input: matter.GrayMatterFile<string>) {
   // Add in any appropriate default values
   if (
     input.data.type === 'code' &&
@@ -101,7 +118,7 @@ function processInput(input) {
   if (input.data.image) input.data.image = rc.markPath(input.data.image);
 }
 
-function renderMarkdown(string) {
+function renderMarkdown(string: string) {
   // Handle srcs embedded in raw HTML tags...
   // TODO this technically doesn't handle GIFs properly in production.... but
   // would be too annoying to fix at the moment (would need to process img
@@ -114,12 +131,10 @@ function renderMarkdown(string) {
   return inst.render(string).replace(/<pre>/g, '<pre class="language-none">');
 }
 
-// TODO I have no idea why when I return a raw string I need to use the
-// 'module.exports = ...' syntax (otherwise the import ends up having an object
-// with the string in the 'default' field), but when I return an object I need
-// to use the 'export default ...' syntax... leave it in the "figure out if
-// needs be" basket
-module.exports = function(input) {
+export default function loader(
+  this: webpack.LoaderContext<any>,
+  input: string
+) {
   this.addDependency(this.resourcePath);
 
   // Set the correct image renderer
@@ -132,6 +147,4 @@ module.exports = function(input) {
     if (err) return cb(err);
     cb(null, result);
   });
-};
-
-module.exports.separable = true;
+}
