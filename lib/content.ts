@@ -1,11 +1,66 @@
 import {JSDOM} from 'jsdom';
 import path from 'path';
 
-const DEFAULT_IMAGE = require('/assets/qcr_logo_light_filled.svg');
+import DEFAULT_IMAGE from '/assets/qcr_logo_light_filled.svg';
+
 const VALID_TYPES = ['code', 'dataset', 'collection'];
 
+type ContentType = 'code' | 'dataset' | 'collection';
+
+export interface Content {
+  name: string;
+  type: ContentType;
+  id?: string;
+  content: string;
+  image?: string;
+  _image?: string;
+  image_position?: string;
+  image_fit?: string;
+  src?: string;
+}
+
+export interface ContentLocation {
+  hits: __WebpackModuleApi.RequireContext;
+  root: string;
+}
+
+export interface ContentSet {
+  code: {[key: string]: CodeContent};
+  collection: {[key: string]: CollectionContent};
+  dataset: {[key: string]: DatasetContent};
+}
+
+export interface DatasetUrl {
+  name: string;
+  url: string;
+  size: string;
+}
+
+export interface CodeContent extends Content {
+  type: 'code';
+  url: string;
+}
+
+export interface CollectionContent extends Content {
+  type: 'collection';
+  code?: (string | CodeContent)[];
+  datasets?: (string | DatasetContent)[];
+  feature?: number;
+}
+
+export interface DatasetContent extends Content {
+  type: 'dataset';
+  size: string;
+  url: string | DatasetUrl[];
+  url_type: 'list' | 'external' | 'internal';
+}
+
+function _isString(x: any): x is string {
+  return typeof x === 'string';
+}
+
 class ContentError extends Error {
-  constructor(message) {
+  constructor(message: string) {
     super(message);
     this.name = 'ContentError';
   }
@@ -15,22 +70,22 @@ function hydrate() {
   // Hydrate the code / datasets fields in all collection content
   Object.values(collections).forEach((p) => {
     if (p.code) {
-      p.code = p.code.map((c) => {
+      p.code = p.code.filter(_isString).map((c) => {
         if (!(c in code)) {
           throw new ContentError(
-              `Collection '${p.id}' contains code with ID '${c}' which ` +
-              `doesn't exist! (offending collection file: ${p.src})`,
+            `Collection '${p.id}' contains code with ID '${c}' which ` +
+              `doesn't exist! (offending collection file: ${p.src})`
           );
         }
         return code[c];
       });
     }
     if (p.datasets) {
-      p.datasets = p.datasets.map((d) => {
+      p.datasets = p.datasets.filter(_isString).map((d) => {
         if (!(d in datasets)) {
           throw new ContentError(
-              `Collection '${p.id}' contains dataset with ID '${d}' which ` +
-              `doesn't exist! (offending collection file: ${p.src})`,
+            `Collection '${p.id}' contains dataset with ID '${d}' which ` +
+              `doesn't exist! (offending collection file: ${p.src})`
           );
         }
         return datasets[d];
@@ -43,18 +98,23 @@ function hydrate() {
     // Try & pull first image from HTML content
     if (c.image === undefined) {
       const d = new JSDOM(`${c.content}`).window.document;
-      const media = d.querySelectorAll('img, video');
+      const media = Array.from(d.querySelectorAll('img, video')) as (
+        | HTMLVideoElement
+        | HTMLImageElement
+      )[];
       if (media) {
-        const m = Array.from(media).find((m) => {
-          return (m.tagName === 'VIDEO' ? m.poster : m.src).startsWith(
-              '/_next/',
-          );
+        const m = media.find((m) => {
+          return (
+            m.tagName === 'VIDEO'
+              ? (m as HTMLVideoElement).poster
+              : (m as HTMLImageElement).src
+          ).startsWith('/_next/');
         });
         if (m && m.tagName === 'VIDEO') {
-          c.image = m.poster;
-          c._image = m.querySelector('source').src;
+          c.image = (m as HTMLVideoElement).poster;
+          c._image = (m.querySelector('source') as HTMLSourceElement).src;
         } else if (m) {
-          c.image = m.src;
+          c.image = (m as HTMLImageElement).src;
         }
       }
     }
@@ -65,24 +125,27 @@ function hydrate() {
   Object.values(collections).forEach((p) => {
     if (p.image === undefined) {
       const t =
-        p.code && p.code.length > 0 ?
-          p.code[0] :
-          p.dataset && p.dataset.length > 0 ?
-          p.dataset[0] :
-          undefined;
-      p.image = t ? t.image : DEFAULT_IMAGE;
-      if (t) p.image_position = t.image_position;
+        p.code && p.code.length > 0
+          ? p.code[0]
+          : p.datasets && p.datasets.length > 0
+          ? p.datasets[0]
+          : undefined;
+      p.image = t ? (t as Content).image : DEFAULT_IMAGE;
+      if (t) p.image_position = (t as Content).image_position;
     }
   });
 }
 
-function importContent(reqs) {
-  const ret = {code: {}, dataset: {}, collection: {}};
+function importContent(reqs: ContentLocation[]) {
+  const ret: ContentSet = {code: {}, dataset: {}, collection: {}};
   for (const r of reqs) {
-    for (const k of r[0].keys()) {
+    for (const k of r.hits.keys()) {
       // Import, & fill in default values
-      const c = r[0](k).default;
-      c.src = path.join(r[1], k);
+      const c = r.hits(k).default as
+        | CodeContent
+        | CollectionContent
+        | DatasetContent;
+      c.src = path.join(r.root, k);
       if (!c.id) {
         c.id = k.replace(/.*\/(.*)\.[^.]*$/g, '$1').replace(/_/g, '-');
       }
@@ -92,21 +155,21 @@ function importContent(reqs) {
       // TODO finish potential error set...
       if (!VALID_TYPES.includes(c.type)) {
         throw new ContentError(
-            `Invalid type. The value '${c.type}' is not in the accepted ` +
-            `values list:\n\t${VALID_TYPES}\n(offending content file: ${k})`,
+          `Invalid type. The value '${c.type}' is not in the accepted ` +
+            `values list:\n\t${VALID_TYPES}\n(offending content file: ${k})`
         );
       } else if (ret[c.type][c.id] !== undefined) {
         throw new ContentError(
-            `Duplicate content with same ID ('${c.id}') & type ('${c.type}').` +
+          `Duplicate content with same ID ('${c.id}') & type ('${c.type}').` +
             ` Offending files:\n\t${ret[c.type][c.id].src}\n\t${c.src}\n` +
             `Please either add a different 'id' to one of the entries, or ` +
-            `change the filename.`,
+            `change the filename.`
         );
       } else if (c.type === 'dataset' && !c.content.trim()) {
         throw new ContentError(
-            `Dataset provided without any description. We can't expect ` +
+          `Dataset provided without any description. We can't expect ` +
             `people to download datasets without details!\n` +
-            `(offending content file: ${k})`,
+            `(offending content file: ${k})`
         );
       }
 
@@ -117,11 +180,11 @@ function importContent(reqs) {
   return ret;
 }
 
-function lookupEntry(name, type) {
+function lookupEntry(name: string, type: ContentType) {
   if (content[type] === undefined || content[type][name] === undefined) {
     throw new ContentError(
-        `Failed to find content with ID '${name}' & type '${type}'. ` +
-        `Are you sure this exists?`,
+      `Failed to find content with ID '${name}' & type '${type}'. ` +
+        `Are you sure this exists?`
     );
   }
   return content[type][name];
@@ -138,8 +201,11 @@ function randomContent() {
 }
 
 const content = importContent([
-  [require.context('/content/', true, /\.md$/), '/content'],
-  [require.context('/content/.remote', true, /\.md$/), '/content/.remote'],
+  {hits: require.context('/content/', true, /\.md$/), root: '/content'},
+  {
+    hits: require.context('/content/.remote', true, /\.md$/),
+    root: '/content/.remote',
+  },
 ]);
 
 const code = content.code;

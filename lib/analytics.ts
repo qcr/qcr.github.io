@@ -1,8 +1,8 @@
-const cp = require('child_process');
+import cp from 'child_process';
 
-const c = require('./content');
+import * as c from './content';
 
-const ANALYTICS = require('./analytics.csv');
+import ANALYTICS from './analytics.csv';
 
 const items = [
   ...Object.values(c.collections),
@@ -14,32 +14,37 @@ const numCode = Object.keys(c.code).length;
 const numDatasets = Object.keys(c.datasets).length;
 const numCollections = Object.keys(c.collections).length;
 
+function _isFeatured(x: any): x is c.CollectionContent & {feature: number} {
+  return 'feature' in x && typeof x.feature !== 'undefined';
+}
+
 function orderByFeatured() {
   // NOTE: this will NOT RETURN items without a featured key (as it is
   // explicitly opt-in)
   // TODO: Only support collections? For now it supports any type of entry
-  const data = items.filter((d) => typeof d.feature !== 'undefined');
+  const data = items.filter(_isFeatured);
   return data.sort(
-      (a, b) =>
-        parseFloat(b.feature) - parseFloat(a.feature) ||
-      a.name.localeCompare(b.name),
+    (a, b) => b.feature - a.feature || a.name.localeCompare(b.name)
   );
 }
 
 function orderByNewest() {
-  const data = items.map((i) => [
+  const data: [
+    number,
+    c.CodeContent | c.CollectionContent | c.DatasetContent
+  ][] = items.map((i) => [
     parseInt(
-        cp
-            .execSync(
-                `git log --format=%ad --date=unix --follow -- ${i.src.replace(
-                    /^\//,
-                    '',
-                )} | tail -1`,
-                {
-                  encoding: 'utf8',
-                },
-            )
-            .trim(),
+      cp
+        .execSync(
+          `git log --format=%ad --date=unix --follow -- ${i.src!.replace(
+            /^\//,
+            ''
+          )} | tail -1`,
+          {
+            encoding: 'utf8',
+          }
+        )
+        .trim()
     ),
     i,
   ]);
@@ -51,18 +56,21 @@ function orderByPopularity() {
   // TODO make this actually pull from Google Analytics rather than a dumped
   // file (once I figure out how to simply get a usable API key with OAuth2...)
   const start = ANALYTICS.findIndex(
-      (l) =>
-        l.length === 2 &&
+    (l) =>
+      l.length === 2 &&
       l[0] === 'Page path and screen class' &&
-      l[1] === 'Views',
+      l[1] === 'Views'
   );
   const end = ANALYTICS.findIndex((l, i) => i > start && l[0] === '');
   const data = ANALYTICS.slice(start + 1, end);
   return data.flatMap((d) => {
     const matches = d[0].match(/^\/(?<type>[^/]*)\/(?<id>[^/]*)/);
-    if (matches && matches.groups.type && matches.groups.id) {
+    if (matches && matches.groups && matches.groups.type && matches.groups.id) {
       const i = items.find(
-          (i) => i.type === matches.groups.type && i.id === matches.groups.id,
+        (i) =>
+          matches.groups &&
+          i.type === matches.groups.type &&
+          i.id === matches.groups.id
       );
       return i ? i : [];
     } else {
@@ -71,7 +79,7 @@ function orderByPopularity() {
   });
 }
 
-module.exports = {
+export {
   numCode,
   numDatasets,
   numCollections,
