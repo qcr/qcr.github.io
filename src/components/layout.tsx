@@ -7,11 +7,15 @@ import styles from '../styles/layout.module.scss';
 
 interface LayoutProps {
   children: React.ReactNode[];
-  home: boolean;
-  list: boolean;
+  home?: boolean;
+  list?: boolean;
 }
 
-export default function Layout({children, home, list}: LayoutProps) {
+export default function Layout({
+  children,
+  home = false,
+  list = false,
+}: LayoutProps) {
   return (
     <div className={styles.page}>
       <TopBar />

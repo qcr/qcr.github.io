@@ -1,5 +1,5 @@
+import {AppProps} from 'next/app';
 import Head from 'next/head';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import {ThemeProvider, createTheme} from '@mui/material/styles';
@@ -32,7 +32,7 @@ const theme = createTheme({
   },
 });
 
-function Site({Component, pageProps}) {
+export default function Site({Component, pageProps}: AppProps) {
   return (
     <>
       <Head>
@@ -45,10 +45,3 @@ function Site({Component, pageProps}) {
     </>
   );
 }
-
-Site.propTypes = {
-  Component: PropTypes.elementType,
-  pageProps: PropTypes.object,
-};
-
-export default Site;

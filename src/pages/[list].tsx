@@ -1,15 +1,26 @@
-import PropTypes from 'prop-types';
+import {GetStaticProps, GetStaticPaths} from 'next';
 import React from 'react';
 import {Typography} from '@mui/material';
 
 import Card from '../components/card';
 import Layout from '../components/layout';
 
-import {code, datasets, collections} from '/lib/content';
+import {
+  code,
+  datasets,
+  collections,
+  Content,
+  ContentType,
+} from '../../lib/content';
 
 import styles from '../styles/list.module.scss';
 
-function ListPage({listData, title}) {
+interface ListPageProps {
+  listData: Content[];
+  title: string;
+}
+
+function ListPage({listData, title}: ListPageProps) {
   if (typeof listData === 'string') listData = JSON.parse(listData);
   return (
     <Layout list>
@@ -25,12 +36,7 @@ function ListPage({listData, title}) {
   );
 }
 
-ListPage.propTypes = {
-  listData: PropTypes.object,
-  title: PropTypes.string,
-};
-
-export function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
       {params: {list: 'code'}},
@@ -39,9 +45,9 @@ export function getStaticPaths() {
     ],
     fallback: false,
   };
-}
+};
 
-export function getStaticProps(ctx) {
+export const getStaticProps: GetStaticProps = async (ctx) => {
   const listMap = {
     code: code,
     dataset: datasets,
@@ -52,16 +58,17 @@ export function getStaticProps(ctx) {
     dataset: 'Downloadable datasets',
     collection: 'Open source collections',
   };
+  const listName = ctx.params!.list as ContentType;
   return {
     props: {
       listData: JSON.stringify(
-          Object.values(listMap[ctx.params.list]).sort((a, b) =>
-            a.name.localeCompare(b.name),
-          ),
+        Object.values(listMap[listName]).sort((a, b) =>
+          a.name.localeCompare(b.name)
+        )
       ),
-      title: titleMap[ctx.params.list],
+      title: titleMap[listName],
     },
   };
-}
+};
 
 export default ListPage;

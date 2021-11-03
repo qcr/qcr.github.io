@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import {Typography} from '@mui/material';
@@ -20,6 +19,8 @@ import {
   orderByPopularity,
 } from '/lib/analytics';
 
+import {Content} from '/lib/content';
+
 const LIMIT_FEATURE = 10;
 const LIMIT_MOST_POPULAR = 10;
 const LIMIT_MOST_RECENT = 10;
@@ -30,14 +31,23 @@ const sectionStyle = {
   marginTop: '36px',
 };
 
-function HomePage({
+interface HomePageProps {
+  mostPopular: Content[];
+  mostRecent: Content[];
+  featured: Content[];
+  collectionCount: number;
+  codeCount: number;
+  datasetCount: number;
+}
+
+export default function HomePage({
   mostPopular,
   mostRecent,
   featured,
   collectionCount,
   codeCount,
   datasetCount,
-}) {
+}: HomePageProps) {
   if (typeof featured === 'string') featured = JSON.parse(featured);
   if (typeof mostPopular === 'string') mostPopular = JSON.parse(mostPopular);
   if (typeof mostRecent === 'string') mostRecent = JSON.parse(mostRecent);
@@ -94,15 +104,6 @@ function HomePage({
   );
 }
 
-HomePage.propTypes = {
-  mostPopular: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  mostRecent: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  featured: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  collectionCount: PropTypes.number,
-  codeCount: PropTypes.number,
-  datasetCount: PropTypes.number,
-};
-
 export function getStaticProps() {
   return {
     props: {
@@ -115,5 +116,3 @@ export function getStaticProps() {
     },
   };
 }
-
-export default HomePage;
