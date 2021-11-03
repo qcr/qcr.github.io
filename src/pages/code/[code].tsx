@@ -8,7 +8,7 @@ import Layout from '../../components/layout';
 import styles from '../../styles/code.module.scss';
 import GitHubIcon from '!@svgr/webpack!/assets/icon_github.svg';
 
-import {code, lookupEntry, CodeContent} from '/lib/content';
+import {code, lookupEntry, CodeContent} from '../../../lib/content';
 
 interface CodePageProps {
   codeData: CodeContent;

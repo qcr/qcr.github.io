@@ -17,9 +17,9 @@ import {
   orderByFeatured,
   orderByNewest,
   orderByPopularity,
-} from '/lib/analytics';
+} from '../../lib/analytics';
 
-import {Content} from '/lib/content';
+import {Content} from '../../lib/content';
 
 const LIMIT_FEATURE = 10;
 const LIMIT_MOST_POPULAR = 10;

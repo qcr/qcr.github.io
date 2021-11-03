@@ -5,7 +5,13 @@ import {Typography} from '@mui/material';
 import Card from '../components/card';
 import Layout from '../components/layout';
 
-import {code, datasets, collections, Content, ContentType} from '/lib/content';
+import {
+  code,
+  datasets,
+  collections,
+  Content,
+  ContentType,
+} from '../../lib/content';
 
 import styles from '../styles/list.module.scss';
 

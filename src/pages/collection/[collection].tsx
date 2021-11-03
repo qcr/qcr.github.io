@@ -10,7 +10,11 @@ import Layout from '../../components/layout';
 import WebsiteIcon from '!@svgr/webpack!/assets/icon_website.svg';
 import styles from '../../styles/collection.module.scss';
 
-import {lookupEntry, collections, CollectionContent} from '/lib/content';
+import {
+  lookupEntry,
+  collections,
+  CollectionContent,
+} from '../../../lib/content';
 
 const sectionStyle = {
   fontWeight: 'bold',
