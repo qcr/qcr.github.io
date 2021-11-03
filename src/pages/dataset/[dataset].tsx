@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import {GetStaticPaths, GetStaticProps} from 'next';
 import React, {useState} from 'react';
 
 import {Typography} from '@mui/material';
@@ -12,9 +12,28 @@ import ListIcon from '!@svgr/webpack!/assets/icon_list.svg';
 import WebsiteIcon from '!@svgr/webpack!/assets/icon_website.svg';
 import styles from '../../styles/dataset.module.scss';
 
-import {datasets, lookupEntry} from '/lib/content';
+import {
+  datasets,
+  lookupEntry,
+  DatasetContent,
+  DatasetUrl,
+} from '../../../lib/content';
 
-function DatasetPage({datasetData}) {
+interface DatasetPageProps {
+  datasetData: DatasetContent;
+}
+
+function _urlIsArray(
+  x: DatasetContent
+): x is DatasetContent & {url: DatasetUrl[]} {
+  return x.url_type === 'list' && typeof x.url !== 'string';
+}
+
+function _urlIsString(x: DatasetContent): x is DatasetContent & {url: string} {
+  return !_urlIsArray(x);
+}
+
+export default function DatasetPage({datasetData}: DatasetPageProps) {
   const [open, setOpen] = useState(false);
   if (typeof datasetData === 'string') datasetData = JSON.parse(datasetData);
   return (
@@ -27,7 +46,7 @@ function DatasetPage({datasetData}) {
         {datasetData.name}
       </Typography>
 
-      {datasetData.url_type == 'list' && (
+      {_urlIsArray(datasetData) && (
         <SimpleDialog
           open={open}
           onClose={() => {
@@ -37,13 +56,13 @@ function DatasetPage({datasetData}) {
         />
       )}
       <FocusButton
-        url={datasetData.url_type != 'list' ? datasetData.url : undefined}
+        url={_urlIsString(datasetData) ? datasetData.url : undefined}
         text={
-          datasetData.url_type == 'external' ?
-            'Visit dataset website' :
-            datasetData.url_type == 'list' ?
-            'Select dataset variant' :
-            'Download the dataset'
+          datasetData.url_type == 'external'
+            ? 'Visit dataset website'
+            : datasetData.url_type == 'list'
+            ? 'Select dataset variant'
+            : 'Download the dataset'
         }
         icon={
           datasetData.url_type == 'external' ? (
@@ -84,11 +103,7 @@ function DatasetPage({datasetData}) {
   );
 }
 
-DatasetPage.propTypes = {
-  datasetData: PropTypes.object,
-};
-
-export function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: Object.values(datasets).map((d) => ({
       params: {
@@ -97,14 +112,14 @@ export function getStaticPaths() {
     })),
     fallback: false,
   };
-}
+};
 
-export function getStaticProps(ctx) {
+export const getStaticProps: GetStaticProps = (ctx) => {
   return {
     props: {
-      datasetData: JSON.stringify(lookupEntry(ctx.params.dataset, 'dataset')),
+      datasetData: JSON.stringify(
+        lookupEntry(ctx.params!.dataset as string, 'dataset')
+      ),
     },
   };
-}
-
-export default DatasetPage;
+};

@@ -47,6 +47,7 @@ export interface CollectionContent extends ContentCommon {
   code?: (string | CodeContent)[];
   datasets?: (string | DatasetContent)[];
   feature?: number;
+  url?: string;
 }
 
 export interface DatasetContent extends ContentCommon {

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import {GetStaticPaths, GetStaticProps} from 'next';
 import React from 'react';
 
 import {Typography} from '@mui/material';
@@ -10,7 +10,7 @@ import Layout from '../../components/layout';
 import WebsiteIcon from '!@svgr/webpack!/assets/icon_website.svg';
 import styles from '../../styles/collection.module.scss';
 
-import {lookupEntry, collections} from '/lib/content';
+import {lookupEntry, collections, CollectionContent} from '/lib/content';
 
 const sectionStyle = {
   fontWeight: 'bold',
@@ -20,7 +20,11 @@ const sectionStyle = {
   marginRight: 'auto',
 };
 
-function CollectionPage({collectionData}) {
+interface CollectionPageProps {
+  collectionData: CollectionContent;
+}
+
+export default function CollectionPage({collectionData}: CollectionPageProps) {
   if (typeof collectionData === 'string') {
     collectionData = JSON.parse(collectionData);
   }
@@ -39,12 +43,11 @@ function CollectionPage({collectionData}) {
           url={collectionData.url}
           text="Go to collection website"
           icon={<WebsiteIcon />}
-          className={styles.button}
         />
       )}
       <div className={styles.space} />
       <Typography
-        use="body1"
+        variant="body1"
         className="markdown-body"
         sx={{marginLeft: 'auto', marginRight: 'auto'}}
         component="div"
@@ -78,11 +81,7 @@ function CollectionPage({collectionData}) {
   );
 }
 
-CollectionPage.propTypes = {
-  collectionData: PropTypes.object,
-};
-
-export function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: Object.values(collections).map((p) => ({
       params: {
@@ -91,16 +90,14 @@ export function getStaticPaths() {
     })),
     fallback: false,
   };
-}
+};
 
-export function getStaticProps(ctx) {
+export const getStaticProps: GetStaticProps = (ctx) => {
   return {
     props: {
       collectionData: JSON.stringify(
-          lookupEntry(ctx.params.collection, 'collection'),
+        lookupEntry(ctx.params!.collection as string, 'collection')
       ),
     },
   };
-}
-
-export default CollectionPage;
+};

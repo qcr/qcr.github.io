@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import {GetStaticPaths, GetStaticProps} from 'next';
 import React from 'react';
 
 import {Typography} from '@mui/material';
@@ -8,9 +8,13 @@ import Layout from '../../components/layout';
 import styles from '../../styles/code.module.scss';
 import GitHubIcon from '!@svgr/webpack!/assets/icon_github.svg';
 
-import {code, lookupEntry} from '/lib/content';
+import {code, lookupEntry, CodeContent} from '/lib/content';
 
-function CodePage({codeData}) {
+interface CodePageProps {
+  codeData: CodeContent;
+}
+
+export default function CodePage({codeData}: CodePageProps) {
   if (typeof codeData === 'string') codeData = JSON.parse(codeData);
   return (
     <Layout>
@@ -37,14 +41,14 @@ function CodePage({codeData}) {
       </Typography>
       {codeData.content ? (
         <Typography
-          use="body1"
+          variant="body1"
           className="markdown-body"
           sx={{marginLeft: 'auto', marginRight: 'auto'}}
           component="div"
           dangerouslySetInnerHTML={{__html: codeData.content}}
         />
       ) : (
-        <Typography use="body1" className={`missing ${styles.content}`}>
+        <Typography variant="body1" className={`missing ${styles.content}`}>
           Content rendered from README.md of the repository, or a custom
           override specified by the &apos;details&apos; field of your repository
           data in &apos;/data/repositories.yaml&apos;
@@ -54,11 +58,7 @@ function CodePage({codeData}) {
   );
 }
 
-CodePage.propTypes = {
-  codeData: PropTypes.object,
-};
-
-export function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: Object.values(code).map((c) => ({
       params: {
@@ -67,14 +67,12 @@ export function getStaticPaths() {
     })),
     fallback: false,
   };
-}
+};
 
-export function getStaticProps(ctx) {
+export const getStaticProps: GetStaticProps = (ctx) => {
   return {
     props: {
-      codeData: JSON.stringify(lookupEntry(ctx.params.code, 'code')),
+      codeData: JSON.stringify(lookupEntry(ctx.params!.code as string, 'code')),
     },
   };
-}
-
-export default CodePage;
+};

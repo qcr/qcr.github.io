@@ -4,18 +4,18 @@ import {Button} from '@mui/material';
 import styles from '../styles/focus_button.module.scss';
 
 interface FocusButtonProps {
-  url: string;
+  url?: string;
   text: string;
   icon: React.ReactNode;
-  newTab: boolean;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  newTab?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export default function FocusButton({
   url,
   text,
   icon,
-  newTab,
+  newTab = true,
   onClick,
 }: FocusButtonProps) {
   return (

@@ -9,7 +9,7 @@ import {
   ListItemText,
 } from '@mui/material';
 
-import {DatasetUrl} from '/lib/content';
+import {DatasetUrl} from '../../lib/content';
 
 export type DialogOnClose = (
   event: {},
