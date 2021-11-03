@@ -3,11 +3,12 @@ import {useRouter} from 'next/router';
 import React from 'react';
 
 import {AppBar, Tab, Tabs} from '@mui/material';
+import {SxProps, Theme} from '@mui/system';
 
 import QcrLogo from '!@svgr/webpack!/assets/qcr_logo_light.svg';
 import styles from '../styles/top_bar.module.scss';
 
-const tabStyle = {
+const tabStyle: SxProps<Theme> = {
   color: 'white',
   opacity: 1.0,
   textTransform: 'capitalize',
@@ -15,13 +16,13 @@ const tabStyle = {
 
 export default function TopBar() {
   const r = useRouter();
-  const selected = r.asPath.startsWith('/collection') ?
-    0 :
-    r.asPath.startsWith('/code') ?
-    1 :
-    r.asPath.startsWith('/dataset') ?
-    2 :
-    false;
+  const selected = r.asPath.startsWith('/collection')
+    ? 0
+    : r.asPath.startsWith('/code')
+    ? 1
+    : r.asPath.startsWith('/dataset')
+    ? 2
+    : false;
   return (
     <AppBar
       className={styles.bar}

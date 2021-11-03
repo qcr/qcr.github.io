@@ -9,7 +9,20 @@ import {
   ListItemText,
 } from '@mui/material';
 
-function SimpleDialog({open, onClose, urls}) {
+import {DatasetUrl} from '/lib/content';
+
+export type DialogOnClose = (
+  event: {},
+  reason: 'backdropClick' | 'escapeKeyDown'
+) => void;
+
+interface SimpleDialogProps {
+  open: boolean;
+  onClose: DialogOnClose;
+  urls: DatasetUrl[];
+}
+
+export default function SimpleDialog({open, onClose, urls}: SimpleDialogProps) {
   return (
     <Dialog
       open={open}
@@ -34,11 +47,3 @@ function SimpleDialog({open, onClose, urls}) {
     </Dialog>
   );
 }
-
-SimpleDialog.propTypes = {
-  open: PropTypes.bool,
-  onClose: PropTypes.func,
-  urls: PropTypes.array,
-};
-
-export default SimpleDialog;

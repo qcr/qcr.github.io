@@ -5,9 +5,10 @@ import DEFAULT_IMAGE from '/assets/qcr_logo_light_filled.svg';
 
 const VALID_TYPES = ['code', 'dataset', 'collection'];
 
-type ContentType = 'code' | 'dataset' | 'collection';
+export type Content = CodeContent | CollectionContent | DatasetContent;
+export type ContentType = 'code' | 'dataset' | 'collection';
 
-export interface Content {
+export interface ContentCommon {
   name: string;
   type: ContentType;
   id?: string;
@@ -36,19 +37,19 @@ export interface DatasetUrl {
   size: string;
 }
 
-export interface CodeContent extends Content {
+export interface CodeContent extends ContentCommon {
   type: 'code';
   url: string;
 }
 
-export interface CollectionContent extends Content {
+export interface CollectionContent extends ContentCommon {
   type: 'collection';
   code?: (string | CodeContent)[];
   datasets?: (string | DatasetContent)[];
   feature?: number;
 }
 
-export interface DatasetContent extends Content {
+export interface DatasetContent extends ContentCommon {
   type: 'dataset';
   size: string;
   url: string | DatasetUrl[];

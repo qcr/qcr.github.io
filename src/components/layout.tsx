@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import BottomBar from './bottom_bar';
@@ -6,7 +5,13 @@ import TopBar from './top_bar';
 
 import styles from '../styles/layout.module.scss';
 
-function Layout({children, home, list}) {
+interface LayoutProps {
+  children: React.ReactNode[];
+  home: boolean;
+  list: boolean;
+}
+
+export default function Layout({children, home, list}: LayoutProps) {
   return (
     <div className={styles.page}>
       <TopBar />
@@ -22,11 +27,3 @@ function Layout({children, home, list}) {
     </div>
   );
 }
-
-Layout.propTypes = {
-  children: PropTypes.array,
-  home: PropTypes.bool,
-  list: PropTypes.bool,
-};
-
-export default Layout;

@@ -1,8 +1,12 @@
-import Image from 'next/image';
-import PropTypes from 'prop-types';
 import React from 'react';
 
-function LazyImage({images, className, style}) {
+interface LazyImageProps {
+  images: string[];
+  className: string;
+  style: React.CSSProperties;
+}
+
+export default function LazyImage({images, className, style}: LazyImageProps) {
   // TODO actually handle the case when we have two images (i.e. low-res then
   // high-res... we only handle image then video at the moment...)
   // Expects a list of images in the order to be loaded (we should drop out any
@@ -26,22 +30,13 @@ function LazyImage({images, className, style}) {
     );
   } else {
     return (
-      <Image
+      <img
         alt=""
         src={cleanImages[cleanImages.length - 1]}
         className={className}
         style={style}
         key={cleanImages[cleanImages.length - 1]}
-        layout="fill"
       />
     );
   }
 }
-
-LazyImage.propTypes = {
-  images: PropTypes.array,
-  className: PropTypes.string,
-  style: PropTypes.object,
-};
-
-export default LazyImage;

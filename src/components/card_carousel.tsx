@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 
@@ -6,7 +5,13 @@ import Card from './card';
 
 import styles from '../styles/card_carousel.module.scss';
 
-function CardCarousel({cardsData}) {
+import {Content} from '../../lib/content';
+
+interface CardCarouselProps {
+  cardsData: Content[];
+}
+
+export default function CardCarousel({cardsData}: CardCarouselProps) {
   return (
     <Carousel
       className={styles.carousel}
@@ -27,9 +32,3 @@ function CardCarousel({cardsData}) {
     </Carousel>
   );
 }
-
-CardCarousel.propTypes = {
-  cardsData: PropTypes.array,
-};
-
-export default CardCarousel;

@@ -29,10 +29,7 @@ function orderByFeatured() {
 }
 
 function orderByNewest() {
-  const data: [
-    number,
-    c.CodeContent | c.CollectionContent | c.DatasetContent
-  ][] = items.map((i) => [
+  const data: [number, c.Content][] = items.map((i) => [
     parseInt(
       cp
         .execSync(

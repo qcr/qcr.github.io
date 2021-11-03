@@ -1,12 +1,29 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import {Button} from '@mui/material';
 
 import styles from '../styles/focus_button.module.scss';
 
-function FocusButton({url, text, icon, newTab, onClick}) {
+interface FocusButtonProps {
+  url: string;
+  text: string;
+  icon: React.ReactNode;
+  newTab: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+export default function FocusButton({
+  url,
+  text,
+  icon,
+  newTab,
+  onClick,
+}: FocusButtonProps) {
   return (
-    <a href={url} target={newTab && '_blank'} className={styles.link}>
+    <a
+      href={url}
+      target={newTab ? '_blank' : undefined}
+      className={styles.link}
+    >
       <Button
         color="primary"
         variant="contained"
@@ -21,13 +38,3 @@ function FocusButton({url, text, icon, newTab, onClick}) {
     </a>
   );
 }
-
-FocusButton.propTypes = {
-  url: PropTypes.string,
-  text: PropTypes.string,
-  icon: PropTypes.elementType,
-  newTab: PropTypes.bool,
-  onClick: PropTypes.func,
-};
-
-export default FocusButton;
