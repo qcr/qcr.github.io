@@ -1,4 +1,4 @@
-import cp from 'child_process';
+import * as cp from 'child_process';
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
@@ -8,7 +8,16 @@ import rc from './repo_cache';
 const REMOTE_DIR = '/content/.remote';
 const REMOTE_DIR_REL = path.join(__dirname, '..', REMOTE_DIR);
 
-function createRemoteEntry(inputs) {
+interface RemoteInput {
+  name: string;
+  url: string;
+  id?: string;
+  content?: string;
+  image?: string;
+  type?: 'code';
+}
+
+function createRemoteEntry(inputs: RemoteInput) {
   // Ensure inputs meet the minimum requirements
   if (!inputs.name) {
     console.log("Payload is missing the required 'name' field. Aborting.");
@@ -20,14 +29,17 @@ function createRemoteEntry(inputs) {
   }
 
   // Pull out user & repo name info from URL
-  const {user: repoUser, name: repoName} = inputs.url.match(
-    /(?<user>[^/]*)\/(?<name>[^/]*)$/
-  ).groups;
+  // const {user: repoUser, name: repoName} = inputs.url.match(
+  const gs = inputs.url.match(/(?<user>[^/]*)\/(?<name>[^/]*)$/)!.groups;
+  if (typeof gs === 'undefined' || !('user' in gs) || !('name' in gs)) {
+    console.log(`Failed to extract repo user & name from: ${inputs.url}`);
+    return false;
+  }
 
   // Dump the input data to the corresponding file
-  init(repoUser);
+  init(gs.user);
   fs.writeFileSync(
-    path.join(REMOTE_DIR_REL, repoUser, `${repoName}.md`),
+    path.join(REMOTE_DIR_REL, gs.user, `${gs.name}.md`),
     inputsToMarkdown(inputs)
   );
 }
@@ -39,7 +51,7 @@ function init(repoUser: string) {
   );
 }
 
-function inputsToMarkdown(inputs) {
+function inputsToMarkdown(inputs: RemoteInput) {
   // Perform input validation / modification
   inputs.type = 'code';
   if (inputs.content) {
@@ -55,7 +67,7 @@ function inputsToMarkdown(inputs) {
 
 function rebuildRequired(nameShort: string, repoPath: string) {
   const cacheInfo = rc.loadCacheInfo();
-  const opts = {
+  const opts: cp.ExecSyncOptionsWithStringEncoding = {
     cwd: repoPath,
     encoding: 'utf8',
     stdio: 'ignore',
