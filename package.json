@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@types/jsdom": "^16.2.13",
+    "@types/loader-runner": "^2.2.4",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^16.11.6",
     "@types/react": "^17.0.33",
@@ -38,6 +39,7 @@
     "eslint-plugin-react": "^7.26.1",
     "gray-matter": "^4.0.2",
     "jsdom": "^16.4.0",
+    "loader-runner": "^4.2.0",
     "markdown-it": "^12.0.2",
     "markdown-it-block-embed": "0.0.3",
     "markdown-it-replace-link": "^1.1.0",

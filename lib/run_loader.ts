@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import {runLoaders} from 'loader-runner';
+import {runLoaders, RunLoaderResult} from 'loader-runner';
 
 runLoaders(
   {
@@ -12,7 +12,7 @@ runLoaders(
       emitFile: () => {},
     },
   },
-  (err: string | null, result: string) => {
+  (err: NodeJS.ErrnoException | null, result: RunLoaderResult) => {
     err ? console.error(err) : console.log(result);
   }
 );
