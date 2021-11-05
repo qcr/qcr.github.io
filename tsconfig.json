@@ -10,14 +10,15 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "noEmit": false,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "types": ["node", "webpack-env"]
+    "types": ["node", "webpack-env"],
+    "sourceMap": true
   },
   "include": [
     "next-env.d.ts",

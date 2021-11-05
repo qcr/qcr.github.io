@@ -15,23 +15,29 @@ const nextConfig = {
     config.module.rules.push(
       ...[
         {
+          test: /\.tsx?$/,
+          loader: 'ts-loader',
+          exclude: /node_modules/,
+        },
+        {
           test: /^repo:/,
-          loader: './lib/loaders/repo.js',
+          loader: './lib/loaders/repo.ts',
         },
         {
           test: /\.md$/,
-          loader: './lib/loaders/markdown.js',
+          loader: './lib/loaders/markdown.ts',
         },
         {
           test: /\.gif$/,
-          loader: './lib/loaders/gif.js',
+          loader: './lib/loaders/gif.ts',
         },
         {
           test: /\.csv$/,
           loader: 'csv-loader',
         },
-      ],
+      ]
     );
+    config.resolve.extensions.push(...['.tsx', '.ts']);
     return config;
   },
 };
