@@ -14,6 +14,3 @@ The dataset consists of 15 uncompressed, high-resolution image sequences contain
 
 Ground truth labels and videos of the image sequences are also provided.
 
-Presented in paper under review:
-
-_Martin, J., Riseley, & J., Ford, J.J. (2021). A Dataset of Stationary, Fixed-wing Aircraft on a Collision Course for Vision-Based Sense and Avoid. Submitted to The International Journal of Robotics Research_
