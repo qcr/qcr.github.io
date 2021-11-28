@@ -1,5 +1,5 @@
 ---
-name: Airspace Traffic Occupation Dataset
+name: Airspace Traffic Occupancy Dataset
 type: dataset
 url: https://cloudstor.aarnet.edu.au/plus/s/wPCSZ6Znipez1vC
 image: ./airspace_traffic_occupation.jpg
