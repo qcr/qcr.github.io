@@ -10,18 +10,19 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": false,
+    "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "types": ["node", "webpack-env"],
-    "sourceMap": true
+    "incremental": true,
+    "baseUrl": "./"
   },
   "include": [
     "next-env.d.ts",
+    "qcr-github-io.d.ts",
     "**/*.ts",
     "**/*.tsx"
   ],

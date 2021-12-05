@@ -16,7 +16,8 @@
   "author": "btalb",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "next dev",
+    "build_loaders": "tsc -p lib/loaders/",
+    "dev": "npm run build_loaders && next dev",
     "build": "export NEXT_OUT_DIR=.next-out && next build && next export -o $NEXT_OUT_DIR && node -e 'require(\"./lib/repo_cache\").dumpCacheInfo(\"'$NEXT_OUT_DIR'/.repo_cache_info\")' && rm $NEXT_OUT_DIR/_next/static/gifs/*.gif",
     "lint": "next lint",
     "start": "npm run build && next start"
