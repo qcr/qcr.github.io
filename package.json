@@ -39,6 +39,7 @@
     "@svgr/webpack": "^6.1.1",
     "@types/jsdom": "^16.2.13",
     "@types/loader-runner": "^2.2.4",
+    "@types/loader-utils": "^2.0.3",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^16.11.6",
     "@types/react": "^17.0.33",

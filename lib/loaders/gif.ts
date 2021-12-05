@@ -22,7 +22,7 @@ async function buildOutput(
   // Construct our paths
   // TODO figure out why some of the resources are coming in with a compiler
   // saying to place them in '.next/server/' (they are STATIC....)
-  const serverHack = loaderContext._compiler.outputPath.endsWith('server');
+  const serverHack = loaderContext._compiler!.outputPath.endsWith('server');
   const inPath = loaderContext.resourcePath;
   const outPath = path.join(
     serverHack ? path.join('..', PATH_ROOT) : PATH_ROOT,
@@ -82,7 +82,7 @@ export default function loader(
     `${this.resourceQuery ? 'Processing' : 'Skipping'} gif '${res}' ...`
   );
   buildOutput(input, this, (err, result) => {
-    if (err) return cb(err);
+    if (err) return cb(Error(err));
     if (this.resourceQuery) console.log(`Finished processing gif '${res}'.`);
     cb(null, result);
   });

@@ -144,7 +144,7 @@ export default function loader(
   // Run the loader
   const cb = this.async();
   buildOutput(input, this.resourcePath, (err, result) => {
-    if (err) return cb(err);
+    if (err) return cb(Error(err));
     cb(null, result);
   });
 }
