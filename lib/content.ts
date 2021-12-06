@@ -203,9 +203,9 @@ function randomContent() {
 }
 
 const content = importContent([
-  {hits: require.context('/content/', true, /\.md$/), root: '/content'},
+  {hits: require.context('/content/', true, /\.\/.*\.md$/), root: '/content'},
   {
-    hits: require.context('/content/.remote', true, /\.md$/),
+    hits: require.context('/content/.remote', true, /\.\/.*\.md$/),
     root: '/content/.remote',
   },
 ]);
