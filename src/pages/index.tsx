@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import React from 'react';
 
 import {Typography} from '@mui/material';
@@ -53,7 +52,7 @@ export default function HomePage({
   if (typeof mostRecent === 'string') mostRecent = JSON.parse(mostRecent);
   return (
     <Layout home>
-      <Image
+      <img
         alt="QUT Centre for Robotics Banner Image"
         src={bannerImage}
         className={styles['banner-image']}
