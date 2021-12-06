@@ -2,17 +2,34 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import React from 'react';
 
-import {AppBar, Tab, Tabs} from '@mui/material';
-import {SxProps, Theme} from '@mui/system';
+import {AppBar, Tab, Tabs, styled} from '@mui/material';
+
+import {mq} from 'src/styles/shared';
 
 import QcrLogo from '!@svgr/webpack!/assets/qcr_logo_light.svg';
-import styles from '../styles/top_bar.module.scss';
 
-const tabStyle: SxProps<Theme> = {
+const StyledBar = styled(AppBar)({
+  alignItems: 'center',
+  justifyContent: 'space-around',
+  [mq('tablet')]: {
+    flexDirection: 'row',
+  },
+});
+
+const StyledLogo = styled(QcrLogo)({
+  width: '100px',
+  margin: '0px 6px',
+  cursor: 'pointer',
+  [mq('tablet')]: {
+    width: '150px',
+  },
+});
+
+const StyledTab = styled(Tab)(({theme}) => ({
   color: 'white',
   opacity: 1.0,
   textTransform: 'capitalize',
-};
+}));
 
 export default function TopBar() {
   const r = useRouter();
@@ -24,21 +41,11 @@ export default function TopBar() {
     ? 2
     : false;
   return (
-    <AppBar
-      className={styles.bar}
-      sx={{
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        flexDirection: {
-          md: 'row',
-        },
-      }}
-    >
+    <StyledBar>
       <Link href="/" passHref>
-        <QcrLogo className={styles.logo} />
+        <StyledLogo />
       </Link>
       <Tabs
-        className={styles['tabs']}
         value={selected}
         TabIndicatorProps={{
           style: {
@@ -47,15 +54,15 @@ export default function TopBar() {
         }}
       >
         <Link href="/collection" passHref>
-          <Tab label="Collections" sx={tabStyle} />
+          <StyledTab label="Collections" />
         </Link>
         <Link href="/code" passHref>
-          <Tab label="Code" sx={tabStyle} />
+          <StyledTab label="Code" />
         </Link>
         <Link href="/dataset" passHref>
-          <Tab label="Datasets" sx={tabStyle} />
+          <StyledTab label="Datasets" />
         </Link>
       </Tabs>
-    </AppBar>
+    </StyledBar>
   );
 }
