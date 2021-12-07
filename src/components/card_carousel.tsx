@@ -1,9 +1,9 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 
-import Card from './card';
+import {styled} from '@mui/material';
 
-import styles from '../styles/card_carousel.module.scss';
+import Card from './card';
 
 import {Content} from '../../lib/content';
 
@@ -11,10 +11,27 @@ interface CardCarouselProps {
   cardsData: Content[];
 }
 
+const StyledCarousel = styled(Carousel)(({theme}) => ({
+  '.react-multiple-carousel__arrow': {
+    backgroundColor: theme.palette.primary.main,
+    opacity: 0.75,
+  },
+  '.react-multi-carousel-dot button': {
+    border: 'none',
+    backgroundColor: 'lightgrey',
+  },
+  '.react-multi-carousel-dot--active button': {
+    backgroundColor: theme.palette.primary.main,
+  },
+}));
+
+const StyledItem = styled('div')({
+  marginBottom: '30px',
+});
+
 export default function CardCarousel({cardsData}: CardCarouselProps) {
   return (
-    <Carousel
-      className={styles.carousel}
+    <StyledCarousel
       autoPlay={true}
       showDots={true}
       responsive={{
@@ -25,10 +42,10 @@ export default function CardCarousel({cardsData}: CardCarouselProps) {
       }}
     >
       {Object.values(cardsData).map((c, i) => (
-        <div key={i} className={styles.item}>
+        <StyledItem key={i}>
           <Card cardData={c} />
-        </div>
+        </StyledItem>
       ))}
-    </Carousel>
+    </StyledCarousel>
   );
 }
