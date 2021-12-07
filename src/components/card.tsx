@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, {useState} from 'react';
 
-import {Card, CardActionArea, Typography} from '@mui/material';
+import {Card, CardActionArea, Typography, styled} from '@mui/material';
 
 import LazyImage from '../components/lazy_image';
 
@@ -16,33 +16,94 @@ interface ContentCardProps {
   cardData: Content;
 }
 
+const CARD_HEIGHT = '265px';
+const CARD_WIDTH = '300px';
+
+const StyledCard = styled(Card)({
+  borderRadius: 0,
+  height: CARD_HEIGHT,
+  margin: '8px',
+  width: CARD_WIDTH,
+});
+
+const StyledClickable = styled(CardActionArea)({
+  height: '100%',
+  position: 'relative',
+});
+
+const StyledFooter = styled('div')(({theme}) => ({
+  backgroundColor: theme.palette.primary.main,
+  bottom: 0,
+  color: theme.palette.primary.contrastText,
+  display: 'flex',
+  flexDirection: 'column',
+  height: '95px',
+  opacity: 0.9,
+  padding: '10px',
+  position: 'absolute',
+  width: '100%',
+}));
+
+const StyledImage = styled(LazyImage)({
+  height: '100%',
+  objectFit: 'cover',
+  position: 'absolute',
+  top: 0,
+  width: '100%',
+});
+
+const StyledInfo = styled(Typography)({
+  marginBottom: '8px',
+  marginLeft: 'auto',
+  minHeight: '1.5em',
+  opacity: 0.7,
+  textAlign: 'right',
+  '&.size': {
+    textTransform: 'capitalize',
+  },
+  '&.url': {
+    textTransform: 'lowercase',
+  },
+});
+
+const StyledName = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow: 1,
+  justifyContent: 'space-around',
+  p: {
+    '-webkit-box-orient': 'vertical',
+    '-webkit-line-clamp': '2',
+    display: '-webkit-box',
+    fontWeight: 'bold',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+});
+
 export default function ContentCard({cardData}: ContentCardProps) {
   const [elevation, setElevation] = useState(ELEVATION_DEFAULT);
   const section = cardData.type === 'repository' ? 'code' : cardData.type;
   return (
-    <Card
-      className={styles.card}
+    <StyledCard
       elevation={elevation}
       onMouseOver={() => setElevation(ELEVATION_HIGHLIGHT)}
       onMouseOut={() => setElevation(ELEVATION_DEFAULT)}
       square={true}
     >
       <Link href={`/${section}/${cardData.id}`} passHref>
-        <CardActionArea className={styles.clickable}>
-          <LazyImage
+        <StyledClickable>
+          <StyledImage
             images={[cardData.image, cardData._image]}
-            className={styles.media}
             style={{
               objectPosition: cardData.image_position,
               objectFit: cardData.image_fit,
             }}
           />
-          <div className={styles.footer}>
-            <Typography
+          <StyledFooter>
+            <StyledInfo
               variant="body2"
-              className={`${styles.extra} ${
-                styles[section === 'code' ? 'url' : 'size']
-              }`}
+              className={`${section === 'code' ? 'url' : 'size'}`}
             >
               {section === 'dataset'
                 ? cardData.size
@@ -51,15 +112,13 @@ export default function ContentCard({cardData}: ContentCardProps) {
                 : section === 'code'
                 ? cardData.url.replace(/.*\/([^/]*\/[^/]*)$/, '$1')
                 : 'Collection'}
-            </Typography>
-            <div className={styles['name-outer']}>
-              <Typography variant="body1" className={styles.name}>
-                {cardData.name}
-              </Typography>
-            </div>
-          </div>
-        </CardActionArea>
+            </StyledInfo>
+            <StyledName>
+              <Typography variant="body1">{cardData.name}</Typography>
+            </StyledName>
+          </StyledFooter>
+        </StyledClickable>
       </Link>
-    </Card>
+    </StyledCard>
   );
 }
