@@ -22,6 +22,7 @@ const StyledButton = styled(Button)(({theme}) => ({
 }));
 
 const StyledLink = styled('a')({
+  textDecoration: 'none',
   margin: '0px auto',
 });
 

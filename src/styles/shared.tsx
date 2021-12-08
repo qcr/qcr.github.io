@@ -41,17 +41,20 @@ export const Notify = styled(FocusBox)({
 });
 
 export const StyledMarkdown = styled(Typography)({
-  maxWidth: '45rem',
-  '.embedded-block': {
-    margin: '10px',
-    textAlign: 'center',
-  },
-  'iframe, img, video': {
-    maxWidth: '100%',
-  },
-  ":not(pre) > code[class*='language-']": {
-    paddingLeft: '0.3em',
-    paddingRight: '0.3em',
+  '&&': {
+    margin: '0 auto',
+    maxWidth: '45rem',
+    '.embedded-block': {
+      margin: '10px',
+      textAlign: 'center',
+    },
+    'iframe, img, video': {
+      maxWidth: '100%',
+    },
+    ":not(pre) > code[class*='language-']": {
+      paddingLeft: '0.3em',
+      paddingRight: '0.3em',
+    },
   },
 });
 

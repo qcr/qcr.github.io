@@ -42,6 +42,7 @@ export default function CodePage({codeData}: CodePageProps) {
         <StyledMarkdown
           variant="body1"
           component="div"
+          className="markdown-body"
           dangerouslySetInnerHTML={{__html: codeData.content}}
         />
       ) : (

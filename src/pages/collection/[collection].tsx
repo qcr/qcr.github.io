@@ -61,6 +61,7 @@ export default function CollectionPage({collectionData}: CollectionPageProps) {
       <StyledMarkdown
         variant="body1"
         component="div"
+        className="markdown-body"
         dangerouslySetInnerHTML={{__html: collectionData.content}}
       />
       {collectionData.code && (

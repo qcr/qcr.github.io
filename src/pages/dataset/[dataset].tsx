@@ -85,6 +85,7 @@ export default function DatasetPage({datasetData}: DatasetPageProps) {
         <StyledMarkdown
           variant="body1"
           component="div"
+          className="markdown-body"
           dangerouslySetInnerHTML={{__html: datasetData.content}}
         />
       ) : (
