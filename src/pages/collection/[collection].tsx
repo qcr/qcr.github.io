@@ -7,7 +7,7 @@ import Card from '../../components/card';
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 
-import {StyledMarkdown} from 'src/styles/shared';
+import {StyledMarkdown, StyledTitle} from 'src/styles/shared';
 
 import WebsiteIcon from '!@svgr/webpack!/assets/icon_website.svg';
 
@@ -46,13 +46,9 @@ export default function CollectionPage({collectionData}: CollectionPageProps) {
   }
   return (
     <Layout>
-      <Typography
-        variant="h3"
-        color="primary"
-        sx={{maxWidth: '45rem', marginLeft: 'auto', marginRight: 'auto'}}
-      >
+      <StyledTitle variant="h3" color="primary">
         {collectionData.name}
-      </Typography>
+      </StyledTitle>
       {collectionData.url && (
         <FocusButton
           newTab
@@ -64,7 +60,6 @@ export default function CollectionPage({collectionData}: CollectionPageProps) {
       <StyledSpace />
       <StyledMarkdown
         variant="body1"
-        sx={{marginLeft: 'auto', marginRight: 'auto'}}
         component="div"
         dangerouslySetInnerHTML={{__html: collectionData.content}}
       />

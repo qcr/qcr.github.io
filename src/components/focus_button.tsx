@@ -15,6 +15,10 @@ const StyledButton = styled(Button)(({theme}) => ({
   svg: {
     fill: theme.palette.primary.contrastText,
   },
+  '.MuiButton-endIcon': {
+    height: '24px',
+    marginLeft: '12px',
+  },
 }));
 
 const StyledLink = styled('a')({
@@ -34,7 +38,6 @@ export default function FocusButton({
         color="primary"
         variant="contained"
         endIcon={icon}
-        sx={{'.MuiButton-endIcon': {height: '24px', marginLeft: '12px'}}}
         onClick={onClick}
       >
         {text}

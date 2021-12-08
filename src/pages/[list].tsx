@@ -5,6 +5,8 @@ import {Typography, styled} from '@mui/material';
 import Card from '../components/card';
 import Layout from '../components/layout';
 
+import {StyledTitle} from 'src/styles/shared';
+
 import {
   code,
   datasets,
@@ -29,9 +31,9 @@ function ListPage({listData, title}: ListPageProps) {
   if (typeof listData === 'string') listData = JSON.parse(listData);
   return (
     <Layout list>
-      <Typography variant="h3" color="primary" sx={{marginTop: '48px'}}>
+      <StyledTitle variant="h3" color="primary">
         {title}
-      </Typography>
+      </StyledTitle>
       <StyledCards>
         {Object.values(listData).map((d, i) => (
           <Card key={i} cardData={d} />

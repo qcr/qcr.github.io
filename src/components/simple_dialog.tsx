@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
@@ -7,6 +6,7 @@ import {
   List,
   ListItemButton,
   ListItemText,
+  styled,
 } from '@mui/material';
 
 import {DatasetUrl} from '../../lib/content';
@@ -22,28 +22,37 @@ interface SimpleDialogProps {
   urls: DatasetUrl[];
 }
 
+const StyledDialog = styled(Dialog)({
+  '.MuiDialog-paper': {
+    borderRadius: '0px',
+  },
+});
+
+const StyledListItem = styled(ListItemButton)({
+  paddingRight: '48px',
+});
+
+const StyledTitle = styled(DialogTitle)(({theme}) => ({
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.primary.contrastText,
+}));
+
 export default function SimpleDialog({open, onClose, urls}: SimpleDialogProps) {
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      sx={{'.MuiDialog-paper': {borderRadius: '0px'}}}
-    >
-      <DialogTitle sx={{backgroundColor: 'primary.main', color: 'white'}}>
-        Select dataset variant
-      </DialogTitle>
+    <StyledDialog open={open} onClose={onClose}>
+      <StyledTitle>Select dataset variant</StyledTitle>
       <List>
         {urls.map((u, i) => (
-          <ListItemButton key={i} sx={{paddingRight: '48px'}}>
+          <StyledListItem key={i}>
             <a href={u.url} target="_blank" rel="noreferrer">
               <ListItemText
                 primary={u.name}
                 secondary={u.size ? u.size : ' '}
               />
             </a>
-          </ListItemButton>
+          </StyledListItem>
         ))}
       </List>
-    </Dialog>
+    </StyledDialog>
   );
 }

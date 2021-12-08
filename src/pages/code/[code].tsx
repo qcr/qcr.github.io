@@ -6,7 +6,7 @@ import {Typography, styled} from '@mui/material';
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 
-import {Missing, StyledMarkdown} from 'src/styles/shared';
+import {Missing, StyledMarkdown, StyledTitle} from 'src/styles/shared';
 
 import GitHubIcon from '!@svgr/webpack!/assets/icon_github.svg';
 
@@ -16,17 +16,18 @@ interface CodePageProps {
   codeData: CodeContent;
 }
 
+const StyledSubtitle = styled(Typography)({
+  fontSize: 'italic',
+  marginBottom: '36px',
+});
+
 export default function CodePage({codeData}: CodePageProps) {
   if (typeof codeData === 'string') codeData = JSON.parse(codeData);
   return (
     <Layout>
-      <Typography
-        variant="h3"
-        color="primary"
-        sx={{maxWidth: '45rem', marginLeft: 'auto', marginRight: 'auto'}}
-      >
+      <StyledTitle variant="h3" color="primary">
         {codeData.name}
-      </Typography>
+      </StyledTitle>
 
       <FocusButton
         newTab
@@ -34,17 +35,12 @@ export default function CodePage({codeData}: CodePageProps) {
         text="View the code on GitHub"
         icon={<GitHubIcon />}
       />
-      <Typography
-        variant="subtitle1"
-        color="primary"
-        sx={{fontStyle: 'italic', marginBottom: '36px'}}
-      >
+      <StyledSubtitle variant="subtitle1" color="primary">
         {codeData.url.replace(/.*\/([^/]*\/[^/]*)$/, '$1')}
-      </Typography>
+      </StyledSubtitle>
       {codeData.content ? (
         <StyledMarkdown
           variant="body1"
-          sx={{marginLeft: 'auto', marginRight: 'auto'}}
           component="div"
           dangerouslySetInnerHTML={{__html: codeData.content}}
         />

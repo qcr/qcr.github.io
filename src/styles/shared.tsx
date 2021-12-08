@@ -54,3 +54,7 @@ export const StyledMarkdown = styled(Typography)({
     paddingRight: '0.3em',
   },
 });
+
+export const StyledTitle = styled(Typography)({
+  marginTop: '48px',
+});

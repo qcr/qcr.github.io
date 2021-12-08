@@ -1,13 +1,13 @@
 import {GetStaticPaths, GetStaticProps} from 'next';
 import React, {useState} from 'react';
 
-import {Typography} from '@mui/material';
+import {styled, Typography} from '@mui/material';
 
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 import SimpleDialog from '../../components/simple_dialog';
 
-import {Missing, StyledMarkdown} from 'src/styles/shared';
+import {Missing, StyledMarkdown, StyledTitle} from 'src/styles/shared';
 
 import DownloadIcon from '!@svgr/webpack!/assets/icon_download.svg';
 import ListIcon from '!@svgr/webpack!/assets/icon_list.svg';
@@ -34,18 +34,18 @@ function _urlIsString(x: DatasetContent): x is DatasetContent & {url: string} {
   return !_urlIsArray(x);
 }
 
+const StyledSubtitle = styled(Typography)({
+  marginBottom: '36px',
+});
+
 export default function DatasetPage({datasetData}: DatasetPageProps) {
   const [open, setOpen] = useState(false);
   if (typeof datasetData === 'string') datasetData = JSON.parse(datasetData);
   return (
     <Layout>
-      <Typography
-        variant="h3"
-        color="primary"
-        sx={{maxWidth: '45rem', marginLeft: 'auto', marginRight: 'auto'}}
-      >
+      <StyledTitle variant="h3" color="primary">
         {datasetData.name}
-      </Typography>
+      </StyledTitle>
 
       {_urlIsArray(datasetData) && (
         <SimpleDialog
@@ -78,17 +78,12 @@ export default function DatasetPage({datasetData}: DatasetPageProps) {
           datasetData.url_type == 'list' ? () => setOpen(true) : undefined
         }
       />
-      <Typography
-        variant="subtitle1"
-        color="primary"
-        sx={{marginBottom: '36px'}}
-      >
+      <StyledSubtitle variant="subtitle1" color="primary">
         {datasetData.size}
-      </Typography>
+      </StyledSubtitle>
       {datasetData.content ? (
         <StyledMarkdown
           variant="body1"
-          sx={{marginLeft: 'auto', marginRight: 'auto'}}
           component="div"
           dangerouslySetInnerHTML={{__html: datasetData.content}}
         />

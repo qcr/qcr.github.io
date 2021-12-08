@@ -34,8 +34,16 @@ const StyledContent = styled('div')({
   widtH: '100%',
 });
 
-const StyledWelcome = styled(Typography)({
+const StyledSection = styled(Typography)({
+  fontWeight: 'bold',
+  marginBottom: '12px',
+  marginTop: '36px',
+});
+
+const StyledWelcome = styled(Typography)(({theme}) => ({
   alignItems: 'center',
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.primary.contrastText,
   display: 'flex',
   flexDirection: 'column',
   height: '100%',
@@ -51,13 +59,7 @@ const StyledWelcome = styled(Typography)({
     maxWidth: '100ch',
     textAlign: 'center',
   },
-});
-
-const sectionStyle = {
-  fontWeight: 'bold',
-  marginBottom: '12px',
-  marginTop: '36px',
-};
+}));
 
 interface HomePageProps {
   mostPopular: Content[];
@@ -86,13 +88,7 @@ export default function HomePage({
         src={bannerImage}
         height={300}
       />
-      <StyledWelcome
-        variant="body1"
-        sx={{
-          color: 'white',
-          backgroundColor: 'primary.main',
-        }}
-      >
+      <StyledWelcome variant="body1">
         <p>
           Welcome the QUT Centre for Robotics Open Source website. This is the
           place where we share our public contributions with the wider robotics
@@ -109,19 +105,19 @@ export default function HomePage({
         </p>
       </StyledWelcome>
       <StyledContent>
-        <Typography variant="h4" color="primary" sx={sectionStyle}>
+        <StyledSection variant="h4" color="primary">
           Newest Additions
-        </Typography>
+        </StyledSection>
         <CardCarousel cardsData={mostRecent} />
-        <Typography variant="h4" color="primary" sx={sectionStyle}>
+        <StyledSection variant="h4" color="primary">
           Most Popular
-        </Typography>
+        </StyledSection>
         <CardCarousel cardsData={mostPopular} />
         {featured.length > 0 && (
           <>
-            <Typography variant="h4" color="primary" sx={sectionStyle}>
+            <StyledSection variant="h4" color="primary">
               Featured Collections
-            </Typography>
+            </StyledSection>
             <CardCarousel cardsData={featured} />
           </>
         )}
