@@ -6,7 +6,7 @@ import {Typography, styled} from '@mui/material';
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 
-import {Missing} from 'src/styles/shared';
+import {Missing, StyledMarkdown} from 'src/styles/shared';
 
 import GitHubIcon from '!@svgr/webpack!/assets/icon_github.svg';
 
@@ -42,9 +42,8 @@ export default function CodePage({codeData}: CodePageProps) {
         {codeData.url.replace(/.*\/([^/]*\/[^/]*)$/, '$1')}
       </Typography>
       {codeData.content ? (
-        <Typography
+        <StyledMarkdown
           variant="body1"
-          className="markdown-body"
           sx={{marginLeft: 'auto', marginRight: 'auto'}}
           component="div"
           dangerouslySetInnerHTML={{__html: codeData.content}}

@@ -7,7 +7,7 @@ import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 import SimpleDialog from '../../components/simple_dialog';
 
-import {Missing} from 'src/styles/shared';
+import {Missing, StyledMarkdown} from 'src/styles/shared';
 
 import DownloadIcon from '!@svgr/webpack!/assets/icon_download.svg';
 import ListIcon from '!@svgr/webpack!/assets/icon_list.svg';
@@ -86,9 +86,8 @@ export default function DatasetPage({datasetData}: DatasetPageProps) {
         {datasetData.size}
       </Typography>
       {datasetData.content ? (
-        <Typography
+        <StyledMarkdown
           variant="body1"
-          className="markdown-body"
           sx={{marginLeft: 'auto', marginRight: 'auto'}}
           component="div"
           dangerouslySetInnerHTML={{__html: datasetData.content}}
