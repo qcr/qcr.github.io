@@ -13,3 +13,8 @@ declare module '!@svgr/webpack*' {
   const content: React.StatelessComponent<React.SVGAttributes<SVGElement>>;
   export default content;
 }
+
+declare module '*.svg' {
+  const content: string;
+  export default content;
+}
