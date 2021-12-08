@@ -1,11 +1,9 @@
 import React from 'react';
 
-import {Typography} from '@mui/material';
+import {Typography, styled} from '@mui/material';
 
 import CardCarousel from '../components/card_carousel';
 import Layout from '../components/layout';
-
-import styles from '../styles/index.module.scss';
 
 import bannerImage from '/assets/banner_image.jpg';
 
@@ -23,6 +21,37 @@ import {Content} from '../../lib/content';
 const LIMIT_FEATURE = 10;
 const LIMIT_MOST_POPULAR = 10;
 const LIMIT_MOST_RECENT = 10;
+
+const StyledBanner = styled('img')({
+  objectFit: 'cover',
+  objectPosition: '50% 52.5%',
+});
+
+const StyledContent = styled('div')({
+  margin: '0 auto',
+  maxWidth: '1250px',
+  padding: '0 16px',
+  widtH: '100%',
+});
+
+const StyledWelcome = styled(Typography)({
+  alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
+  justifyContent: 'center',
+  padding: '36px',
+  width: '100%',
+  a: {
+    textDecoration: 'underline',
+  },
+  p: {
+    fontSize: '1.15em',
+    margin: '1ch 0',
+    maxWidth: '100ch',
+    textAlign: 'center',
+  },
+});
 
 const sectionStyle = {
   fontWeight: 'bold',
@@ -52,15 +81,13 @@ export default function HomePage({
   if (typeof mostRecent === 'string') mostRecent = JSON.parse(mostRecent);
   return (
     <Layout home>
-      <img
+      <StyledBanner
         alt="QUT Centre for Robotics Banner Image"
         src={bannerImage}
-        className={styles['banner-image']}
         height={300}
       />
-      <Typography
+      <StyledWelcome
         variant="body1"
-        className={styles.welcome}
         sx={{
           color: 'white',
           backgroundColor: 'primary.main',
@@ -80,8 +107,8 @@ export default function HomePage({
           <a href="https://research.qut.edu.au/qcr/">main site</a> for more
           details about the Centre&apos;s work.
         </p>
-      </Typography>
-      <div className={styles.content}>
+      </StyledWelcome>
+      <StyledContent>
         <Typography variant="h4" color="primary" sx={sectionStyle}>
           Newest Additions
         </Typography>
@@ -98,7 +125,7 @@ export default function HomePage({
             <CardCarousel cardsData={featured} />
           </>
         )}
-      </div>
+      </StyledContent>
     </Layout>
   );
 }
