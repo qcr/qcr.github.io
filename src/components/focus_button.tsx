@@ -1,7 +1,5 @@
 import React from 'react';
-import {Button} from '@mui/material';
-
-import styles from '../styles/focus_button.module.scss';
+import {Button, styled} from '@mui/material';
 
 interface FocusButtonProps {
   url?: string;
@@ -11,6 +9,18 @@ interface FocusButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
+const StyledButton = styled(Button)(({theme}) => ({
+  textTransform: 'unset',
+  width: '300px',
+  svg: {
+    fill: theme.palette.primary.contrastText,
+  },
+}));
+
+const StyledLink = styled('a')({
+  margin: '0px auto',
+});
+
 export default function FocusButton({
   url,
   text,
@@ -19,22 +29,16 @@ export default function FocusButton({
   onClick,
 }: FocusButtonProps) {
   return (
-    <a
-      href={url}
-      target={newTab ? '_blank' : undefined}
-      className={styles.link}
-    >
-      <Button
+    <StyledLink href={url} target={newTab ? '_blank' : undefined}>
+      <StyledButton
         color="primary"
         variant="contained"
-        // classes={csIcon}
-        className={styles.button}
         endIcon={icon}
         sx={{'.MuiButton-endIcon': {height: '24px', marginLeft: '12px'}}}
         onClick={onClick}
       >
         {text}
-      </Button>
-    </a>
+      </StyledButton>
+    </StyledLink>
   );
 }
