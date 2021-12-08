@@ -7,10 +7,11 @@ import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 import SimpleDialog from '../../components/simple_dialog';
 
+import {Missing} from 'src/styles/shared';
+
 import DownloadIcon from '!@svgr/webpack!/assets/icon_download.svg';
 import ListIcon from '!@svgr/webpack!/assets/icon_list.svg';
 import WebsiteIcon from '!@svgr/webpack!/assets/icon_website.svg';
-import styles from '../../styles/dataset.module.scss';
 
 import {
   datasets,
@@ -93,11 +94,11 @@ export default function DatasetPage({datasetData}: DatasetPageProps) {
           dangerouslySetInnerHTML={{__html: datasetData.content}}
         />
       ) : (
-        <Typography variant="body1" className={`missing ${styles.content}`}>
+        <Missing variant="body1">
           Content rendered markdown file specified by the &apos;details&apos;
           field of your dataset data in &apos;/data/datasets.yaml&apos; (not
-          sure what use as a default if no value is provided?)
-        </Typography>
+          sure what to use as a default if no value is provided?)
+        </Missing>
       )}
     </Layout>
   );

@@ -29,6 +29,12 @@ export const FocusBox = styled(Typography)({
   textAlign: 'center',
 });
 
+export const Missing = styled(FocusBox)({
+  backgroundColor: 'lightsalmon',
+  borderColor: 'salmon',
+  height: '1000px',
+});
+
 export const Notify = styled(FocusBox)({
   backgroundColor: 'lightsalmon',
   borderColor: 'salmon',
