@@ -1,6 +1,6 @@
 import {GetStaticProps, GetStaticPaths} from 'next';
 import React from 'react';
-import {Typography} from '@mui/material';
+import {Typography, styled} from '@mui/material';
 
 import Card from '../components/card';
 import Layout from '../components/layout';
@@ -13,12 +13,17 @@ import {
   ContentType,
 } from '../../lib/content';
 
-import styles from '../styles/list.module.scss';
-
 interface ListPageProps {
   listData: Content[];
   title: string;
 }
+
+const StyledCards = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+});
 
 function ListPage({listData, title}: ListPageProps) {
   if (typeof listData === 'string') listData = JSON.parse(listData);
@@ -27,11 +32,11 @@ function ListPage({listData, title}: ListPageProps) {
       <Typography variant="h3" color="primary" sx={{marginTop: '48px'}}>
         {title}
       </Typography>
-      <div className={styles.cards}>
+      <StyledCards>
         {Object.values(listData).map((d, i) => (
           <Card key={i} cardData={d} />
         ))}
-      </div>
+      </StyledCards>
     </Layout>
   );
 }
