@@ -37,6 +37,9 @@ const StyledPage = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
+  a: {
+    color: 'inherit',
+  },
 });
 
 const StyledSpace = styled('div')({
