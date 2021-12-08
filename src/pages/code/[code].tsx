@@ -1,11 +1,13 @@
 import {GetStaticPaths, GetStaticProps} from 'next';
 import React from 'react';
 
-import {Typography} from '@mui/material';
+import {Typography, styled} from '@mui/material';
 
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
-import styles from '../../styles/code.module.scss';
+
+import {FocusBox} from 'src/styles/shared';
+
 import GitHubIcon from '!@svgr/webpack!/assets/icon_github.svg';
 
 import {code, lookupEntry, CodeContent} from '../../../lib/content';
@@ -13,6 +15,12 @@ import {code, lookupEntry, CodeContent} from '../../../lib/content';
 interface CodePageProps {
   codeData: CodeContent;
 }
+
+const StyledMissing = styled(FocusBox)({
+  backgroundColor: 'lightsalmon',
+  borderColor: 'salmon',
+  height: '1000px',
+});
 
 export default function CodePage({codeData}: CodePageProps) {
   if (typeof codeData === 'string') codeData = JSON.parse(codeData);
@@ -48,11 +56,11 @@ export default function CodePage({codeData}: CodePageProps) {
           dangerouslySetInnerHTML={{__html: codeData.content}}
         />
       ) : (
-        <Typography variant="body1" className={`missing ${styles.content}`}>
+        <StyledMissing variant="body1">
           Content rendered from README.md of the repository, or a custom
           override specified by the &apos;details&apos; field of your repository
           data in &apos;/data/repositories.yaml&apos;
-        </Typography>
+        </StyledMissing>
       )}
     </Layout>
   );
