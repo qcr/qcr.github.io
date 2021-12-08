@@ -1,14 +1,13 @@
 import {GetStaticPaths, GetStaticProps} from 'next';
 import React from 'react';
 
-import {Typography} from '@mui/material';
+import {Typography, styled} from '@mui/material';
 
 import Card from '../../components/card';
 import FocusButton from '../../components/focus_button';
 import Layout from '../../components/layout';
 
 import WebsiteIcon from '!@svgr/webpack!/assets/icon_website.svg';
-import styles from '../../styles/collection.module.scss';
 
 import {
   lookupEntry,
@@ -16,13 +15,24 @@ import {
   CollectionContent,
 } from '../../../lib/content';
 
-const sectionStyle = {
+const StyledCards = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+});
+
+const StyledSpace = styled('div')({
+  marginBottom: '36px',
+});
+
+const StyledSection = styled(Typography)({
   fontWeight: 'bold',
   marginTop: '36px',
   marginBottom: '12px',
   marginLeft: 'auto',
   marginRight: 'auto',
-};
+});
 
 interface CollectionPageProps {
   collectionData: CollectionContent;
@@ -49,7 +59,7 @@ export default function CollectionPage({collectionData}: CollectionPageProps) {
           icon={<WebsiteIcon />}
         />
       )}
-      <div className={styles.space} />
+      <StyledSpace />
       <Typography
         variant="body1"
         className="markdown-body"
@@ -59,26 +69,26 @@ export default function CollectionPage({collectionData}: CollectionPageProps) {
       />
       {collectionData.code && (
         <>
-          <Typography variant="h5" color="primary" sx={sectionStyle}>
+          <StyledSection variant="h5" color="primary">
             Codebases
-          </Typography>
-          <div className={styles.cards}>
+          </StyledSection>
+          <StyledCards>
             {collectionData.code.map((r, i) => (
               <Card key={i} cardData={r} />
             ))}
-          </div>
+          </StyledCards>
         </>
       )}
       {collectionData.datasets && (
         <>
-          <Typography variant="h5" color="primary" sx={sectionStyle}>
+          <StyledSection variant="h5" color="primary">
             Datasets
-          </Typography>
-          <div className={styles.cards}>
+          </StyledSection>
+          <StyledCards>
             {collectionData.datasets.map((r, i) => (
               <Card key={i} cardData={r} />
             ))}
-          </div>
+          </StyledCards>
         </>
       )}
     </Layout>
