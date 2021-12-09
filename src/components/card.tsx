@@ -72,8 +72,8 @@ const StyledName = styled('div')({
   flexGrow: 1,
   justifyContent: 'space-around',
   p: {
-    '-webkit-box-orient': 'vertical',
-    '-webkit-line-clamp': '2',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: '2',
     display: '-webkit-box',
     fontWeight: 'bold',
     overflow: 'hidden',
@@ -83,7 +83,6 @@ const StyledName = styled('div')({
 
 export default function ContentCard({cardData}: ContentCardProps) {
   const [elevation, setElevation] = useState(ELEVATION_DEFAULT);
-  const section = cardData.type === 'repository' ? 'code' : cardData.type;
   return (
     <StyledCard
       elevation={elevation}
@@ -91,25 +90,27 @@ export default function ContentCard({cardData}: ContentCardProps) {
       onMouseOut={() => setElevation(ELEVATION_DEFAULT)}
       square={true}
     >
-      <Link href={`/${section}/${cardData.id}`} passHref>
+      <Link href={`/${cardData.type}/${cardData.id}`} passHref>
         <StyledClickable>
           <StyledImage
             images={[cardData.image, cardData._image]}
-            style={{
-              objectPosition: cardData.image_position,
-              objectFit: cardData.image_fit,
-            }}
+            style={
+              {
+                objectPosition: cardData.image_position,
+                objectFit: cardData.image_fit,
+              } as React.CSSProperties
+            }
           />
           <StyledFooter>
             <StyledInfo
               variant="body2"
-              className={`${section === 'code' ? 'url' : 'size'}`}
+              className={`${cardData.type === 'code' ? 'url' : 'size'}`}
             >
-              {section === 'dataset'
+              {cardData.type === 'dataset'
                 ? cardData.size
                   ? cardData.size
                   : ''
-                : section === 'code'
+                : cardData.type === 'code'
                 ? cardData.url.replace(/.*\/([^/]*\/[^/]*)$/, '$1')
                 : 'Collection'}
             </StyledInfo>

@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface LazyImageProps {
-  images: string[];
-  className: string;
+  images: (string | undefined)[];
+  className?: string;
   style: React.CSSProperties;
 }
 
@@ -11,7 +11,7 @@ export default function LazyImage({images, className, style}: LazyImageProps) {
   // high-res... we only handle image then video at the moment...)
   // Expects a list of images in the order to be loaded (we should drop out any
   // undefined entries as the first step
-  const cleanImages = images.filter(Boolean);
+  const cleanImages = images.filter((x) => x !== undefined) as string[];
 
   // TODO should handle videos in general... not just webm
   if (cleanImages[cleanImages.length - 1].endsWith('.webm')) {
