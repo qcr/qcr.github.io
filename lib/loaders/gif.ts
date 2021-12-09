@@ -22,17 +22,21 @@ async function buildOutput(
   // Construct our paths
   // TODO figure out why some of the resources are coming in with a compiler
   // saying to place them in '.next/server/' (they are STATIC....)
-  const serverHack = loaderContext._compiler!.outputPath.endsWith('server');
   const inPath = loaderContext.resourcePath;
-  const outPath = path.join(
-    serverHack ? path.join('..', PATH_ROOT) : PATH_ROOT,
-    loaderUtils.interpolateName(
-      loaderContext,
-      `[hash].${params.webm ? 'webm' : params.image ? 'jpg' : 'gif'}`,
-      {content: content}
-    )
+  const outFilename = loaderUtils.interpolateName(
+    loaderContext,
+    `[hash].${params.webm ? 'webm' : params.image ? 'jpg' : 'gif'}`,
+    {content: content}
   );
-  const publicPath = serverHack ? outPath.substring(3) : outPath;
+  const outDir = `${
+    loaderContext.mode === 'development' ? '../' : ''
+  }/static/gifs/`;
+  const outPath = path.join(outDir, outFilename);
+  const outPublic = path.join('/_next/static/gifs/', outFilename);
+
+  console.log(
+    `WRITING:\n\t${inPath}\nTO:\n\t${outPath}\nAVAILABLE AT:\n\t${outPublic}`
+  );
 
   // Generate the requested file
   // TODO not sure why I can't just use the input data? It is a different size
@@ -65,11 +69,7 @@ async function buildOutput(
   );
 
   // Return the result of the loader
-  cb(
-    null,
-    `module.exports = __webpack_public_path__ + ` +
-      `${JSON.stringify(publicPath)}`
-  );
+  cb(null, `module.exports = ${JSON.stringify(outPublic)}`);
 }
 
 export default function loader(
