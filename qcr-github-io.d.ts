@@ -3,6 +3,11 @@ declare module '*.csv' {
   export default content;
 }
 
+declare module '*.jpg' {
+  const content: string;
+  export default content;
+}
+
 declare module '*.md' {
   import {GrayMatterFile} from 'gray-matter';
   const content: GrayMatterFile<string>;
