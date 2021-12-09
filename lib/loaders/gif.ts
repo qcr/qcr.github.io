@@ -34,9 +34,9 @@ async function buildOutput(
   const outPath = path.join(outDir, outFilename);
   const outPublic = path.join('/_next/static/gifs/', outFilename);
 
-  console.log(
-    `WRITING:\n\t${inPath}\nTO:\n\t${outPath}\nAVAILABLE AT:\n\t${outPublic}`
-  );
+  // console.log(
+  //   `WRITING:\n\t${inPath}\nTO:\n\t${outPath}\nAVAILABLE AT:\n\t${outPublic}`
+  // );
 
   // Generate the requested file
   // TODO not sure why I can't just use the input data? It is a different size
