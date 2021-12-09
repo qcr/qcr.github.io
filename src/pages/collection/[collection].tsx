@@ -41,9 +41,6 @@ interface CollectionPageProps {
 }
 
 export default function CollectionPage({collectionData}: CollectionPageProps) {
-  if (typeof collectionData === 'string') {
-    collectionData = JSON.parse(collectionData);
-  }
   return (
     <Layout>
       <StyledTitle variant="h3" color="primary">
@@ -60,6 +57,7 @@ export default function CollectionPage({collectionData}: CollectionPageProps) {
       <StyledSpace />
       <StyledMarkdown
         variant="body1"
+        // @ts-ignore: "component" does not exist
         component="div"
         className="markdown-body"
         dangerouslySetInnerHTML={{__html: collectionData.content}}
@@ -70,7 +68,7 @@ export default function CollectionPage({collectionData}: CollectionPageProps) {
             Codebases
           </StyledSection>
           <StyledCards>
-            {collectionData.code.map((r, i) => (
+            {collectionData._code.map((r, i) => (
               <Card key={i} cardData={r} />
             ))}
           </StyledCards>
@@ -82,7 +80,7 @@ export default function CollectionPage({collectionData}: CollectionPageProps) {
             Datasets
           </StyledSection>
           <StyledCards>
-            {collectionData.datasets.map((r, i) => (
+            {collectionData._datasets.map((r, i) => (
               <Card key={i} cardData={r} />
             ))}
           </StyledCards>
@@ -106,8 +104,9 @@ export const getStaticPaths: GetStaticPaths = () => {
 export const getStaticProps: GetStaticProps = (ctx) => {
   return {
     props: {
-      collectionData: JSON.stringify(
-        lookupEntry(ctx.params!.collection as string, 'collection')
+      collectionData: lookupEntry(
+        ctx.params!.collection as string,
+        'collection'
       ),
     },
   };

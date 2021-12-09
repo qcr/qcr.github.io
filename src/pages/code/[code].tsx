@@ -22,7 +22,6 @@ const StyledSubtitle = styled(Typography)({
 });
 
 export default function CodePage({codeData}: CodePageProps) {
-  if (typeof codeData === 'string') codeData = JSON.parse(codeData);
   return (
     <Layout>
       <StyledTitle variant="h3" color="primary">
@@ -41,6 +40,7 @@ export default function CodePage({codeData}: CodePageProps) {
       {codeData.content ? (
         <StyledMarkdown
           variant="body1"
+          // @ts-ignore: "component" does not exist
           component="div"
           className="markdown-body"
           dangerouslySetInnerHTML={{__html: codeData.content}}
@@ -70,7 +70,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 export const getStaticProps: GetStaticProps = (ctx) => {
   return {
     props: {
-      codeData: JSON.stringify(lookupEntry(ctx.params!.code as string, 'code')),
+      codeData: lookupEntry(ctx.params!.code as string, 'code'),
     },
   };
 };

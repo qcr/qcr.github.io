@@ -40,7 +40,6 @@ const StyledSubtitle = styled(Typography)({
 
 export default function DatasetPage({datasetData}: DatasetPageProps) {
   const [open, setOpen] = useState(false);
-  if (typeof datasetData === 'string') datasetData = JSON.parse(datasetData);
   return (
     <Layout>
       <StyledTitle variant="h3" color="primary">
@@ -84,6 +83,7 @@ export default function DatasetPage({datasetData}: DatasetPageProps) {
       {datasetData.content ? (
         <StyledMarkdown
           variant="body1"
+          // @ts-ignore: "component" does not exist
           component="div"
           className="markdown-body"
           dangerouslySetInnerHTML={{__html: datasetData.content}}
@@ -113,9 +113,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 export const getStaticProps: GetStaticProps = (ctx) => {
   return {
     props: {
-      datasetData: JSON.stringify(
-        lookupEntry(ctx.params!.dataset as string, 'dataset')
-      ),
+      datasetData: lookupEntry(ctx.params!.dataset as string, 'dataset'),
     },
   };
 };
