@@ -44,8 +44,10 @@ export interface CodeContent extends ContentCommon {
 
 export interface CollectionContent extends ContentCommon {
   type: 'collection';
-  code?: (string | CodeContent)[];
-  datasets?: (string | DatasetContent)[];
+  code?: string[];
+  _code: CodeContent[];
+  datasets?: string[];
+  _datasets: DatasetContent[];
   feature?: number;
   url?: string;
 }
@@ -72,7 +74,7 @@ function hydrate() {
   // Hydrate the code / datasets fields in all collection content
   Object.values(collections).forEach((p) => {
     if (p.code) {
-      p.code = p.code.filter(_isString).map((c) => {
+      p._code = p.code.filter(_isString).map((c) => {
         if (!(c in code)) {
           throw new ContentError(
             `Collection '${p.id}' contains code with ID '${c}' which ` +
@@ -83,7 +85,7 @@ function hydrate() {
       });
     }
     if (p.datasets) {
-      p.datasets = p.datasets.filter(_isString).map((d) => {
+      p._datasets = p.datasets.filter(_isString).map((d) => {
         if (!(d in datasets)) {
           throw new ContentError(
             `Collection '${p.id}' contains dataset with ID '${d}' which ` +
@@ -124,16 +126,18 @@ function hydrate() {
     // If this fails, fallback to the default image
     if (c.image === undefined) c.image = DEFAULT_IMAGE;
   });
-  Object.values(collections).forEach((p) => {
-    if (p.image === undefined) {
+
+  // Derive the collection's card image if it's not defined
+  Object.values(collections).forEach((c) => {
+    if (c.image === undefined) {
       const t =
-        p.code && p.code.length > 0
-          ? p.code[0]
-          : p.datasets && p.datasets.length > 0
-          ? p.datasets[0]
+        c.code && c.code.length > 0
+          ? c._code[0]
+          : c.datasets && c.datasets.length > 0
+          ? c._datasets[0]
           : undefined;
-      p.image = t ? (t as Content).image : DEFAULT_IMAGE;
-      if (t) p.image_position = (t as Content).image_position;
+      c.image = t ? (t as Content).image : DEFAULT_IMAGE;
+      if (t) c.image_position = (t as Content).image_position;
     }
   });
 }
