@@ -9,9 +9,9 @@ import SimpleDialog from '../../components/simple_dialog';
 
 import {Missing, StyledMarkdown, StyledTitle} from 'src/styles/shared';
 
-import DownloadIcon from '!@svgr/webpack!/assets/icon_download.svg';
-import ListIcon from '!@svgr/webpack!/assets/icon_list.svg';
-import WebsiteIcon from '!@svgr/webpack!/assets/icon_website.svg';
+import DownloadIcon from '!@svgr/webpack!/public/icon_download.svg';
+import ListIcon from '!@svgr/webpack!/public/icon_list.svg';
+import WebsiteIcon from '!@svgr/webpack!/public/icon_website.svg';
 
 import {
   datasets,

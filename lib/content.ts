@@ -1,7 +1,7 @@
 import {JSDOM} from 'jsdom';
 import path from 'path';
 
-import DEFAULT_IMAGE from '/assets/qcr_logo_light_filled.svg';
+import DEFAULT_IMAGE from '/public/qcr_logo_light_filled.svg';
 
 const VALID_TYPES = ['code', 'dataset', 'collection'];
 

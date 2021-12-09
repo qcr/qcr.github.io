@@ -9,7 +9,7 @@ import Layout from '../../components/layout';
 
 import {StyledMarkdown, StyledTitle} from 'src/styles/shared';
 
-import WebsiteIcon from '!@svgr/webpack!/assets/icon_website.svg';
+import WebsiteIcon from '!@svgr/webpack!/public/icon_website.svg';
 
 import {
   lookupEntry,

@@ -8,7 +8,7 @@ import Layout from '../../components/layout';
 
 import {Missing, StyledMarkdown, StyledTitle} from 'src/styles/shared';
 
-import GitHubIcon from '!@svgr/webpack!/assets/icon_github.svg';
+import GitHubIcon from '!@svgr/webpack!/public/icon_github.svg';
 
 import {code, lookupEntry, CodeContent} from '../../../lib/content';
 

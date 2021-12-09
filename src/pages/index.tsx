@@ -5,8 +5,6 @@ import {Typography, styled} from '@mui/material';
 import CardCarousel from '../components/card_carousel';
 import Layout from '../components/layout';
 
-import bannerImage from '/assets/banner_image.jpg';
-
 import {
   numCode,
   numDatasets,
@@ -85,7 +83,7 @@ export default function HomePage({
     <Layout home>
       <StyledBanner
         alt="QUT Centre for Robotics Banner Image"
-        src={bannerImage}
+        src="/banner_image.jpg"
         height={300}
       />
       <StyledWelcome variant="body1">
