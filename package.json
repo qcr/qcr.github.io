@@ -16,9 +16,10 @@
   "author": "btalb",
   "license": "UNLICENSED",
   "scripts": {
-    "build_loaders": "tsc -p lib/loaders/",
+    "build_loaders": "npx tsc -p lib/loaders/",
     "dev": "npm run build_loaders && next dev",
-    "build": "export NEXT_OUT_DIR=.next-out && next build && next export -o $NEXT_OUT_DIR && node -e 'require(\"./lib/repo_cache\").default.dumpCacheInfo()'",
+    "build": "npm run build_loaders && next build",
+    "export": "npm run build && export NEXT_OUT_DIR=.next-out && next export -o $NEXT_OUT_DIR && node -e 'require(\"./lib/repo_cache\").default.dumpCacheInfo()'",
     "lint": "next lint",
     "start": "npm run build && next start"
   },
@@ -30,7 +31,6 @@
     "github-markdown-css": "^5.0.0",
     "markdown-it-prism": "^2.1.4",
     "next": "^12.0.7",
-    "next-optimized-images": "^2.6.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-multi-carousel": "^2.6.5"
@@ -58,6 +58,7 @@
     "markdown-it-block-embed": "0.0.3",
     "markdown-it-replace-link": "^1.1.0",
     "next-compose-plugins": "^2.2.1",
+    "next-optimized-images": "^2.6.2",
     "prettier": "^2.2.0",
     "sass": "^1.29.0",
     "ts-loader": "^9.2.6",

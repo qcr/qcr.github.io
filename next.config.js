@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const withPlugins = require('next-compose-plugins');
 const optimizedImages = require('next-optimized-images');
 
@@ -18,7 +16,6 @@ module.exports = withPlugins(
     reactStrictMode: true,
     trailingSlash: true,
     webpack: (config) => {
-      config.resolve.roots = [__dirname];
       config.module.rules.push(
         ...[
           {
