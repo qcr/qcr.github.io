@@ -14,7 +14,7 @@ import {
   orderByPopularity,
 } from '../../lib/analytics';
 
-import {Content} from '../../lib/content';
+import {Content, liteContent} from '../../lib/content';
 
 const LIMIT_FEATURE = 10;
 const LIMIT_MOST_POPULAR = 10;
@@ -76,9 +76,6 @@ export default function HomePage({
   codeCount,
   datasetCount,
 }: HomePageProps) {
-  if (typeof featured === 'string') featured = JSON.parse(featured);
-  if (typeof mostPopular === 'string') mostPopular = JSON.parse(mostPopular);
-  if (typeof mostRecent === 'string') mostRecent = JSON.parse(mostRecent);
   return (
     <Layout home>
       <StyledBanner
@@ -127,9 +124,11 @@ export default function HomePage({
 export function getStaticProps() {
   return {
     props: {
-      featured: orderByFeatured().slice(0, LIMIT_FEATURE),
-      mostPopular: orderByPopularity().slice(0, LIMIT_MOST_POPULAR),
-      mostRecent: orderByNewest().slice(0, LIMIT_MOST_RECENT),
+      featured: liteContent(orderByFeatured().slice(0, LIMIT_FEATURE)),
+      mostPopular: liteContent(
+        orderByPopularity().slice(0, LIMIT_MOST_POPULAR)
+      ),
+      mostRecent: liteContent(orderByNewest().slice(0, LIMIT_MOST_RECENT)),
       codeCount: numCode,
       datasetCount: numDatasets,
       collectionCount: numCollections,

@@ -11,6 +11,7 @@ import {
   code,
   datasets,
   collections,
+  liteContent,
   Content,
   ContentType,
 } from '../../lib/content';
@@ -68,10 +69,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const listName = ctx.params!.list as ContentType;
   return {
     props: {
-      listData: JSON.stringify(
-        Object.values(listMap[listName]).sort((a, b) =>
-          a.name.localeCompare(b.name)
-        )
+      listData: liteContent(Object.values(listMap[listName])).sort((a, b) =>
+        a.name.localeCompare(b.name)
       ),
       title: titleMap[listName],
     },
