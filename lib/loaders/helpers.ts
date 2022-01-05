@@ -1,3 +1,5 @@
+import path from 'path';
+
 const REPO_DEFAULT_BRANCH = 'master';
 const REPO_SCHEME = 'repo:';
 
@@ -15,15 +17,22 @@ function defaultBranchKey(repoUser: string, repoName: string) {
   return `${repoUser}/${repoName}`;
 }
 
-async function convertUri(uri: string, uriContext?: string) {
+function blobUriToRawUri(uri: string) {
+  return uri.replace(
+    /^(https?\:\/\/github\.com\/[^\/]*\/[^\/]*\/)blob/,
+    '$1raw'
+  );
+}
+
+async function convertUri(uri: string, uriContext: string) {
   // Convert 'repo:' URIs to HTTPS
   if (isRepoUri(uri)) uri = await repoUriToHttpsUri(uri, uriContext);
 
   // Convert 'blob' GitHub HTTPS URLs to 'raw'
-  if (isGithubBlobUri(uri)) uri = uri; // TODO
+  if (isGithubBlobUri(uri)) uri = blobUriToRawUri(uri);
 
-  // Convert path URIs to be relative to URI context
-  // TODO
+  // Convert relative path URIs to absolute paths using context
+  if (isPathUri(uri)) uri = relativePathUriToAbsoluteUri(uri, uriContext);
 
   return uri;
 }
@@ -33,9 +42,12 @@ function isGithubBlobUri(uri: string) {
   return true;
 }
 
+function isPathUri(uri: string) {
+  return !/^https?:/.test(uri);
+}
+
 function isRepoUri(uri: string) {
-  // TODO
-  return true;
+  return uri.startsWith(REPO_SCHEME);
 }
 
 function markObjectPaths(
@@ -58,6 +70,11 @@ function markObjectPaths(
 
 function markPath(path: string) {
   return `${REQUIRE_START}${path}${REQUIRE_END}`;
+}
+
+function relativePathUriToAbsoluteUri(pathUri: string, pathRoot: string) {
+  // Absolute URIs can be either '/...' or 'https?://...'
+  return path.join(path.dirname(pathRoot), pathUri);
 }
 
 async function repoUriToHttpsUri(repoUri: string, repoContext?: string) {

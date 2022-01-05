@@ -26,9 +26,7 @@ async function asyncLoader(
 ) {
   ctx.addDependency(ctx.resourcePath);
   console.log(`Processing md file: ${ctx.resourcePath}`);
-  console.log(
-    await convertUri('repo:/README.md', 'https://github.com/qcr/benchbot')
-  );
+  console.log(await convertUri('setup.py', ctx.resourcePath));
 
   const md = matter(input);
   md.data = markObjectPaths(
