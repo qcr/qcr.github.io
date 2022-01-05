@@ -3,6 +3,8 @@ import mdi from 'markdown-it';
 
 import type * as webpack from 'webpack';
 
+import {convertUri, markObjectPaths} from './helpers';
+
 const renderer = mdi({
   html: true,
 })
@@ -23,8 +25,16 @@ async function asyncLoader(
   cb: (err: string | null, result: string) => void
 ) {
   ctx.addDependency(ctx.resourcePath);
+  console.log(`Processing md file: ${ctx.resourcePath}`);
+  console.log(
+    await convertUri('repo:/README.md', 'https://github.com/qcr/benchbot')
+  );
 
   const md = matter(input);
+  md.data = markObjectPaths(
+    md.data,
+    md.data.type === 'code' ? md.data.url : undefined
+  );
   md.content = renderer.render(md.content);
 
   Object.assign(md, md.data);
