@@ -28,18 +28,14 @@ async function convertUri(uri: string, uriContext: string) {
   // Convert 'repo:' URIs to HTTPS
   if (isRepoUri(uri)) uri = await repoUriToHttpsUri(uri, uriContext);
 
-  // Convert 'blob' GitHub HTTPS URLs to 'raw'
-  if (isGithubBlobUri(uri)) uri = blobUriToRawUri(uri);
+  // Convert 'blob' GitHub HTTPS URLs to 'raw' (no check needed as the regex
+  // won't modify if it isn't a blob URI)
+  uri = blobUriToRawUri(uri);
 
   // Convert relative path URIs to absolute paths using context
   if (isPathUri(uri)) uri = relativePathUriToAbsoluteUri(uri, uriContext);
 
   return uri;
-}
-
-function isGithubBlobUri(uri: string) {
-  // TODO
-  return true;
 }
 
 function isPathUri(uri: string) {
