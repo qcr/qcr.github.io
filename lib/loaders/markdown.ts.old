@@ -137,14 +137,22 @@ export default function loader(
 ) {
   this.addDependency(this.resourcePath);
 
-  // Set the correct image renderer
-  inst.renderer.rules.image =
-    this.mode === 'production' ? imageRendererCustom : imageRendererDefault;
+  // Dead simple debugging version
+  const md = matter(input);
+  md.content = inst.render(md.content);
+  Object.assign(md, md.data);
+  const md_tidy = md as {[key: string]: any};
+  ['data', 'empty', 'excerpt', 'isEmpty'].forEach((f) => delete md_tidy[f]);
+  return `export default ${JSON.stringify(md)}`;
 
-  // Run the loader
-  const cb = this.async();
-  buildOutput(input, this.resourcePath, (err, result) => {
-    if (err) return cb(Error(err));
-    cb(null, result);
-  });
+  // // Set the correct image renderer
+  // inst.renderer.rules.image =
+  //   this.mode === 'production' ? imageRendererCustom : imageRendererDefault;
+
+  // // Run the loader
+  // const cb = this.async();
+  // buildOutput(input, this.resourcePath, (err, result) => {
+  //   if (err) return cb(Error(err));
+  //   cb(null, result);
+  // });
 }
