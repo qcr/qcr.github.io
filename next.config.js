@@ -16,6 +16,7 @@ module.exports = withPlugins(
     reactStrictMode: true,
     trailingSlash: true,
     webpack: (config) => {
+      config.experiments.buildHttp = [/^https?:\/\/github\.com/];
       config.module.rules.push(
         ...[
           {
