@@ -1,5 +1,7 @@
 import path from 'path';
 
+import type * as webpack from 'webpack';
+
 const REPO_DEFAULT_BRANCH = 'master';
 const REPO_SCHEME = 'repo:';
 
@@ -24,48 +26,68 @@ function blobUriToRawUri(uri: string) {
   );
 }
 
-async function convertUri(uri: string, uriContext: string) {
+async function convertUri(
+  uri: string,
+  pathContext: string,
+  repoContext?: string
+) {
   // Convert 'repo:' URIs to HTTPS
-  if (isRepoUri(uri)) uri = await repoUriToHttpsUri(uri, uriContext);
+  if (isRepoUri(uri)) uri = await repoUriToHttpsUri(uri, repoContext);
 
   // Convert 'blob' GitHub HTTPS URLs to 'raw' (no check needed as the regex
   // won't modify if it isn't a blob URI)
   uri = blobUriToRawUri(uri);
 
   // Convert relative path URIs to absolute paths using context
-  if (isPathUri(uri)) uri = relativePathUriToAbsoluteUri(uri, uriContext);
+  if (isRelativePathUri(uri))
+    uri = relativePathUriToAbsoluteUri(uri, pathContext);
 
   return uri;
 }
 
-function isPathUri(uri: string) {
-  return !/^https?:/.test(uri);
+function isAbsolutePathUri(uri: string) {
+  return uri.startsWith('/');
+}
+
+function isGifUri(uri: string) {
+  return uri.toLowerCase().endsWith('.gif');
+}
+
+function isRelativePathUri(uri: string) {
+  return !isAbsolutePathUri(uri) && !/^https?:/.test(uri);
 }
 
 function isRepoUri(uri: string) {
   return uri.startsWith(REPO_SCHEME);
 }
 
-function markObjectPaths(
+function markObjectUris(
   obj: {[key: string]: any},
-  pathContext?: string,
-  skipKeys: string[] = []
+  keyNames: string[],
+  pathContext: string,
+  repoContext?: string
 ) {
-  Object.entries(obj).forEach(([k, v]) => {
+  Object.entries(obj).forEach(async ([k, v]) => {
     // Handle any non-string keys
-    if (skipKeys.includes(k)) return;
     if (typeof v === 'object')
-      obj[k] = markObjectPaths(v, pathContext, skipKeys);
+      obj[k] = markObjectUris(v, keyNames, pathContext, repoContext);
+    if (!keyNames.includes(k)) return;
     if (typeof v !== 'string') return;
 
     // Convert to URI and mark if appropriate
-    // TODO
+    const uri = await convertUri(v, pathContext, repoContext);
+    // console.log(
+    //   `${pathContext} -> '${k}':\n\t${v}\n\t${uri}\n\t${shouldMark(uri)}${
+    //     shouldMark(uri) ? `\n\t${markPath(uri)}` : ''
+    //   }`
+    // );
+    obj[k] = shouldMark(uri) ? markUri(uri) : uri;
   });
   return obj;
 }
 
-function markPath(path: string) {
-  return `${REQUIRE_START}${path}${REQUIRE_END}`;
+function markUri(uri: string) {
+  return `${REQUIRE_START}${uri}${REQUIRE_END}`;
 }
 
 function relativePathUriToAbsoluteUri(pathUri: string, pathRoot: string) {
@@ -127,4 +149,8 @@ async function repoUriToHttpsUri(repoUri: string, repoContext?: string) {
   return `https://github.com/${r[1]}/${r[2]}/raw/${branch}/${r[3]}`;
 }
 
-export {convertUri, markObjectPaths};
+function shouldMark(uri: string) {
+  return isAbsolutePathUri(uri) || isGifUri(uri);
+}
+
+export {convertUri, markObjectUris, shouldMark};

@@ -3,7 +3,7 @@ import mdi from 'markdown-it';
 
 import type * as webpack from 'webpack';
 
-import {convertUri, markObjectPaths} from './helpers';
+import {markObjectUris} from './helpers';
 
 const renderer = mdi({
   html: true,
@@ -26,19 +26,27 @@ async function asyncLoader(
 ) {
   ctx.addDependency(ctx.resourcePath);
   console.log(`Processing md file: ${ctx.resourcePath}`);
-  console.log(await convertUri('setup.py', ctx.resourcePath));
 
+  // Parse YAML front matter, and render our markdown as a HTML string
   const md = matter(input);
-  md.data = markObjectPaths(
-    md.data,
-    md.data.type === 'code' ? md.data.url : undefined
-  );
   md.content = renderer.render(md.content);
 
+  // Derive any required front matter data that may be implied
+  // TODO
+
+  // Mark paths in front matter data, and flatten the object
+  md.data = markObjectUris(
+    md.data,
+    ['image'],
+    ctx.resourcePath,
+    md.data.type === 'code' ? md.data.url : undefined
+  );
   Object.assign(md, md.data);
   const md_tidy = md as {[key: string]: any};
   ['data', 'empty', 'excerpt', 'isEmpty'].forEach((f) => delete md_tidy[f]);
 
+  // Generate the export string, unmarking paths as we go
+  // TODO unmark
   cb(null, `export default ${JSON.stringify(md)}`);
   return;
 }
