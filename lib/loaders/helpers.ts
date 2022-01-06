@@ -72,17 +72,17 @@ async function markObjectUris(
     Object.entries(obj).map(async ([k, v]) => {
       // Handle any non-string keys
       if (typeof v === 'object')
-        obj[k] = markObjectUris(v, keyNames, pathContext, repoContext);
+        obj[k] = await markObjectUris(v, keyNames, pathContext, repoContext);
       if (!keyNames.includes(k)) return;
       if (typeof v !== 'string') return;
 
       // Convert to URI and mark if appropriate
       const uri = await convertUri(v, pathContext, repoContext);
-      console.log(
-        `${pathContext} -> '${k}':\n\t${v}\n\t${uri}\n\t${shouldMark(uri)}${
-          shouldMark(uri) ? `\n\t${markUri(uri)}` : ''
-        }`
-      );
+      // console.log(
+      //   `${pathContext} -> '${k}':\n\t${v}\n\t${uri}\n\t${shouldMark(uri)}${
+      //     shouldMark(uri) ? `\n\t${markUri(uri)}` : ''
+      //   }`
+      // );
       obj[k] = shouldMark(uri) ? markUri(uri) : uri;
     })
   );

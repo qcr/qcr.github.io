@@ -45,6 +45,9 @@ async function asyncLoader(
   const md_tidy = md as {[key: string]: any};
   ['data', 'empty', 'excerpt', 'isEmpty'].forEach((f) => delete md_tidy[f]);
 
+  const {content, ...x} = md_tidy;
+  console.log(x);
+
   // Generate the export string, unmarking paths as we go
   cb(null, `export default ${unmarkString(JSON.stringify(md_tidy), ctx)}`);
   return;
