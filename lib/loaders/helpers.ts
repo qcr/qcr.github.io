@@ -1,3 +1,4 @@
+import loaderUtils from 'loader-utils';
 import path from 'path';
 
 import type * as webpack from 'webpack';
@@ -61,28 +62,30 @@ function isRepoUri(uri: string) {
   return uri.startsWith(REPO_SCHEME);
 }
 
-function markObjectUris(
+async function markObjectUris(
   obj: {[key: string]: any},
   keyNames: string[],
   pathContext: string,
   repoContext?: string
 ) {
-  Object.entries(obj).forEach(async ([k, v]) => {
-    // Handle any non-string keys
-    if (typeof v === 'object')
-      obj[k] = markObjectUris(v, keyNames, pathContext, repoContext);
-    if (!keyNames.includes(k)) return;
-    if (typeof v !== 'string') return;
+  await Promise.all(
+    Object.entries(obj).map(async ([k, v]) => {
+      // Handle any non-string keys
+      if (typeof v === 'object')
+        obj[k] = markObjectUris(v, keyNames, pathContext, repoContext);
+      if (!keyNames.includes(k)) return;
+      if (typeof v !== 'string') return;
 
-    // Convert to URI and mark if appropriate
-    const uri = await convertUri(v, pathContext, repoContext);
-    // console.log(
-    //   `${pathContext} -> '${k}':\n\t${v}\n\t${uri}\n\t${shouldMark(uri)}${
-    //     shouldMark(uri) ? `\n\t${markPath(uri)}` : ''
-    //   }`
-    // );
-    obj[k] = shouldMark(uri) ? markUri(uri) : uri;
-  });
+      // Convert to URI and mark if appropriate
+      const uri = await convertUri(v, pathContext, repoContext);
+      console.log(
+        `${pathContext} -> '${k}':\n\t${v}\n\t${uri}\n\t${shouldMark(uri)}${
+          shouldMark(uri) ? `\n\t${markUri(uri)}` : ''
+        }`
+      );
+      obj[k] = shouldMark(uri) ? markUri(uri) : uri;
+    })
+  );
   return obj;
 }
 
@@ -153,4 +156,20 @@ function shouldMark(uri: string) {
   return isAbsolutePathUri(uri) || isGifUri(uri);
 }
 
-export {convertUri, markObjectUris, shouldMark};
+function unmarkString(markedString: string, ctx: webpack.LoaderContext<any>) {
+  return markedString.replace(
+    REQUIRE_REGEX,
+    (match, p1, p2, p3, offset, src) => {
+      const pre = !p1 || p1 === '\\"' ? `${p1}"+` : '';
+      const post = !p3 || p3 === '\\"' ? `+"${p3}` : '';
+      return `${pre}${umarkUri(p2, ctx)}${post}`;
+    }
+  );
+}
+
+function umarkUri(uri: string, ctx: webpack.LoaderContext<any>) {
+  // Can explicitly select a loader / modify config here if needed
+  return `require(${loaderUtils.stringifyRequest(ctx, uri)})`;
+}
+
+export {convertUri, markObjectUris, shouldMark, unmarkString};
