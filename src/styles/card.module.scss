@@ -1,10 +1,8 @@
 @use 'sass:math';
 
 $width: 300px;
-$height: 265px;
 
 .card {
-  height: $height;
   width: $width;
   margin: 10px 5px;
   border-radius: 0;
