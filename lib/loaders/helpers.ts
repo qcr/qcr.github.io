@@ -5,6 +5,7 @@ import type * as webpack from 'webpack';
 
 const REPO_DEFAULT_BRANCH = 'master';
 const REPO_SCHEME = 'repo:';
+const REPO_DEFAULT_URI = `${REPO_SCHEME}/README.md`;
 
 const REQUIRE_MARKER = 'REQUIRE';
 const REQUIRE_START = `@${REQUIRE_MARKER}@`;
@@ -180,4 +181,11 @@ function umarkUri(uri: string, ctx: webpack.LoaderContext<any>) {
   return `require(${loaderUtils.stringifyRequest(ctx, src)})`;
 }
 
-export {markObjectUris, processUri, shouldMark, unmarkString};
+export {
+  REPO_DEFAULT_URI,
+  convertUri,
+  markObjectUris,
+  processUri,
+  shouldMark,
+  unmarkString,
+};

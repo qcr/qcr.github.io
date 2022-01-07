@@ -1,11 +1,17 @@
 import {JSDOM} from 'jsdom';
-import loaderUtils from 'loader-utils';
+import * as fs from 'fs/promises';
 import matter from 'gray-matter';
 import mdi from 'markdown-it';
 
 import type * as webpack from 'webpack';
 
-import {markObjectUris, processUri, unmarkString} from './helpers';
+import {
+  REPO_DEFAULT_URI,
+  convertUri,
+  markObjectUris,
+  processUri,
+  unmarkString,
+} from './helpers';
 
 // TODO this is a little brittle (assumes Next will put the image here...)
 const DEFAULT_IMAGE_URL = '/qcr_logo_light_filled.svg';
@@ -21,7 +27,13 @@ async function asyncLoader(
   // Parse YAML front matter, and render our markdown as a HTML string
   const md = matter(input);
   const repoContext = md.data.type === 'code' ? md.data.url : undefined;
-  md.content = generateRenderer(pathContext, repoContext).render(md.content);
+
+  md.content = await renderContent(
+    md.data,
+    md.content,
+    pathContext,
+    repoContext
+  );
 
   // Derive any required front matter data that may be implied
   resolveImage(md.data, md.content);
@@ -47,7 +59,7 @@ async function asyncLoader(
   return;
 }
 
-function generateRenderer(pathContext: string, repoContext: string) {
+function generateRenderer(pathContext: string, repoContext?: string) {
   return mdi({
     html: true,
   })
@@ -60,6 +72,40 @@ function generateRenderer(pathContext: string, repoContext: string) {
         return processUri(link, pathContext, repoContext);
       },
     });
+}
+
+async function renderContent(
+  data: {[key: string]: any},
+  content: string,
+  pathContext: string,
+  repoContext?: string
+) {
+  // Decide which content we're using
+  const src =
+    typeof data.content !== 'undefined'
+      ? await convertUri(data.content, pathContext, repoContext)
+      : content.trim().length > 0
+      ? null
+      : data.type === 'code'
+      ? await convertUri(REPO_DEFAULT_URI, pathContext, repoContext)
+      : undefined;
+  if (typeof src === 'undefined') {
+    throw Error(
+      `Failed to find any valid markdown content for '${pathContext}'.`
+    );
+  }
+
+  // Obtain any required external content
+  const c =
+    src === null
+      ? content
+      : /^https?:\/\//.test(src)
+      ? await (await fetch(src)).text()
+      : await fs.readFile(src, 'utf8');
+  delete data.content;
+
+  // Render the content and return the result
+  return generateRenderer(pathContext, repoContext).render(c);
 }
 
 function resolveImage(data: {[key: string]: any}, content: string) {
