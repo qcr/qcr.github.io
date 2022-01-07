@@ -77,13 +77,7 @@ async function markObjectUris(
       if (typeof v !== 'string') return;
 
       // Convert to URI and mark if appropriate
-      const uri = await convertUri(v, pathContext, repoContext);
-      // console.log(
-      //   `${pathContext} -> '${k}':\n\t${v}\n\t${uri}\n\t${shouldMark(uri)}${
-      //     shouldMark(uri) ? `\n\t${markUri(uri)}` : ''
-      //   }`
-      // );
-      obj[k] = shouldMark(uri) ? markUri(uri) : uri;
+      obj[k] = await processUri(v, pathContext, repoContext);
     })
   );
   return obj;
@@ -91,6 +85,20 @@ async function markObjectUris(
 
 function markUri(uri: string) {
   return `${REQUIRE_START}${uri}${REQUIRE_END}`;
+}
+
+async function processUri(
+  uri: string,
+  pathContext: string,
+  repoContext?: string
+) {
+  const c = await convertUri(uri, pathContext, repoContext);
+  // console.log(
+  //   `${pathContext} -> '???':\n\t${uri}\n\t${c}\n\t${shouldMark(c)}${
+  //     shouldMark(c) ? `\n\t${markUri(c)}` : ''
+  //   }`
+  // );
+  return shouldMark(c) ? markUri(c) : c;
 }
 
 function relativePathUriToAbsoluteUri(pathUri: string, pathRoot: string) {
@@ -172,4 +180,4 @@ function umarkUri(uri: string, ctx: webpack.LoaderContext<any>) {
   return `require(${loaderUtils.stringifyRequest(ctx, src)})`;
 }
 
-export {convertUri, markObjectUris, shouldMark, unmarkString};
+export {markObjectUris, processUri, shouldMark, unmarkString};

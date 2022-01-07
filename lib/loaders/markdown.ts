@@ -5,36 +5,23 @@ import mdi from 'markdown-it';
 
 import type * as webpack from 'webpack';
 
-import {markObjectUris, unmarkString} from './helpers';
+import {markObjectUris, processUri, unmarkString} from './helpers';
 
 // TODO this is a little brittle (assumes Next will put the image here...)
 const DEFAULT_IMAGE_URL = '/qcr_logo_light_filled.svg';
-
-const renderer = mdi({
-  html: true,
-})
-  .use(require('markdown-it-block-embed'), {
-    containerClassName: 'embedded-block',
-  })
-  .use(require('markdown-it-prism'))
-  .use(require('markdown-it-replace-link'), {
-    replaceLink: function (link: string) {
-      // TODO: implement
-      return link;
-    },
-  });
 
 async function asyncLoader(
   input: string,
   ctx: webpack.LoaderContext<any>,
   cb: (err: string | null, result: string) => void
 ) {
-  ctx.addDependency(ctx.resourcePath);
-  // console.log(`Processing md file: ${ctx.resourcePath}`);
+  const pathContext = ctx.resourcePath;
+  ctx.addDependency(pathContext);
 
   // Parse YAML front matter, and render our markdown as a HTML string
   const md = matter(input);
-  md.content = renderer.render(md.content);
+  const repoContext = md.data.type === 'code' ? md.data.url : undefined;
+  md.content = generateRenderer(pathContext, repoContext).render(md.content);
 
   // Derive any required front matter data that may be implied
   resolveImage(md.data, md.content);
@@ -44,8 +31,8 @@ async function asyncLoader(
     md.data = await markObjectUris(
       md.data,
       ['image'],
-      ctx.resourcePath,
-      md.data.type === 'code' ? md.data.url : undefined
+      pathContext,
+      repoContext
     );
   }
   Object.assign(md, md.data);
@@ -58,6 +45,21 @@ async function asyncLoader(
   // Generate the export string, unmarking paths as we go
   cb(null, `export default ${unmarkString(JSON.stringify(md_tidy), ctx)}`);
   return;
+}
+
+function generateRenderer(pathContext: string, repoContext: string) {
+  return mdi({
+    html: true,
+  })
+    .use(require('markdown-it-block-embed'), {
+      containerClassName: 'embedded-block',
+    })
+    .use(require('markdown-it-prism'))
+    .use(require('markdown-it-replace-link'), {
+      replaceLink: function (link: string) {
+        return processUri(link, pathContext, repoContext);
+      },
+    });
 }
 
 function resolveImage(data: {[key: string]: any}, content: string) {
