@@ -168,8 +168,8 @@ function unmarkString(markedString: string, ctx: webpack.LoaderContext<any>) {
 }
 
 function umarkUri(uri: string, ctx: webpack.LoaderContext<any>) {
-  // Can explicitly select a loader / modify config here if needed
-  return `require(${loaderUtils.stringifyRequest(ctx, uri)})`;
+  const src = /\.(jpg|png)$/.test(uri.toLowerCase()) ? `${uri}?webp` : uri;
+  return `require(${loaderUtils.stringifyRequest(ctx, src)})`;
 }
 
 export {convertUri, markObjectUris, shouldMark, unmarkString};

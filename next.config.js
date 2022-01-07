@@ -6,9 +6,13 @@ module.exports = withPlugins(
   [
     [
       optimizedImages,
-      // {
-      //   handleImages: ['jpeg', 'png', 'svg', 'webp'],
-      // },
+      {
+        // handleImages: ['jpeg', 'png', 'svg', 'webp'],
+        inlineImageLimit: -1,
+        responsive: {
+          adapter: require('responsive-loader/sharp'),
+        },
+      },
     ],
   ],
   {
