@@ -1,4 +1,3 @@
-import {JSDOM} from 'jsdom';
 import path from 'path';
 
 import DEFAULT_IMAGE from '/public/qcr_logo_light_filled.svg';
@@ -95,36 +94,6 @@ function hydrate() {
         return datasets[d];
       });
     }
-  });
-
-  // Hydrate the image field in all entries
-  [...Object.values(code), ...Object.values(datasets)].forEach((c) => {
-    // Try & pull first image from HTML content
-    if (c.image === undefined) {
-      const d = new JSDOM(`${c.content}`).window.document;
-      const media = Array.from(d.querySelectorAll('img, video')) as (
-        | HTMLVideoElement
-        | HTMLImageElement
-      )[];
-      if (media) {
-        const m = media.find((m) => {
-          return (
-            m.tagName === 'VIDEO'
-              ? (m as HTMLVideoElement).poster
-              : (m as HTMLImageElement).src
-          ).startsWith('/_next/');
-        });
-        if (m && m.tagName === 'VIDEO') {
-          c.image = (m as HTMLVideoElement).poster;
-          c._image = (m.querySelector('source') as HTMLSourceElement).src;
-        } else if (m) {
-          c.image = (m as HTMLImageElement).src;
-        }
-      }
-    }
-
-    // If this fails, fallback to the default image
-    if (c.image === undefined) c.image = DEFAULT_IMAGE;
   });
 
   // Derive the collection's card image if it's not defined
