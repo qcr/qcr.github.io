@@ -30,7 +30,7 @@ const StyledSpace = styled('div')({
 
 const StyledSection = styled(Typography)({
   fontWeight: 'bold',
-  marginTop: '36px',
+  marginTop: '64px',
   marginBottom: '12px',
   marginLeft: 'auto',
   marginRight: 'auto',
