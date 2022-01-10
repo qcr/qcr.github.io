@@ -33,6 +33,9 @@ async function convertUri(
   pathContext: string,
   repoContext?: string
 ) {
+  // Don't touch already marked URIs
+  if (isMarkedUri(uri)) return uri;
+
   // Convert 'repo:' URIs to HTTPS
   if (isRepoUri(uri)) uri = await repoUriToHttpsUri(uri, repoContext);
 
@@ -53,6 +56,10 @@ function isAbsolutePathUri(uri: string) {
 
 function isGifUri(uri: string) {
   return uri.toLowerCase().endsWith('.gif');
+}
+
+function isMarkedUri(uri: string) {
+  return REQUIRE_REGEX.test(uri);
 }
 
 function isRelativePathUri(uri: string) {
@@ -94,11 +101,6 @@ async function processUri(
   repoContext?: string
 ) {
   const c = await convertUri(uri, pathContext, repoContext);
-  // console.log(
-  //   `${pathContext} -> '???':\n\t${uri}\n\t${c}\n\t${shouldMark(c)}${
-  //     shouldMark(c) ? `\n\t${markUri(c)}` : ''
-  //   }`
-  // );
   return shouldMark(c) ? markUri(c) : c;
 }
 
@@ -162,7 +164,13 @@ async function repoUriToHttpsUri(repoUri: string, repoContext?: string) {
 }
 
 function shouldMark(uri: string) {
-  return isAbsolutePathUri(uri) || isGifUri(uri);
+  return !isMarkedUri(uri) && (isAbsolutePathUri(uri) || isGifUri(uri));
+}
+
+function undoMark(possiblyMarkedString: string) {
+  return possiblyMarkedString
+    .replace(REQUIRE_START, '')
+    .replace(REQUIRE_END, '');
 }
 
 function unmarkString(markedString: string, ctx: webpack.LoaderContext<any>) {
@@ -187,5 +195,6 @@ export {
   markObjectUris,
   processUri,
   shouldMark,
+  undoMark,
   unmarkString,
 };

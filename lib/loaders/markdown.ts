@@ -10,11 +10,20 @@ import {
   convertUri,
   markObjectUris,
   processUri,
+  undoMark,
   unmarkString,
 } from './helpers';
 
 // TODO this is a little brittle (assumes Next will put the image here...)
 const DEFAULT_IMAGE_URL = '/qcr_logo_light_filled.svg';
+
+const renderer = mdi({
+  html: true,
+})
+  .use(require('markdown-it-block-embed'), {
+    containerClassName: 'embedded-block',
+  })
+  .use(require('markdown-it-prism'));
 
 async function asyncLoader(
   input: string,
@@ -28,15 +37,18 @@ async function asyncLoader(
   const md = matter(input);
   const repoContext = md.data.type === 'code' ? md.data.url : undefined;
 
-  md.content = await renderContent(
+  // Render the content as a virtual DOM, and apply all necessary manipulations
+  const elem = await renderContent(
     md.data,
     md.content,
     pathContext,
     repoContext
   );
+  await markImages(elem, pathContext, repoContext);
+  resolveImage(md.data, elem);
+  md.content = elem.innerHTML;
 
-  // Derive any required front matter data that may be implied
-  resolveImage(md.data, md.content);
+  console.log(md);
 
   // Mark paths in front matter data, and flatten the object
   if (md.data.image !== DEFAULT_IMAGE_URL) {
@@ -51,27 +63,25 @@ async function asyncLoader(
   const md_tidy = md as {[key: string]: any};
   ['data', 'empty', 'excerpt', 'isEmpty'].forEach((f) => delete md_tidy[f]);
 
-  // const {content, ...x} = md_tidy;
-  // console.log(x);
+  console.log(md_tidy);
 
   // Generate the export string, unmarking paths as we go
   cb(null, `export default ${unmarkString(JSON.stringify(md_tidy), ctx)}`);
   return;
 }
 
-function generateRenderer(pathContext: string, repoContext?: string) {
-  return mdi({
-    html: true,
-  })
-    .use(require('markdown-it-block-embed'), {
-      containerClassName: 'embedded-block',
-    })
-    .use(require('markdown-it-prism'))
-    .use(require('markdown-it-replace-link'), {
-      replaceLink: function (link: string) {
-        return processUri(link, pathContext, repoContext);
-      },
-    });
+async function markImages(
+  element: HTMLElement,
+  pathContext: string,
+  repoContext?: string
+) {
+  await Promise.all(
+    (Array.from(element.querySelectorAll('img')) as HTMLImageElement[]).map(
+      async (i) => {
+        i.src = await processUri(i.src, pathContext, repoContext);
+      }
+    )
+  );
 }
 
 async function renderContent(
@@ -104,11 +114,11 @@ async function renderContent(
       : await fs.readFile(src, 'utf8');
   delete data.content;
 
-  // Render the content and return the result
-  return generateRenderer(pathContext, repoContext).render(c);
+  // Render the content and return the result as JSDOM so we can manipulate it
+  return new JSDOM(renderer.render(c)).window.document.body;
 }
 
-function resolveImage(data: {[key: string]: any}, content: string) {
+function resolveImage(data: {[key: string]: any}, element: HTMLElement) {
   // Bail if the type isn't code or dataset (collections derive their image
   // from their children, and we have no concept of children yet)
   if (data.type !== 'code' && data.type !== 'dataset') return;
@@ -116,19 +126,19 @@ function resolveImage(data: {[key: string]: any}, content: string) {
   // Bail if we have an explicitly chosen image
   if (typeof data.image !== 'undefined') return;
 
-  // Build the content's DOM, and try automatically pick an image
-  const d = new JSDOM(`${content}`).window.document;
-  const media = Array.from(d.querySelectorAll('img, video')) as (
+  // Search for image & video elements we can possibly pick an image from
+  const elems = Array.from(element.querySelectorAll('img, video')) as (
     | HTMLVideoElement
     | HTMLImageElement
   )[];
-  if (media) {
-    const m = media.find((m) => {
-      return (
+  if (elems) {
+    const m = elems.find((m) => {
+      const t = undoMark(
         m.tagName === 'VIDEO'
           ? (m as HTMLVideoElement).poster
           : (m as HTMLImageElement).src
-      ).startsWith('/_next/');
+      );
+      return /\.(jpg|png)$/.test(t.toLowerCase());
     });
     if (m && m.tagName === 'VIDEO') {
       data.image = (m as HTMLVideoElement).poster;
