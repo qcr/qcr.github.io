@@ -91,8 +91,8 @@ async function markObjectUris(
   return obj;
 }
 
-function markUri(uri: string) {
-  return `${REQUIRE_START}${uri}${REQUIRE_END}`;
+function markUri(uri: string, option?: string) {
+  return `${REQUIRE_START}${uri}${option ? option : ''}${REQUIRE_END}`;
 }
 
 async function processUri(
@@ -192,7 +192,9 @@ function umarkUri(uri: string, ctx: webpack.LoaderContext<any>) {
 export {
   REPO_DEFAULT_URI,
   convertUri,
+  isGifUri,
   markObjectUris,
+  markUri,
   processUri,
   shouldMark,
   undoMark,

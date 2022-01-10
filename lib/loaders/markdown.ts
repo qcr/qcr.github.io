@@ -8,7 +8,9 @@ import type * as webpack from 'webpack';
 import {
   REPO_DEFAULT_URI,
   convertUri,
+  isGifUri,
   markObjectUris,
+  markUri,
   processUri,
   undoMark,
   unmarkString,
@@ -47,23 +49,15 @@ async function asyncLoader(
   await markImages(elem, path);
   resolveImage(md.data, elem);
   md.content = elem.innerHTML;
-
-  console.log(md);
+  console.log(md.data);
 
   // Mark paths in front matter data, and flatten the object
-  if (md.data.image !== DEFAULT_IMAGE_URL) {
-    md.data = await markObjectUris(
-      md.data,
-      ['image'],
-      pathContext,
-      repoContext
-    );
-  }
+  md.data._images = selectImages(md.data.image);
+  console.log(md.data);
+
   Object.assign(md, md.data);
   const md_tidy = md as {[key: string]: any};
   ['data', 'empty', 'excerpt', 'isEmpty'].forEach((f) => delete md_tidy[f]);
-
-  console.log(md_tidy);
 
   // Generate the export string, unmarking paths as we go
   cb(null, `export default ${unmarkString(JSON.stringify(md_tidy), ctx)}`);
@@ -131,24 +125,28 @@ function resolveImage(data: {[key: string]: any}, element: HTMLElement) {
     | HTMLImageElement
   )[];
   if (elems) {
-    const m = elems.find((m) => {
-      const t = undoMark(
-        m.tagName === 'VIDEO'
-          ? (m as HTMLVideoElement).poster
-          : (m as HTMLImageElement).src
-      );
-      return /\.(jpg|png|gif)$/.test(t.toLowerCase());
-    });
-    if (m && m.tagName === 'VIDEO') {
-      data.image = (m as HTMLVideoElement).poster;
-      data._image = (m.querySelector('source') as HTMLSourceElement).src;
-    } else if (m) {
-      data.image = (m as HTMLImageElement).src;
-    }
+    data.image = elems
+      .map((e) =>
+        undoMark(
+          e.tagName === 'VIDEO'
+            ? (e as HTMLVideoElement).poster
+            : (e as HTMLImageElement).src
+        )
+      )
+      .find((s) => /\.(jpg|png|gif)$/.test(s.toLowerCase()));
   }
 
   // Revert to the default placeholder image if we still failed
   if (data.image === undefined) data.image = DEFAULT_IMAGE_URL;
+}
+
+function selectImages(imageSrc: string) {
+  const srcs = [];
+  if (imageSrc === DEFAULT_IMAGE_URL) return [imageSrc];
+  if (isGifUri(imageSrc)) srcs.push(markUri(imageSrc, '?mp4'));
+  srcs.push(markUri(imageSrc, '?webm'));
+  srcs.push(markUri(imageSrc, isGifUri(imageSrc) ? '?jpg' : undefined));
+  return srcs;
 }
 
 export default function loader(

@@ -22,6 +22,9 @@ const StyledSubtitle = styled(Typography)({
 });
 
 export default function CodePage({codeData}: CodePageProps) {
+  console.log(codeData.image);
+  console.log(codeData._images);
+
   return (
     <Layout>
       <StyledTitle variant="h3" color="primary">

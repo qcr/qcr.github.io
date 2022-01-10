@@ -13,7 +13,7 @@ export interface ContentCommon {
   id?: string;
   content: string;
   image?: string;
-  _image?: string;
+  _images?: string[];
   image_position?: string;
   image_fit?: string;
   src?: string;
@@ -184,14 +184,14 @@ function randomContent() {
 }
 
 const content = importContent([
-  {
-    hits: require.context('/content', true, /\.\/.*\.md$/),
-    root: '/content',
-  },
   // {
-  //   hits: require.context('/content/.debug', true, /\.\/.*\.md$/),
-  //   root: '/content/.debug',
+  //   hits: require.context('/content', true, /\.\/.*\.md$/),
+  //   root: '/content',
   // },
+  {
+    hits: require.context('/content/.debug', true, /\.\/.*\.md$/),
+    root: '/content/.debug',
+  },
 ]);
 
 const code = content.code;
