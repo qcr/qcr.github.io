@@ -137,7 +137,7 @@ function resolveImage(data: {[key: string]: any}, element: HTMLElement) {
           ? (m as HTMLVideoElement).poster
           : (m as HTMLImageElement).src
       );
-      return /\.(jpg|png)$/.test(t.toLowerCase());
+      return /\.(jpg|png|gif)$/.test(t.toLowerCase());
     });
     if (m && m.tagName === 'VIDEO') {
       data.image = (m as HTMLVideoElement).poster;
