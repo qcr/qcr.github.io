@@ -38,13 +38,13 @@ async function asyncLoader(
   const repoContext = md.data.type === 'code' ? md.data.url : undefined;
 
   // Render the content as a virtual DOM, and apply all necessary manipulations
-  const elem = await renderContent(
+  const {elem, path} = await renderContent(
     md.data,
     md.content,
     pathContext,
     repoContext
   );
-  await markImages(elem, pathContext, repoContext);
+  await markImages(elem, path);
   resolveImage(md.data, elem);
   md.content = elem.innerHTML;
 
@@ -70,15 +70,11 @@ async function asyncLoader(
   return;
 }
 
-async function markImages(
-  element: HTMLElement,
-  pathContext: string,
-  repoContext?: string
-) {
+async function markImages(element: HTMLElement, pathContext: string) {
   await Promise.all(
     (Array.from(element.querySelectorAll('img')) as HTMLImageElement[]).map(
       async (i) => {
-        i.src = await processUri(i.src, pathContext, repoContext);
+        i.src = await processUri(i.src, pathContext);
       }
     )
   );
@@ -115,7 +111,10 @@ async function renderContent(
   delete data.content;
 
   // Render the content and return the result as JSDOM so we can manipulate it
-  return new JSDOM(renderer.render(c)).window.document.body;
+  return {
+    elem: new JSDOM(renderer.render(c)).window.document.body,
+    path: src === null ? pathContext : src,
+  };
 }
 
 function resolveImage(data: {[key: string]: any}, element: HTMLElement) {
