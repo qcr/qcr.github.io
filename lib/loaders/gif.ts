@@ -33,7 +33,7 @@ async function asyncLoader(
   );
   const outPath = path.join('..', outFile);
   const outPublic = path.join(output.publicPath as string, outFile);
-  console.log(`Output for '${inPath}':\n\t${outPath}\n\t${outPublic}`);
+  // console.log(`Output for '${inPath}':\n\t${outPath}\n\t${outPublic}`);
 
   // Emit the file at the chosen destination
   console.log(`Started '${outPath}'`);
@@ -60,8 +60,10 @@ async function asyncLoader(
         ).stdout
       : (
           await exec(
-            `ffmpeg -y -i ${inPath} -c:v libx264 -crf 25 -pix_fmt yuv420p ` +
-              `/tmp/mp4.mp4; cat /tmp/mp4.mp4`,
+            `p="/tmp/$(openssl rand -hex 16).mp4"; ` +
+              `ffmpeg -y -i ${inPath} -c:v libx264 -crf 25 -pix_fmt yuv420p $p; ` +
+              `cat $p; ` +
+              `rm $p`,
             {
               encoding: 'buffer',
               maxBuffer: 1024 * 1024 * 100,
