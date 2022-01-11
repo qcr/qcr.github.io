@@ -36,7 +36,6 @@ async function asyncLoader(
   // console.log(`Output for '${inPath}':\n\t${outPath}\n\t${outPublic}`);
 
   // Emit the file at the chosen destination
-  console.log(`Started '${outPath}'`);
   ctx.emitFile(
     outPath,
     /.webp$/.test(outPath)
@@ -71,7 +70,7 @@ async function asyncLoader(
           )
         ).stdout
   );
-  console.log(`Finished ${outPath}'`);
+  console.log(`Generated ${outPublic}`);
 
   // Return the module pointing to the destination
   // (can't use 'export default ...' as you then must use the loader as
