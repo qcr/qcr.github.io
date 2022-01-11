@@ -81,8 +81,8 @@ async function insertResponsiveMedia(
           srcs.splice(0, 0, await s('?webm'));
         }
         srcs = [...new Set(srcs)];
-        console.log(`${img.src} (${img.alt})`);
-        console.log(srcs);
+        // console.log(`${img.src} (${img.alt})`);
+        // console.log(srcs);
 
         // Construct a replacement element that uses optimised sources
         let el: HTMLVideoElement | HTMLPictureElement;
@@ -93,7 +93,7 @@ async function insertResponsiveMedia(
           v.defaultMuted = true;
           v.loop = true;
           v.poster = srcs[srcs.length - 1];
-          srcs.slice(0, srcs.length - 2).forEach((s) => {
+          srcs.slice(0, srcs.length - 1).forEach((s) => {
             let c = doc.createElement('source') as HTMLSourceElement;
             c.src = s;
             c.type = `video/${getUriOptions(s)}`;
@@ -101,10 +101,9 @@ async function insertResponsiveMedia(
           });
           v.insertAdjacentText('beforeend', img.alt);
           el = v;
-          console.log(el.outerHTML);
         } else {
           const p = doc.createElement('picture') as HTMLPictureElement;
-          srcs.slice(0, srcs.length - 2).forEach((s) => {
+          srcs.slice(0, srcs.length - 1).forEach((s) => {
             let c = doc.createElement('source') as HTMLSourceElement;
             c.srcset = s;
             c.type = `image/${getUriOptions(s)}`;

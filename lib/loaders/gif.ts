@@ -33,33 +33,34 @@ async function asyncLoader(
   );
   const outPath = path.join('..', outFile);
   const outPublic = path.join(output.publicPath as string, outFile);
-  // console.log(`Output for '${inPath}':\n\t${outPath}\n\t${outPublic}`);
+  console.log(`Output for '${inPath}':\n\t${outPath}\n\t${outPublic}`);
 
   // Emit the file at the chosen destination
+  console.log(`Started '${outPath}'`);
   ctx.emitFile(
     outPath,
     /.webp$/.test(outPath)
       ? (
-          await exec(`ffmpeg -ss 0 -i ${inPath} -vframes 1 -f webp -`, {
+          await exec(`ffmpeg -y -ss 0 -i ${inPath} -vframes 1 -f webp -`, {
             encoding: 'buffer',
           })
         ).stdout
       : /.jpg$/.test(outPath)
       ? (
-          await exec(`ffmpeg -ss 0 -i ${inPath} -vframes 1 -f mjpeg -`, {
+          await exec(`ffmpeg -y -ss 0 -i ${inPath} -vframes 1 -f mjpeg -`, {
             encoding: 'buffer',
           })
         ).stdout
       : /.webm$/.test(outPath)
       ? (
-          await exec(`ffmpeg -i ${inPath} -c:v vp9 -crf 41 -f webm -`, {
+          await exec(`ffmpeg -y -i ${inPath} -c:v vp9 -crf 41 -f webm -`, {
             encoding: 'buffer',
             maxBuffer: 1024 * 1024 * 100,
           })
         ).stdout
       : (
           await exec(
-            `ffmpeg -i ${inPath} -c:v libx264 -crf 25 -pix_fmt yuv420p ` +
+            `ffmpeg -y -i ${inPath} -c:v libx264 -crf 25 -pix_fmt yuv420p ` +
               `/tmp/mp4.mp4; cat /tmp/mp4.mp4`,
             {
               encoding: 'buffer',
@@ -68,6 +69,7 @@ async function asyncLoader(
           )
         ).stdout
   );
+  console.log(`Finished ${outPath}'`);
 
   // Return the module pointing to the destination
   // (can't use 'export default ...' as you then must use the loader as
