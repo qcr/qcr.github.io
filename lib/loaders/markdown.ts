@@ -8,8 +8,8 @@ import type * as webpack from 'webpack';
 import {
   REPO_DEFAULT_URI,
   convertUri,
+  getUriOptions,
   isGifUri,
-  markObjectUris,
   markUri,
   processUri,
   undoMark,
@@ -40,20 +40,18 @@ async function asyncLoader(
   const repoContext = md.data.type === 'code' ? md.data.url : undefined;
 
   // Render the content as a virtual DOM, and apply all necessary manipulations
-  const {elem, path} = await renderContent(
+  const {doc, elem, path} = await renderContent(
     md.data,
     md.content,
     pathContext,
     repoContext
   );
-  await markImages(elem, path);
+  await markImages(doc, elem, path);
   resolveImage(md.data, elem);
   md.content = elem.innerHTML;
-  console.log(md.data);
 
   // Mark paths in front matter data, and flatten the object
   md.data._images = selectImages(md.data.image);
-  console.log(md.data);
 
   Object.assign(md, md.data);
   const md_tidy = md as {[key: string]: any};
@@ -64,11 +62,63 @@ async function asyncLoader(
   return;
 }
 
-async function markImages(element: HTMLElement, pathContext: string) {
+async function markImages(
+  doc: Document,
+  element: HTMLElement,
+  pathContext: string
+) {
   await Promise.all(
     (Array.from(element.querySelectorAll('img')) as HTMLImageElement[]).map(
-      async (i) => {
-        i.src = await processUri(i.src, pathContext);
+      async (img) => {
+        // Build up list of sources
+        const isVid = isGifUri(img.src);
+        const s = async (opt?: string) =>
+          await processUri(img.src, pathContext, undefined, opt);
+        let srcs = [await s('?webp'), await s()];
+        if (isVid) {
+          srcs.pop();
+          srcs.splice(0, 0, await s('?mp4'));
+          srcs.splice(0, 0, await s('?webm'));
+        }
+        srcs = [...new Set(srcs)];
+        console.log(`${img.src} (${img.alt})`);
+        console.log(srcs);
+
+        // Construct a replacement element that uses optimised sources
+        let el: HTMLVideoElement | HTMLPictureElement;
+        const typeRegex = new RegExp(/.*?([^@]*)@/);
+        if (isVid) {
+          const v = doc.createElement('video') as HTMLVideoElement;
+          v.autoplay = true;
+          v.defaultMuted = true;
+          v.loop = true;
+          v.poster = srcs[srcs.length - 1];
+          srcs.slice(0, srcs.length - 2).forEach((s) => {
+            let c = doc.createElement('source') as HTMLSourceElement;
+            c.src = s;
+            c.type = `video/${getUriOptions(s)}`;
+            v.appendChild(c);
+          });
+          v.insertAdjacentText('beforeend', img.alt);
+          el = v;
+          console.log(el.outerHTML);
+        } else {
+          const p = doc.createElement('picture') as HTMLPictureElement;
+          srcs.slice(0, srcs.length - 2).forEach((s) => {
+            let c = doc.createElement('source') as HTMLSourceElement;
+            c.srcset = s;
+            c.type = `image/${getUriOptions(s)}`;
+            p.appendChild(c);
+          });
+          let i = doc.createElement('img') as HTMLImageElement;
+          i.alt = img.alt;
+          i.src = srcs[srcs.length - 1];
+          p.appendChild(i);
+          el = p;
+        }
+
+        // Perform the replacing
+        img.replaceWith(el);
       }
     )
   );
@@ -105,8 +155,10 @@ async function renderContent(
   delete data.content;
 
   // Render the content and return the result as JSDOM so we can manipulate it
+  const dom = new JSDOM(renderer.render(c));
   return {
-    elem: new JSDOM(renderer.render(c)).window.document.body,
+    doc: dom.window.document,
+    elem: dom.window.document.body,
     path: src === null ? pathContext : src,
   };
 }
