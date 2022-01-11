@@ -33,20 +33,20 @@ async function asyncLoader(
   );
   const outPath = path.join('..', outFile);
   const outPublic = path.join(output.publicPath as string, outFile);
-  // console.log(`Output for '${inPath}':\n\t${outPath}\n\t${outPublic}`);
+  console.log(`Output for '${inPath}':\n\t${outPath}\n\t${outPublic}`);
 
   // Emit the file at the chosen destination
   ctx.emitFile(
     outPath,
     /.webp$/.test(outPath)
       ? (
-          await exec(`ffmepg -ss 0 -i ${inPath} -vframes 1 -f webp -`, {
+          await exec(`ffmpeg -ss 0 -i ${inPath} -vframes 1 -f webp -`, {
             encoding: 'buffer',
           })
         ).stdout
       : /.jpg$/.test(outPath)
       ? (
-          await exec(`ffmepg -ss 0 -i ${inPath} -vframes 1 -f mjpeg -`, {
+          await exec(`ffmpeg -ss 0 -i ${inPath} -vframes 1 -f mjpeg -`, {
             encoding: 'buffer',
           })
         ).stdout
@@ -59,7 +59,8 @@ async function asyncLoader(
         ).stdout
       : (
           await exec(
-            `ffmpeg -i ${inPath} -c:v libx264 -crf 25 -pix_fmt yuv420p /tmp/mp4.mp4; cat /tmp/mp4.mp4`,
+            `ffmpeg -i ${inPath} -c:v libx264 -crf 25 -pix_fmt yuv420p ` +
+              `/tmp/mp4.mp4; cat /tmp/mp4.mp4`,
             {
               encoding: 'buffer',
               maxBuffer: 1024 * 1024 * 100,
