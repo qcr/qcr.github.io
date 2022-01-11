@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 
 import {Card, CardActionArea, Typography, styled} from '@mui/material';
 
-import LazyImage from '../components/lazy_image';
+import ResponsiveMedia from '../components/responsive_media';
 
 import styles from '../styles/card.module.scss';
 
@@ -44,7 +44,7 @@ const StyledFooter = styled('div')(({theme}) => ({
   width: '100%',
 }));
 
-const StyledImage = styled(LazyImage)({
+const StyledImage = styled(ResponsiveMedia)({
   height: '100%',
   objectFit: 'cover',
   position: 'absolute',
@@ -93,6 +93,7 @@ export default function ContentCard({cardData}: ContentCardProps) {
       <Link href={`/${cardData.type}/${cardData.id}`} passHref>
         <StyledClickable>
           <StyledImage
+            altText=""
             images={cardData._images ? cardData._images : []}
             style={
               {
