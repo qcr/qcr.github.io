@@ -93,7 +93,7 @@ export default function ContentCard({cardData}: ContentCardProps) {
       <Link href={`/${cardData.type}/${cardData.id}`} passHref>
         <StyledClickable>
           <StyledImage
-            images={[cardData.image, cardData._image]}
+            images={cardData._images ? cardData._images : []}
             style={
               {
                 objectPosition: cardData.image_position,

@@ -20,7 +20,7 @@
     "build_loaders": "npx tsc -p lib/loaders/",
     "dev": "npm run build_loaders && next dev",
     "build": "npm run build_loaders && next build",
-    "export": "npm run build && export NEXT_OUT_DIR=.next-out && next export -o $NEXT_OUT_DIR && node -e 'require(\"./lib/repo_cache\").default.dumpCacheInfo()'",
+    "export": "next export",
     "lint": "next lint",
     "start": "npm run build && next start"
   },

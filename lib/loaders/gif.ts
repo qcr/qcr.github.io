@@ -1,75 +1,47 @@
-import cp from 'child_process';
 import loaderUtils from 'loader-utils';
 import path from 'path';
-import util from 'util';
 
 import type * as webpack from 'webpack';
 
-const exec = util.promisify(cp.exec);
+const STATIC_IMAGES_PATH = 'static/images';
 
-const PATH_ROOT = 'static/gifs';
-
-async function buildOutput(
-  content: string,
-  loaderContext: webpack.LoaderContext<any>,
+async function asyncLoader(
+  input: string,
+  ctx: webpack.LoaderContext<any>,
   cb: (err: string | null, result: string) => void
 ) {
-  // Figure out what we are creating
-  const params = loaderContext.resourceQuery
-    ? loaderUtils.parseQuery(loaderContext.resourceQuery)
+  // Figure out where we are saving the file
+  const params = ctx.resourceQuery
+    ? loaderUtils.parseQuery(ctx.resourceQuery)
     : {};
+  const output = ctx._compilation!.outputOptions;
 
-  // Construct our paths
-  // TODO figure out why some of the resources are coming in with a compiler
-  // saying to place them in '.next/server/' (they are STATIC....)
-  const inPath = loaderContext.resourcePath;
-  const outFilename = loaderUtils.interpolateName(
-    loaderContext,
-    `[hash].${params.webm ? 'webm' : params.image ? 'jpg' : 'gif'}`,
-    {content: content}
+  const inPath = ctx.resourcePath;
+  const outFile = path.join(
+    STATIC_IMAGES_PATH,
+    loaderUtils.interpolateName(
+      ctx,
+      `[name]-[contenthash].${
+        params.webp ? 'webp' : params.jpg ? 'jpg' : 'mp4'
+      }`,
+      {content: input}
+    )
   );
-  const outDir = `${
-    loaderContext.mode === 'development' ? '../' : ''
-  }/static/gifs/`;
-  const outPath = path.join(outDir, outFilename);
-  const outPublic = path.join('/_next/static/gifs/', outFilename);
+  const outPath = path.join('..', outFile);
+  const outPublic = path.join(output.publicPath as string, outFile);
+  // console.log(`Output for '${inPath}':\n\t${outPath}\n\t${outPublic}`);
 
-  // console.log(
-  //   `WRITING:\n\t${inPath}\nTO:\n\t${outPath}\nAVAILABLE AT:\n\t${outPublic}`
-  // );
-
-  // Generate the requested file
-  // TODO not sure why I can't just use the input data? It is a different size
-  // to what I get if I just cat the file (smaller) which makes no sense to
-  // me...
-  loaderContext.emitFile(
+  // Emit the file at the chosen destination
+  ctx.emitFile(
     outPath,
-    params.webm
-      ? (
-          await exec(
-            `ffmpeg -i ${inPath} -c:v libvpx -crf 4 -auto-alt-ref 0 -f webm -`,
-            {
-              encoding: 'buffer',
-              maxBuffer: 1024 * 1024 * 100,
-            }
-          )
-        ).stdout
-      : params.image
-      ? (
-          await exec(`ffmpeg -ss 0 -i ${inPath} -vframes 1 -q:v 2 -f mjpeg -`, {
-            encoding: 'buffer',
-          })
-        ).stdout
-      : (
-          await exec(`cat ${inPath}`, {
-            encoding: 'buffer',
-            maxBuffer: 1024 * 1024 * 100,
-          })
-        ).stdout
+    /.webp$/.test(outPath) ? 'WEBP' : /.jpg$/.test(outPath) ? 'JPEG' : 'MP4'
   );
 
-  // Return the result of the loader
+  // Return the module pointing to the destination
+  // (can't use 'export default ...' as you then must use the loader as
+  // 'require(fn).default'... ughhh this dribble is tedious...)
   cb(null, `module.exports = ${JSON.stringify(outPublic)}`);
+  return;
 }
 
 export default function loader(
@@ -77,13 +49,8 @@ export default function loader(
   input: string
 ) {
   const cb = this.async();
-  const res = /[^/]*$/.exec(this.resource)![0];
-  console.log(
-    `${this.resourceQuery ? 'Processing' : 'Skipping'} gif '${res}' ...`
-  );
-  buildOutput(input, this, (err, result) => {
+  asyncLoader(input, this, (err, result) => {
     if (err) return cb(Error(err));
-    if (this.resourceQuery) console.log(`Finished processing gif '${res}'.`);
     cb(null, result);
   });
 }

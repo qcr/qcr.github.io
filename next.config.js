@@ -7,7 +7,7 @@ module.exports = withPlugins(
     [
       optimizedImages,
       {
-        // handleImages: ['jpeg', 'png', 'svg', 'webp'],
+        handleImages: ['jpeg', 'png', 'svg', 'webp'],
         inlineImageLimit: -1,
         responsive: {
           adapter: require('responsive-loader/sharp'),
@@ -27,10 +27,10 @@ module.exports = withPlugins(
             test: /\.md$/,
             loader: './lib/loaders/markdown.js',
           },
-          // {
-          //   test: /\.gif$/,
-          //   loader: './lib/loaders/gif.js',
-          // },
+          {
+            test: /\.gif$/,
+            loader: './lib/loaders/gif.js',
+          },
           {
             test: /\.csv$/,
             loader: 'csv-loader',
