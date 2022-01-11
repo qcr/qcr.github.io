@@ -46,7 +46,7 @@ async function asyncLoader(
     pathContext,
     repoContext
   );
-  await markImages(doc, elem, path);
+  await insertResponsiveMedia(doc, elem, path);
   resolveImage(md.data, elem);
   md.content = elem.innerHTML;
 
@@ -62,7 +62,7 @@ async function asyncLoader(
   return;
 }
 
-async function markImages(
+async function insertResponsiveMedia(
   doc: Document,
   element: HTMLElement,
   pathContext: string
