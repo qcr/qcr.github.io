@@ -50,6 +50,10 @@ async function convertUri(
   return uri;
 }
 
+function getUriOptions(possiblyMarkedString: string) {
+  return undoMark(possiblyMarkedString).match(/.*\?(.*)$/)![1];
+}
+
 function isAbsolutePathUri(uri: string) {
   return uri.startsWith('/');
 }
@@ -98,10 +102,11 @@ function markUri(uri: string, option?: string) {
 async function processUri(
   uri: string,
   pathContext: string,
-  repoContext?: string
+  repoContext?: string,
+  options?: string
 ) {
   const c = await convertUri(uri, pathContext, repoContext);
-  return shouldMark(c) ? markUri(c) : c;
+  return shouldMark(c) ? markUri(c, options) : c;
 }
 
 function relativePathUriToAbsoluteUri(pathUri: string, pathRoot: string) {
@@ -185,13 +190,13 @@ function unmarkString(markedString: string, ctx: webpack.LoaderContext<any>) {
 }
 
 function umarkUri(uri: string, ctx: webpack.LoaderContext<any>) {
-  const src = /\.(jpg|png)$/.test(uri.toLowerCase()) ? `${uri}?webp` : uri;
-  return `require(${loaderUtils.stringifyRequest(ctx, src)})`;
+  return `require(${loaderUtils.stringifyRequest(ctx, uri)})`;
 }
 
 export {
   REPO_DEFAULT_URI,
   convertUri,
+  getUriOptions,
   isGifUri,
   markObjectUris,
   markUri,

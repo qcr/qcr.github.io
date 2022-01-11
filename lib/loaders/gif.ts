@@ -33,7 +33,7 @@ async function asyncLoader(
   );
   const outPath = path.join('..', outFile);
   const outPublic = path.join(output.publicPath as string, outFile);
-  console.log(`Output for '${inPath}':\n\t${outPath}\n\t${outPublic}`);
+  // console.log(`Output for '${inPath}':\n\t${outPath}\n\t${outPublic}`);
 
   // Emit the file at the chosen destination
   ctx.emitFile(
