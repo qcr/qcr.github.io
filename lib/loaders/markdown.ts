@@ -46,8 +46,8 @@ async function asyncLoader(
     pathContext,
     repoContext
   );
-  resolveImage(md.data, elem);
   await insertResponsiveMedia(doc, elem, path);
+  resolveImage(md.data, elem);
   md.content = elem.innerHTML;
 
   // Mark paths in front matter data, and flatten the object
@@ -58,6 +58,8 @@ async function asyncLoader(
   ['data', 'empty', 'excerpt', 'isEmpty'].forEach((f) => delete md_tidy[f]);
 
   // Generate the export string, unmarking paths as we go
+  console.log('RETURNING');
+  console.log(unmarkString(JSON.stringify(md_tidy), ctx));
   cb(null, `export default ${unmarkString(JSON.stringify(md_tidy), ctx)}`);
   return;
 }
