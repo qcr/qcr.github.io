@@ -46,12 +46,14 @@ async function asyncLoader(
     pathContext,
     repoContext
   );
-  await insertResponsiveMedia(doc, elem, path);
   resolveImage(md.data, elem);
+  await insertResponsiveMedia(doc, elem, path);
   md.content = elem.innerHTML;
 
   // Mark paths in front matter data, and flatten the object
-  md.data._images = selectImages(md.data.image);
+  md.data._images = selectImages(
+    await convertUri(md.data.image, pathContext, repoContext)
+  );
 
   Object.assign(md, md.data);
   const md_tidy = md as {[key: string]: any};
