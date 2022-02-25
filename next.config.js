@@ -20,7 +20,12 @@ module.exports = withPlugins(
     reactStrictMode: true,
     trailingSlash: true,
     webpack: (config) => {
-      config.cache.type = 'filesystem';
+      config.cache = {
+        type: 'filesystem',
+        buildDependencies: {
+          config: [__filename],
+        },
+      };
       config.experiments.buildHttp = [/^https?:\/\/github\.com/];
       config.module.rules.push(
         ...[
@@ -38,6 +43,9 @@ module.exports = withPlugins(
           },
         ]
       );
+      // config.infrastructureLogging = {
+      //   debug: /webpack\.cache/,
+      // };
       return config;
     },
   }
