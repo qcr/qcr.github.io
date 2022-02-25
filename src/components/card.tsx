@@ -50,6 +50,11 @@ const StyledImage = styled(ResponsiveMedia)({
   position: 'absolute',
   top: 0,
   width: '100%',
+  'img,source': {
+    height: '100%',
+    objectFit: 'cover',
+    width: '100%',
+  },
 });
 
 const StyledInfo = styled(Typography)({
