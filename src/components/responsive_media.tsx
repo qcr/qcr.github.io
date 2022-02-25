@@ -39,20 +39,19 @@ export default function ResponsiveMedia({
       </video>
     );
   } else {
-    const src = images.splice(
-      images.findIndex((i) => /\.(jpe?g|png)$/.test(i)),
-      1
-    )[0];
+    const imgs = images.slice(
+      images.findIndex((i) => /\.(jpe?g|png|webp|svg)$/.test(i))
+    );
     return (
       <picture className={className} style={style}>
-        {images.map((i, ind) => (
+        {imgs.slice(0, -1).map((i, ind) => (
           <source
             key={ind}
             srcSet={i}
             type={`image/${i.substr(i.lastIndexOf('.') + 1)}`}
           />
         ))}
-        <img alt={altText} src={src} />
+        <img alt={altText} src={imgs[imgs.length - 1]} />
       </picture>
     );
   }
