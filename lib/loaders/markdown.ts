@@ -60,8 +60,6 @@ async function asyncLoader(
   ['data', 'empty', 'excerpt', 'isEmpty'].forEach((f) => delete md_tidy[f]);
 
   // Generate the export string, unmarking paths as we go
-  console.log('RETURNING');
-  console.log(unmarkString(JSON.stringify(md_tidy), ctx));
   cb(null, `export default ${unmarkString(JSON.stringify(md_tidy), ctx)}`);
   return;
 }
@@ -198,8 +196,11 @@ function resolveImage(data: {[key: string]: any}, element: HTMLElement) {
 function selectImages(imageSrc: string) {
   const srcs = [];
   if (imageSrc === DEFAULT_IMAGE_URL) return [imageSrc];
-  if (isGifUri(imageSrc)) srcs.push(markUri(imageSrc, '?mp4'));
-  srcs.push(markUri(imageSrc, '?webm'));
+  if (isGifUri(imageSrc)) {
+    srcs.push(markUri(imageSrc, '?webm'));
+    srcs.push(markUri(imageSrc, '?mp4'));
+  }
+  srcs.push(markUri(imageSrc, '?webp'));
   srcs.push(markUri(imageSrc, isGifUri(imageSrc) ? '?jpg' : undefined));
   return srcs;
 }
