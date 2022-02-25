@@ -43,7 +43,9 @@ export default function TopBar() {
   return (
     <StyledBar>
       <Link href="/" passHref>
-        <StyledLogo />
+        <a>
+          <StyledLogo />
+        </a>
       </Link>
       <Tabs
         value={selected}
