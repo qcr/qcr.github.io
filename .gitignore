@@ -42,4 +42,4 @@ yarn-error.log*
 .repo-cache/
 /lib/*.js
 /lib/loaders/*.js
-/server.webpack.lock
+/server.webpack.lock*
