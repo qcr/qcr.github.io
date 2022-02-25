@@ -51,9 +51,7 @@ async function asyncLoader(
   md.content = elem.innerHTML;
 
   // Mark paths in front matter data, and flatten the object
-  md.data._images = selectImages(
-    await convertUri(md.data.image, pathContext, repoContext)
-  );
+  md.data._images = selectImages(await processUri(md.data.image, path));
 
   Object.assign(md, md.data);
   const md_tidy = md as {[key: string]: any};
