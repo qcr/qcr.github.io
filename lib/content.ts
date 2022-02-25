@@ -1,7 +1,6 @@
 import path from 'path';
 
-import DEFAULT_IMAGE from '/public/qcr_logo_light_filled.svg';
-
+const DEFAULT_IMAGE_URL = '/qcr_logo_light_filled.svg';
 const VALID_TYPES = ['code', 'dataset', 'collection'];
 
 export type Content = CodeContent | CollectionContent | DatasetContent;
@@ -105,8 +104,16 @@ function hydrate() {
           : c.datasets && c.datasets.length > 0
           ? c._datasets[0]
           : undefined;
-      c.image = t ? (t as Content).image : DEFAULT_IMAGE;
-      if (t) c.image_position = (t as Content).image_position;
+      if (t) {
+        const tc = t as Content;
+        c.image = tc.image;
+        c.image_fit = tc.image_fit;
+        c.image_position = tc.image_position;
+        c._images = tc._images;
+      } else {
+        c.image = DEFAULT_IMAGE_URL;
+        c._images = [DEFAULT_IMAGE_URL];
+      }
     }
   });
 }
