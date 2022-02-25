@@ -51,7 +51,7 @@ async function asyncLoader(
   md.content = elem.innerHTML;
 
   // Mark paths in front matter data, and flatten the object
-  md.data._images = selectImages(await processUri(md.data.image, path));
+  md.data._images = await selectImages(md.data.image, path);
 
   Object.assign(md, md.data);
   const md_tidy = md as {[key: string]: any};
@@ -191,9 +191,10 @@ function resolveImage(data: {[key: string]: any}, element: HTMLElement) {
   if (data.image === undefined) data.image = DEFAULT_IMAGE_URL;
 }
 
-function selectImages(imageSrc: string) {
+async function selectImages(imageSrc: string, pathContext: string) {
   const srcs = [];
   if (imageSrc === DEFAULT_IMAGE_URL) return [imageSrc];
+  imageSrc = await convertUri(imageSrc, pathContext);
   if (isGifUri(imageSrc)) {
     srcs.push(markUri(imageSrc, '?webm'));
     srcs.push(markUri(imageSrc, '?mp4'));
