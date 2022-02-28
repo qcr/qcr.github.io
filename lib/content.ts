@@ -107,9 +107,9 @@ function hydrate() {
       if (t) {
         const tc = t as Content;
         c.image = tc.image;
-        c.image_fit = tc.image_fit;
-        c.image_position = tc.image_position;
         c._images = tc._images;
+        if (tc.image_fit) c.image_fit = tc.image_fit;
+        if (tc.image_position) c.image_position = tc.image_position;
       } else {
         c.image = DEFAULT_IMAGE_URL;
         c._images = [DEFAULT_IMAGE_URL];
