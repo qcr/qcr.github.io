@@ -1,39 +1,52 @@
-const fs = require('fs');
-const path = require('path');
 const withPlugins = require('next-compose-plugins');
+const optimizedImages = require('next-optimized-images');
 
-const nextConfig = {
-  images: {},
-  sassOptions: {
-    includePaths: ['node_modules'].map((d) => path.join(__dirname, d)),
-  },
-  trailingSlash: true,
-  webpack: (config) => {
-    config.resolve.roots = [__dirname];
-    config.module.rules.find((r) => r.loader == 'next-image-loader').test =
-      /\.(png|jpg|jpeg|webp|ico|bmp|svg)$/i;
-    config.module.rules.push(
-      ...[
-        {
-          test: /^repo:/,
-          loader: './lib/loaders/repo.js',
+/** @type {import('next').NextConfig} */
+module.exports = withPlugins(
+  [
+    [
+      optimizedImages,
+      {
+        handleImages: ['jpeg', 'png', 'svg', 'webp'],
+        inlineImageLimit: -1,
+        responsive: {
+          adapter: require('responsive-loader/sharp'),
         },
-        {
-          test: /\.md$/,
-          loader: './lib/loaders/markdown.js',
+      },
+    ],
+  ],
+  {
+    images: {disableStaticImages: true},
+    reactStrictMode: true,
+    trailingSlash: true,
+    webpack: (config) => {
+      config.cache = {
+        type: 'filesystem',
+        buildDependencies: {
+          config: [__filename],
         },
-        {
-          test: /\.gif$/,
-          loader: './lib/loaders/gif.js',
-        },
-        {
-          test: /\.csv$/,
-          loader: 'csv-loader',
-        },
-      ],
-    );
-    return config;
-  },
-};
-
-module.exports = nextConfig;
+      };
+      config.experiments.buildHttp = [/^https?:\/\/github\.com/];
+      config.module.rules.push(
+        ...[
+          {
+            test: /\.md$/,
+            loader: './lib/loaders/markdown.js',
+          },
+          {
+            test: /\.gif$/,
+            loader: './lib/loaders/gif.js',
+          },
+          {
+            test: /\.csv$/,
+            loader: 'csv-loader',
+          },
+        ]
+      );
+      // config.infrastructureLogging = {
+      //   debug: /webpack\.cache/,
+      // };
+      return config;
+    },
+  }
+);

@@ -1,0 +1,114 @@
+import * as cp from 'child_process';
+import fs from 'fs';
+import matter from 'gray-matter';
+import path from 'path';
+
+import rc from './repo_cache';
+
+const REMOTE_DIR = '/content/.remote';
+const REMOTE_DIR_REL = path.join(__dirname, '..', REMOTE_DIR);
+
+interface RemoteInput {
+  name: string;
+  url: string;
+  id?: string;
+  content?: string;
+  image?: string;
+  type?: 'code';
+}
+
+function createRemoteEntry(inputs: RemoteInput) {
+  // Ensure inputs meet the minimum requirements
+  if (!inputs.name) {
+    console.log("Payload is missing the required 'name' field. Aborting.");
+    return false;
+  }
+  if (!inputs.url) {
+    console.log("Payload is missing the required 'url' field. Aborting.");
+    return false;
+  }
+
+  // Pull out user & repo name info from URL
+  // const {user: repoUser, name: repoName} = inputs.url.match(
+  const gs = inputs.url.match(/(?<user>[^/]*)\/(?<name>[^/]*)$/)!.groups;
+  if (typeof gs === 'undefined' || !('user' in gs) || !('name' in gs)) {
+    console.log(`Failed to extract repo user & name from: ${inputs.url}`);
+    return false;
+  }
+
+  // Dump the input data to the corresponding file
+  init(gs.user);
+  fs.writeFileSync(
+    path.join(REMOTE_DIR_REL, gs.user, `${gs.name}.md`),
+    inputsToMarkdown(inputs)
+  );
+}
+
+function init(repoUser: string) {
+  fs.mkdirSync(
+    repoUser ? path.join(REMOTE_DIR_REL, repoUser) : REMOTE_DIR_REL,
+    {recursive: true}
+  );
+}
+
+function inputsToMarkdown(inputs: RemoteInput) {
+  // Perform input validation / modification
+  inputs.type = 'code';
+  if (inputs.content) {
+    inputs.content = inputs.content.replace(/^(.\/)?(\/)?/, 'repo:/');
+  }
+  if (inputs.image) {
+    inputs.image = inputs.image.replace(/^(.\/)?(\/)?/, 'repo:/');
+  }
+
+  // Return string with input dumped as YAML front-matter
+  return matter.stringify('', inputs);
+}
+
+function rebuildRequired(nameShort: string, repoPath: string) {
+  const cacheInfo = rc.loadCacheInfo();
+  const opts: cp.ExecSyncOptionsWithStringEncoding = {
+    cwd: repoPath,
+    encoding: 'utf8',
+    stdio: 'ignore',
+  };
+
+  // Handle exit early conditions (doesn't exist in cache, no hash in cache
+  // info, either hash is invalid)
+  if (!fs.existsSync(repoPath)) {
+    console.log(`Repo was not found at path: ${repoPath}`);
+    return true;
+  }
+  if (!cacheInfo[nameShort]) {
+    console.log(
+      `Entry for '${nameShort}' was invalid: ${cacheInfo[nameShort]}`
+    );
+    return true;
+  }
+  cp.execSync('git fetch', opts);
+  const lastHash = cacheInfo[nameShort].trim();
+  const currentHash = cp
+    .execSync(`git rev-parse HEAD`, {...opts, ...{stdio: 'pipe'}})
+    .trim();
+  try {
+    cp.execSync(`git cat-file commit ${currentHash}`, opts);
+    cp.execSync(`git cat-file commit ${lastHash}`, opts);
+  } catch (e) {
+    console.log(e);
+    return true;
+  }
+
+  // Check the diff for a .md file, or any expected associated files (images,
+  // videos, GIFs, etc)
+  const hits = cp
+    .execSync(`git diff --name-only ${lastHash} ${currentHash}`, {
+      ...opts,
+      ...{stdio: 'pipe'},
+    })
+    .trim()
+    .split(/[\r\n]+/)
+    .filter((f) => /(.md|.gif|.png|.jpg|.jpeg|.webm|.mp4|.ogg)$/i.test(f));
+  return hits.length > 0;
+}
+
+export default {REMOTE_DIR, createRemoteEntry, rebuildRequired};
