@@ -34,7 +34,8 @@
     "next": "^12.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-multi-carousel": "^2.8.0"
+    "react-multi-carousel": "^2.8.0",
+    "sites-shared": "github:qcr/sites-shared#develop"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.2.1",

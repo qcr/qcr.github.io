@@ -16,6 +16,10 @@ import {
 
 import {Content, liteContent} from '../../lib/content';
 
+import {HelloWorld} from 'sites-shared';
+
+console.log(HelloWorld('QCR'));
+
 const LIMIT_FEATURE = 10;
 const LIMIT_MOST_POPULAR = 10;
 const LIMIT_MOST_RECENT = 10;
