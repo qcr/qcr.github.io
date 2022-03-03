@@ -5,12 +5,13 @@ import {styled, Typography} from '@mui/material';
 
 import {
   FocusButton,
-  Layout,
   Missing,
   SimpleDialog,
   StyledMarkdown,
   StyledTitle,
 } from 'sites-shared';
+
+import Layout from '../../components/layout';
 
 import DownloadIcon from '!@svgr/webpack!/public/icon_download.svg';
 import ListIcon from '!@svgr/webpack!/public/icon_list.svg';

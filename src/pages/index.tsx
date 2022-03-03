@@ -2,7 +2,9 @@ import React from 'react';
 
 import {Typography, styled} from '@mui/material';
 
-import {CardCarousel, ContentCardProps, Layout} from 'sites-shared';
+import {CardCarousel, ContentCardProps} from 'sites-shared';
+
+import Layout from '../components/layout';
 
 import {
   numCode,

@@ -3,13 +3,9 @@ import React from 'react';
 
 import {Typography, styled} from '@mui/material';
 
-import {
-  FocusButton,
-  Layout,
-  Missing,
-  StyledMarkdown,
-  StyledTitle,
-} from 'sites-shared';
+import {FocusButton, Missing, StyledMarkdown, StyledTitle} from 'sites-shared';
+
+import Layout from '../../components/layout';
 
 import GitHubIcon from '!@svgr/webpack!/public/icon_github.svg';
 

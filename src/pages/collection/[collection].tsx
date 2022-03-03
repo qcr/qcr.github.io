@@ -6,10 +6,11 @@ import {Typography, styled} from '@mui/material';
 import {
   ContentCard,
   FocusButton,
-  Layout,
   StyledMarkdown,
   StyledTitle,
 } from 'sites-shared';
+
+import Layout from '../../components/layout';
 
 import WebsiteIcon from '!@svgr/webpack!/public/icon_website.svg';
 
