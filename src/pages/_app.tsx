@@ -2,9 +2,9 @@ import {AppProps} from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 
-import {ThemeProvider, createTheme} from '@mui/material/styles';
+import {ThemeProvider} from '@mui/material/styles';
 
-import {QcrTheme} from 'sites-shared';
+import {qcrTheme} from 'sites-shared';
 
 import 'sites-shared/lib/styles/styles.css';
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -13,30 +13,7 @@ import 'prismjs/themes/prism-tomorrow.css';
 
 import 'src/styles/globals.scss';
 
-const theme = createTheme({
-  palette: {primary: {main: '#00407a'}},
-  typography: {
-    fontFamily:
-      'Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
-    h3: {
-      fontWeight: 'bold',
-      marginBottom: '40px',
-      marginTop: '16px',
-      textAlign: 'center',
-    },
-    button: {
-      textTransform: 'capitalize',
-      fontSize: '1.0rem',
-      fontWeight: 'bold',
-    },
-    subtitle1: {
-      fontStyle: 'normal',
-      fontWeight: 'bold',
-      textAlign: 'center',
-      marginBottom: '16px',
-    },
-  },
-});
+const theme = qcrTheme();
 
 export default function Site({Component, pageProps}: AppProps) {
   return (
