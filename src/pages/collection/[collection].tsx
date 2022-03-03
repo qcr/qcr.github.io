@@ -5,6 +5,7 @@ import {Typography, styled} from '@mui/material';
 
 import {
   ContentCard,
+  ContentCardProps,
   FocusButton,
   StyledMarkdown,
   StyledTitle,
