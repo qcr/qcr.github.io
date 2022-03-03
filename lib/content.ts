@@ -1,5 +1,7 @@
 import path from 'path';
 
+import {ContentCardProps} from 'sites-shared';
+
 const DEFAULT_IMAGE_URL = '/qcr_logo_light_filled.svg';
 const VALID_TYPES = ['code', 'dataset', 'collection'];
 
@@ -66,6 +68,25 @@ class ContentError extends Error {
     super(message);
     this.name = 'ContentError';
   }
+}
+
+function contentToContentCardProps(content: Content): ContentCardProps {
+  return {
+    linkUrl: `/${content.type}/${content.id}`,
+    ...(content.image_fit && {mediaFit: content.image_fit}),
+    ...(content.image_position && {mediaPosition: content.image_position}),
+    mediaUrls: content._images,
+    primaryText: content.name,
+    secondaryText:
+      content.type === 'dataset'
+        ? content.size
+          ? content.size
+          : ''
+        : content.type === 'code'
+        ? content.url.replace(/.*\/([^/]*\/[^/]*)$/, '$1')
+        : 'Collection',
+    secondaryTransform: content.type === 'code' ? 'lowercase' : 'capitalize',
+  };
 }
 
 function hydrate() {
@@ -193,14 +214,14 @@ function randomContent() {
 }
 
 const content = importContent([
-  {
-    hits: require.context('/content', true, /\.\/.*\.md$/),
-    root: '/content',
-  },
   // {
-  //   hits: require.context('/content/.debug', true, /\.\/.*\.md$/),
-  //   root: '/content/.debug',
+  //   hits: require.context('/content', true, /\.\/.*\.md$/),
+  //   root: '/content',
   // },
+  {
+    hits: require.context('/content/.debug', true, /\.\/.*\.md$/),
+    root: '/content/.debug',
+  },
 ]);
 
 const code = content.code;
@@ -215,6 +236,7 @@ const collectionCount = Object.values(collections).length;
 export {
   code,
   codeCount,
+  contentToContentCardProps,
   datasets,
   datasetCount,
   lookupEntry,

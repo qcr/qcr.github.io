@@ -2,8 +2,7 @@ import React from 'react';
 
 import {Typography, styled} from '@mui/material';
 
-import CardCarousel from '../components/card_carousel';
-import Layout from '../components/layout';
+import {CardCarousel, ContentCardProps, Layout} from 'sites-shared';
 
 import {
   numCode,
@@ -14,11 +13,11 @@ import {
   orderByPopularity,
 } from '../../lib/analytics';
 
-import {Content, liteContent} from '../../lib/content';
-
-import {HelloWorld} from 'sites-shared';
-
-console.log(HelloWorld('QCR'));
+import {
+  Content,
+  contentToContentCardProps,
+  liteContent,
+} from '../../lib/content';
 
 const LIMIT_FEATURE = 10;
 const LIMIT_MOST_POPULAR = 10;
@@ -64,9 +63,9 @@ const StyledWelcome = styled(Typography)(({theme}) => ({
 }));
 
 interface HomePageProps {
-  mostPopular: Content[];
-  mostRecent: Content[];
-  featured: Content[];
+  mostPopular: ContentCardProps[];
+  mostRecent: ContentCardProps[];
+  featured: ContentCardProps[];
   collectionCount: number;
   codeCount: number;
   datasetCount: number;
@@ -128,11 +127,15 @@ export default function HomePage({
 export function getStaticProps() {
   return {
     props: {
-      featured: liteContent(orderByFeatured().slice(0, LIMIT_FEATURE)),
-      mostPopular: liteContent(
-        orderByPopularity().slice(0, LIMIT_MOST_POPULAR)
-      ),
-      mostRecent: liteContent(orderByNewest().slice(0, LIMIT_MOST_RECENT)),
+      featured: orderByFeatured()
+        .slice(0, LIMIT_FEATURE)
+        .map((c) => contentToContentCardProps(c)),
+      mostPopular: orderByPopularity()
+        .slice(0, LIMIT_MOST_POPULAR)
+        .map((c) => contentToContentCardProps(c)),
+      mostRecent: orderByNewest()
+        .slice(0, LIMIT_MOST_RECENT)
+        .map((c) => contentToContentCardProps(c)),
       codeCount: numCode,
       datasetCount: numDatasets,
       collectionCount: numCollections,
