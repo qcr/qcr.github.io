@@ -32,6 +32,7 @@ async function asyncLoader(
   ctx: webpack.LoaderContext<any>,
   cb: (err: string | null, result: string) => void
 ) {
+  const devMode = ctx.mode === 'development';
   const pathContext = ctx.resourcePath;
   ctx.addDependency(pathContext);
 
@@ -47,12 +48,15 @@ async function asyncLoader(
     repoContext
   );
   resolveImage(md.data, elem);
-  await insertResponsiveMedia(doc, elem, path);
+  if (!devMode) await insertResponsiveMedia(doc, elem, path);
   md.content = elem.innerHTML;
 
   // Mark paths in front matter data, and flatten the object
-  if (md.data.image)
-    md.data._images = await selectImages(md.data.image, path, repoContext);
+  if (md.data.image) {
+    md.data._images = devMode
+      ? [md.data.image]
+      : await selectImages(md.data.image, path, repoContext);
+  }
 
   Object.assign(md, md.data);
   const md_tidy = md as {[key: string]: any};
