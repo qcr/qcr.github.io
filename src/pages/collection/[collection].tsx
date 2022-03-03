@@ -3,11 +3,13 @@ import React from 'react';
 
 import {Typography, styled} from '@mui/material';
 
-import Card from '../../components/card';
-import FocusButton from '../../components/focus_button';
-import Layout from '../../components/layout';
-
-import {StyledMarkdown, StyledTitle} from 'src/styles/shared';
+import {
+  ContentCard,
+  FocusButton,
+  Layout,
+  StyledMarkdown,
+  StyledTitle,
+} from 'sites-shared';
 
 import WebsiteIcon from '!@svgr/webpack!/public/icon_website.svg';
 
@@ -15,6 +17,7 @@ import {
   lookupEntry,
   collections,
   CollectionContent,
+  contentToContentCardProps,
 } from '../../../lib/content';
 
 const StyledCards = styled('div')({
