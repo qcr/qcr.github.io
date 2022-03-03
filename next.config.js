@@ -19,7 +19,7 @@ module.exports = withPlugins(
     images: {disableStaticImages: true},
     reactStrictMode: true,
     trailingSlash: true,
-    webpack: (config) => {
+    webpack: (config, {dev}) => {
       config.cache = {
         type: 'filesystem',
         buildDependencies: {
@@ -34,15 +34,17 @@ module.exports = withPlugins(
             loader: './lib/loaders/markdown.js',
           },
           {
-            test: /\.gif$/,
-            loader: './lib/loaders/gif.js',
-          },
-          {
             test: /\.csv$/,
             loader: 'csv-loader',
           },
         ]
       );
+      if (!dev) {
+        config.module.rules.push({
+          test: /\.gif$/,
+          loader: './lib/loaders/gif.js',
+        });
+      }
       // config.infrastructureLogging = {
       //   debug: /webpack\.cache/,
       // };
