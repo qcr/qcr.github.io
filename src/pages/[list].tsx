@@ -1,6 +1,6 @@
 import {GetStaticProps, GetStaticPaths} from 'next';
 import React from 'react';
-import {Typography, styled} from '@mui/material';
+import {styled} from '@mui/material';
 
 import {ContentCard, ContentCardProps, Layout, StyledTitle} from 'sites-shared';
 
