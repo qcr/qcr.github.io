@@ -40,10 +40,16 @@ const StyledSection = styled(Typography)({
 });
 
 interface CollectionPageProps {
+  code: ContentCardProps[];
   collectionData: CollectionContent;
+  datasets: ContentCardProps[];
 }
 
-export default function CollectionPage({collectionData}: CollectionPageProps) {
+export default function CollectionPage({
+  code,
+  collectionData,
+  datasets,
+}: CollectionPageProps) {
   return (
     <Layout>
       <StyledTitle variant="h3" color="primary">
@@ -71,8 +77,8 @@ export default function CollectionPage({collectionData}: CollectionPageProps) {
             Codebases
           </StyledSection>
           <StyledCards>
-            {collectionData._code.map((r, i) => (
-              <Card key={i} cardData={r} />
+            {code.map((c, i) => (
+              <ContentCard key={i} {...c} />
             ))}
           </StyledCards>
         </>
@@ -83,8 +89,8 @@ export default function CollectionPage({collectionData}: CollectionPageProps) {
             Datasets
           </StyledSection>
           <StyledCards>
-            {collectionData._datasets.map((r, i) => (
-              <Card key={i} cardData={r} />
+            {datasets.map((d, i) => (
+              <ContentCard key={i} {...d} />
             ))}
           </StyledCards>
         </>
@@ -105,12 +111,19 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps = (ctx) => {
+  const c = lookupEntry(
+    ctx.params!.collection as string,
+    'collection'
+  ) as CollectionContent;
+  const code = c._code.map((c) => contentToContentCardProps(c));
+  const datasets = c._datasets.map((d) => contentToContentCardProps(d));
+  c._code = [];
+  c._datasets = [];
   return {
     props: {
-      collectionData: lookupEntry(
-        ctx.params!.collection as string,
-        'collection'
-      ),
+      code: code,
+      collectionData: c,
+      datasets: datasets,
     },
   };
 };
