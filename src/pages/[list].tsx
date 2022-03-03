@@ -2,22 +2,18 @@ import {GetStaticProps, GetStaticPaths} from 'next';
 import React from 'react';
 import {Typography, styled} from '@mui/material';
 
-import Card from '../components/card';
-import Layout from '../components/layout';
-
-import {StyledTitle} from 'src/styles/shared';
+import {ContentCard, ContentCardProps, Layout, StyledTitle} from 'sites-shared';
 
 import {
   code,
   datasets,
   collections,
-  liteContent,
-  Content,
   ContentType,
+  contentToContentCardProps,
 } from '../../lib/content';
 
 interface ListPageProps {
-  listData: Content[];
+  listData: ContentCardProps[];
   title: string;
 }
 
@@ -37,7 +33,7 @@ function ListPage({listData, title}: ListPageProps) {
       </StyledTitle>
       <StyledCards>
         {Object.values(listData).map((d, i) => (
-          <Card key={i} cardData={d} />
+          <ContentCard key={i} {...d} />
         ))}
       </StyledCards>
     </Layout>
@@ -69,9 +65,9 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const listName = ctx.params!.list as ContentType;
   return {
     props: {
-      listData: liteContent(Object.values(listMap[listName])).sort((a, b) =>
-        a.name.localeCompare(b.name)
-      ),
+      listData: Object.values(listMap[listName])
+        .map((c) => contentToContentCardProps(c))
+        .sort((a, b) => a.primaryText.localeCompare(b.primaryText)),
       title: titleMap[listName],
     },
   };

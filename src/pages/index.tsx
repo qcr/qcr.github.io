@@ -13,11 +13,7 @@ import {
   orderByPopularity,
 } from '../../lib/analytics';
 
-import {
-  Content,
-  contentToContentCardProps,
-  liteContent,
-} from '../../lib/content';
+import {contentToContentCardProps} from '../../lib/content';
 
 const LIMIT_FEATURE = 10;
 const LIMIT_MOST_POPULAR = 10;
@@ -32,7 +28,7 @@ const StyledContent = styled('div')({
   margin: '0 auto',
   maxWidth: '1250px',
   padding: '0 16px',
-  widtH: '100%',
+  width: '100%',
 });
 
 const StyledSection = styled(Typography)({
