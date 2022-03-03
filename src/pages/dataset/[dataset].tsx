@@ -3,11 +3,14 @@ import React, {useState} from 'react';
 
 import {styled, Typography} from '@mui/material';
 
-import FocusButton from '../../components/focus_button';
-import Layout from '../../components/layout';
-import SimpleDialog from '../../components/simple_dialog';
-
-import {Missing, StyledMarkdown, StyledTitle} from 'src/styles/shared';
+import {
+  FocusButton,
+  Layout,
+  Missing,
+  SimpleDialog,
+  StyledMarkdown,
+  StyledTitle,
+} from 'sites-shared';
 
 import DownloadIcon from '!@svgr/webpack!/public/icon_download.svg';
 import ListIcon from '!@svgr/webpack!/public/icon_list.svg';
@@ -38,6 +41,14 @@ const StyledSubtitle = styled(Typography)({
   marginBottom: '36px',
 });
 
+function _datasetUrlToSimpleDialogItem(datasetUrl: DatasetUrl) {
+  return {
+    primaryText: datasetUrl.name,
+    secondaryText: datasetUrl.size ? datasetUrl.size : ' ',
+    linkUrl: datasetUrl.url,
+  };
+}
+
 export default function DatasetPage({datasetData}: DatasetPageProps) {
   const [open, setOpen] = useState(false);
   return (
@@ -52,7 +63,7 @@ export default function DatasetPage({datasetData}: DatasetPageProps) {
           onClose={() => {
             setOpen(false);
           }}
-          urls={datasetData.url}
+          items={datasetData.url.map((d) => _datasetUrlToSimpleDialogItem(d))}
         />
       )}
       <FocusButton
