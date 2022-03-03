@@ -117,8 +117,10 @@ export const getStaticProps: GetStaticProps = (ctx) => {
     ctx.params!.collection as string,
     'collection'
   ) as CollectionContent;
-  const code = c._code.map((c) => contentToContentCardProps(c));
-  const datasets = c._datasets.map((d) => contentToContentCardProps(d));
+  const code = c._code ? c._code.map((c) => contentToContentCardProps(c)) : [];
+  const datasets = c._datasets
+    ? c._datasets.map((d) => contentToContentCardProps(d))
+    : [];
   c._code = [];
   c._datasets = [];
   return {
