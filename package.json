@@ -20,7 +20,7 @@
     "build_loaders": "npx tsc -p lib/loaders/",
     "dev": "npm run build_loaders && next dev",
     "build": "npm run build_loaders && next build",
-    "export": "next export",
+    "export": "next export && rsync -av ./.next/server/static/images out/_next/static/",
     "lint": "next lint",
     "start": "npm run build && next start"
   },
