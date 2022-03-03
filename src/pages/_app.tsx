@@ -4,7 +4,9 @@ import React from 'react';
 
 import {ThemeProvider, createTheme} from '@mui/material/styles';
 
-import 'react-multi-carousel/lib/styles.css';
+import {QcrTheme} from 'sites-shared';
+
+import 'sites-shared/lib/styles/styles.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'github-markdown-css/github-markdown.css';
 import 'prismjs/themes/prism-tomorrow.css';
