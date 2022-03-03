@@ -183,16 +183,6 @@ function importContent(reqs: ContentLocation[]) {
   return ret;
 }
 
-function liteContent(content: Content[]) {
-  return content.map((c) => {
-    const r = {...c};
-    r.content = '';
-    if ('_code' in r) r._code = [];
-    if ('_datasets' in r) r._datasets = [];
-    return r;
-  });
-}
-
 function lookupEntry(name: string, type: ContentType) {
   if (content[type] === undefined || content[type][name] === undefined) {
     throw new ContentError(
@@ -240,7 +230,6 @@ export {
   datasets,
   datasetCount,
   lookupEntry,
-  liteContent,
   collections,
   collectionCount,
   randomContent,
