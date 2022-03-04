@@ -23,12 +23,12 @@ module.exports = withPlugins(
     reactStrictMode: true,
     trailingSlash: true,
     webpack: (config, {dev}) => {
-      config.cache = {
-        type: 'filesystem',
-        buildDependencies: {
-          config: [__filename],
-        },
-      };
+      // config.cache = {
+      //   type: 'filesystem',
+      //   buildDependencies: {
+      //     config: [__filename],
+      //   },
+      // };
       config.module.rules.push(
         ...[
           {
