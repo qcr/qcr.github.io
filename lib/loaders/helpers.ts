@@ -103,10 +103,13 @@ async function processUri(
   uri: string,
   pathContext: string,
   repoContext?: string,
-  options?: string
+  options?: string,
+  ignoreHttp = false
 ) {
   const c = await convertUri(uri, pathContext, repoContext);
-  return shouldMark(c) ? markUri(c, options) : c;
+  return !(ignoreHttp && /^http/.test(c)) && shouldMark(c)
+    ? markUri(c, options)
+    : c;
 }
 
 function relativePathUriToAbsoluteUri(pathUri: string, pathRoot: string) {

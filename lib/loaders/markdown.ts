@@ -48,14 +48,17 @@ async function asyncLoader(
     repoContext
   );
   resolveImage(md.data, elem);
-  if (!devMode) await insertResponsiveMedia(doc, elem, path);
+  await insertResponsiveMedia(doc, elem, devMode, path);
   md.content = elem.innerHTML;
 
   // Mark paths in front matter data, and flatten the object
   if (md.data.image) {
-    md.data._images = devMode
-      ? [md.data.image]
-      : await selectImages(md.data.image, path, repoContext);
+    md.data._images = await selectImages(
+      md.data.image,
+      devMode,
+      path,
+      repoContext
+    );
   }
 
   Object.assign(md, md.data);
@@ -70,24 +73,26 @@ async function asyncLoader(
 async function insertResponsiveMedia(
   doc: Document,
   element: HTMLElement,
+  devMode: boolean,
   pathContext: string
 ) {
   await Promise.all(
     (Array.from(element.querySelectorAll('img')) as HTMLImageElement[]).map(
       async (img) => {
         // Build up list of sources
-        const isVid = isGifUri(img.src);
-        const s = async (opt?: string) =>
-          await processUri(img.src, pathContext, undefined, opt);
-        let srcs = [await s('?webp'), await s()];
+        const isVid = !devMode && isGifUri(img.src);
+        const s = async (opt?: string, ignoreHttp?: boolean) =>
+          await processUri(img.src, pathContext, undefined, opt, ignoreHttp);
+        let srcs = [
+          ...(!devMode ? [await s('?webp')] : []),
+          await s(undefined, devMode),
+        ];
         if (isVid) {
           srcs.pop();
           srcs.splice(0, 0, await s('?mp4'));
           srcs.splice(0, 0, await s('?webm'));
         }
         srcs = [...new Set(srcs)];
-        // console.log(`${img.src} (${img.alt})`);
-        // console.log(srcs);
 
         // Construct a replacement element that uses optimised sources
         let el: HTMLVideoElement | HTMLPictureElement;
@@ -198,12 +203,14 @@ function resolveImage(data: {[key: string]: any}, element: HTMLElement) {
 
 async function selectImages(
   imageSrc: string,
+  devMode: boolean,
   pathContext: string,
   repoContext?: string
 ) {
   const srcs = [];
   if (imageSrc === DEFAULT_IMAGE_URL) return [imageSrc];
   imageSrc = await convertUri(imageSrc, pathContext, repoContext);
+  if (devMode) return [/^http/.test(imageSrc) ? imageSrc : markUri(imageSrc)];
   if (isGifUri(imageSrc)) {
     srcs.push(markUri(imageSrc, '?webm'));
     srcs.push(markUri(imageSrc, '?mp4'));

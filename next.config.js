@@ -1,5 +1,6 @@
 const withPlugins = require('next-compose-plugins');
 const optimizedImages = require('next-optimized-images');
+const {PHASE_DEVELOPMENT_SERVER} = require('next/constants');
 
 /** @type {import('next').NextConfig} */
 module.exports = withPlugins(
@@ -7,7 +8,9 @@ module.exports = withPlugins(
     [
       optimizedImages,
       {
-        handleImages: ['jpeg', 'png', 'svg', 'webp'],
+        ['!' + PHASE_DEVELOPMENT_SERVER]: {
+          handleImages: ['jpeg', 'png', 'svg', 'webp'],
+        },
         inlineImageLimit: -1,
         responsive: {
           adapter: require('responsive-loader/sharp'),
@@ -26,7 +29,6 @@ module.exports = withPlugins(
           config: [__filename],
         },
       };
-      config.experiments.buildHttp = [/^https?:\/\/github\.com/];
       config.module.rules.push(
         ...[
           {
@@ -44,6 +46,7 @@ module.exports = withPlugins(
           test: /\.gif$/,
           loader: './lib/loaders/gif.js',
         });
+        config.experiments.buildHttp = [/^https?:\/\/github\.com/];
       }
       // config.infrastructureLogging = {
       //   debug: /webpack\.cache/,
