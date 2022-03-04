@@ -1,5 +1,5 @@
 ---
-name: Debugging content
+name: Repository GIF
 type: code
 url: https://github.com/qcr/benchbot
 ---

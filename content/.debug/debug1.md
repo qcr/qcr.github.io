@@ -1,5 +1,5 @@
 ---
-name: Debugging content
+name: Local image
 type: code
 url: https://github.com/qcr/benchbot
 ---
