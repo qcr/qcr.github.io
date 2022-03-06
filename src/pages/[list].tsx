@@ -2,7 +2,7 @@ import {GetStaticProps, GetStaticPaths} from 'next';
 import React from 'react';
 import {styled} from '@mui/material';
 
-import {ContentCard, ContentCardProps, StyledTitle} from 'sites-shared';
+import {QcrContentCard, QcrContentCardProps, QcrTitle} from 'qcr-sites-shared';
 
 import Layout from '../components/layout';
 
@@ -15,7 +15,7 @@ import {
 } from '../../lib/content';
 
 interface ListPageProps {
-  listData: ContentCardProps[];
+  listData: QcrContentCardProps[];
   title: string;
 }
 
@@ -30,12 +30,12 @@ function ListPage({listData, title}: ListPageProps) {
   if (typeof listData === 'string') listData = JSON.parse(listData);
   return (
     <Layout list>
-      <StyledTitle variant="h3" color="primary">
+      <QcrTitle variant="h3" color="primary">
         {title}
-      </StyledTitle>
+      </QcrTitle>
       <StyledCards>
         {Object.values(listData).map((d, i) => (
-          <ContentCard key={i} {...d} />
+          <QcrContentCard key={i} {...d} />
         ))}
       </StyledCards>
     </Layout>

@@ -3,7 +3,12 @@ import React from 'react';
 
 import {Typography, styled} from '@mui/material';
 
-import {FocusButton, Missing, StyledMarkdown, StyledTitle} from 'sites-shared';
+import {
+  QcrFocusButton,
+  QcrMissingContentBox,
+  QcrMarkdown,
+  QcrTitle,
+} from 'qcr-sites-shared';
 
 import Layout from '../../components/layout';
 
@@ -23,11 +28,11 @@ const StyledSubtitle = styled(Typography)({
 export default function CodePage({codeData}: CodePageProps) {
   return (
     <Layout>
-      <StyledTitle variant="h3" color="primary">
+      <QcrTitle variant="h3" color="primary">
         {codeData.name}
-      </StyledTitle>
+      </QcrTitle>
 
-      <FocusButton
+      <QcrFocusButton
         newTab
         url={codeData.url}
         text="View the code on GitHub"
@@ -37,7 +42,7 @@ export default function CodePage({codeData}: CodePageProps) {
         {codeData.url.replace(/.*\/([^/]*\/[^/]*)$/, '$1')}
       </StyledSubtitle>
       {codeData.content ? (
-        <StyledMarkdown
+        <QcrMarkdown
           variant="body1"
           // @ts-ignore: "component" does not exist
           component="div"
@@ -45,11 +50,11 @@ export default function CodePage({codeData}: CodePageProps) {
           dangerouslySetInnerHTML={{__html: codeData.content}}
         />
       ) : (
-        <Missing variant="body1">
+        <QcrMissingContentBox variant="body1">
           Content rendered from README.md of the repository, or a custom
           override specified by the &apos;details&apos; field of your repository
           data in &apos;/data/repositories.yaml&apos;
-        </Missing>
+        </QcrMissingContentBox>
       )}
     </Layout>
   );

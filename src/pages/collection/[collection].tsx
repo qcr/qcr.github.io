@@ -4,12 +4,12 @@ import React from 'react';
 import {Typography, styled} from '@mui/material';
 
 import {
-  ContentCard,
-  ContentCardProps,
-  FocusButton,
-  StyledMarkdown,
-  StyledTitle,
-} from 'sites-shared';
+  QcrContentCard,
+  QcrContentCardProps,
+  QcrFocusButton,
+  QcrMarkdown,
+  QcrTitle,
+} from 'qcr-sites-shared';
 
 import Layout from '../../components/layout';
 
@@ -42,9 +42,9 @@ const StyledSection = styled(Typography)({
 });
 
 interface CollectionPageProps {
-  code: ContentCardProps[];
+  code: QcrContentCardProps[];
   collectionData: CollectionContent;
-  datasets: ContentCardProps[];
+  datasets: QcrContentCardProps[];
 }
 
 export default function CollectionPage({
@@ -54,11 +54,11 @@ export default function CollectionPage({
 }: CollectionPageProps) {
   return (
     <Layout>
-      <StyledTitle variant="h3" color="primary">
+      <QcrTitle variant="h3" color="primary">
         {collectionData.name}
-      </StyledTitle>
+      </QcrTitle>
       {collectionData.url && (
-        <FocusButton
+        <QcrFocusButton
           newTab
           url={collectionData.url}
           text="Go to collection website"
@@ -66,7 +66,7 @@ export default function CollectionPage({
         />
       )}
       <StyledSpace />
-      <StyledMarkdown
+      <QcrMarkdown
         variant="body1"
         // @ts-ignore: "component" does not exist
         component="div"
@@ -80,7 +80,7 @@ export default function CollectionPage({
           </StyledSection>
           <StyledCards>
             {code.map((c, i) => (
-              <ContentCard key={i} {...c} />
+              <QcrContentCard key={i} {...c} />
             ))}
           </StyledCards>
         </>
@@ -92,7 +92,7 @@ export default function CollectionPage({
           </StyledSection>
           <StyledCards>
             {datasets.map((d, i) => (
-              <ContentCard key={i} {...d} />
+              <QcrContentCard key={i} {...d} />
             ))}
           </StyledCards>
         </>

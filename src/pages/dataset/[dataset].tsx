@@ -4,12 +4,12 @@ import React, {useState} from 'react';
 import {styled, Typography} from '@mui/material';
 
 import {
-  FocusButton,
-  Missing,
-  SimpleDialog,
-  StyledMarkdown,
-  StyledTitle,
-} from 'sites-shared';
+  QcrFocusButton,
+  QcrMissingContentBox,
+  QcrSimpleDialog,
+  QcrMarkdown,
+  QcrTitle,
+} from 'qcr-sites-shared';
 
 import Layout from '../../components/layout';
 
@@ -54,12 +54,12 @@ export default function DatasetPage({datasetData}: DatasetPageProps) {
   const [open, setOpen] = useState(false);
   return (
     <Layout>
-      <StyledTitle variant="h3" color="primary">
+      <QcrTitle variant="h3" color="primary">
         {datasetData.name}
-      </StyledTitle>
+      </QcrTitle>
 
       {_urlIsArray(datasetData) && (
-        <SimpleDialog
+        <QcrSimpleDialog
           open={open}
           onClose={() => {
             setOpen(false);
@@ -67,7 +67,7 @@ export default function DatasetPage({datasetData}: DatasetPageProps) {
           items={datasetData.url.map((d) => _datasetUrlToSimpleDialogItem(d))}
         />
       )}
-      <FocusButton
+      <QcrFocusButton
         url={_urlIsString(datasetData) ? datasetData.url : undefined}
         text={
           datasetData.url_type == 'external'
@@ -93,7 +93,7 @@ export default function DatasetPage({datasetData}: DatasetPageProps) {
         {datasetData.size}
       </StyledSubtitle>
       {datasetData.content ? (
-        <StyledMarkdown
+        <QcrMarkdown
           variant="body1"
           // @ts-ignore: "component" does not exist
           component="div"
@@ -101,11 +101,11 @@ export default function DatasetPage({datasetData}: DatasetPageProps) {
           dangerouslySetInnerHTML={{__html: datasetData.content}}
         />
       ) : (
-        <Missing variant="body1">
+        <QcrMissingContentBox variant="body1">
           Content rendered markdown file specified by the &apos;details&apos;
           field of your dataset data in &apos;/data/datasets.yaml&apos; (not
           sure what to use as a default if no value is provided?)
-        </Missing>
+        </QcrMissingContentBox>
       )}
     </Layout>
   );

@@ -4,9 +4,9 @@ import React from 'react';
 
 import {ThemeProvider} from '@mui/material/styles';
 
-import {qcrTheme} from 'sites-shared';
+import {qcrTheme} from 'qcr-sites-shared';
 
-import 'sites-shared/lib/styles/styles.css';
+import 'qcr-sites-shared/lib/styles/styles.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import 'github-markdown-css/github-markdown.css';
 import 'prismjs/themes/prism-tomorrow.css';

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Typography, styled} from '@mui/material';
 
-import {CardCarousel, ContentCardProps} from 'sites-shared';
+import {QcrCardCarousel, QcrContentCardProps} from 'qcr-sites-shared';
 
 import Layout from '../components/layout';
 
@@ -61,9 +61,9 @@ const StyledWelcome = styled(Typography)(({theme}) => ({
 }));
 
 interface HomePageProps {
-  mostPopular: ContentCardProps[];
-  mostRecent: ContentCardProps[];
-  featured: ContentCardProps[];
+  mostPopular: QcrContentCardProps[];
+  mostRecent: QcrContentCardProps[];
+  featured: QcrContentCardProps[];
   collectionCount: number;
   codeCount: number;
   datasetCount: number;
@@ -104,17 +104,17 @@ export default function HomePage({
         <StyledSection variant="h4" color="primary">
           Newest Additions
         </StyledSection>
-        <CardCarousel cardsData={mostRecent} />
+        <QcrCardCarousel cardsData={mostRecent} />
         <StyledSection variant="h4" color="primary">
           Most Popular
         </StyledSection>
-        <CardCarousel cardsData={mostPopular} />
+        <QcrCardCarousel cardsData={mostPopular} />
         {featured.length > 0 && (
           <>
             <StyledSection variant="h4" color="primary">
               Featured Collections
             </StyledSection>
-            <CardCarousel cardsData={featured} />
+            <QcrCardCarousel cardsData={featured} />
           </>
         )}
       </StyledContent>

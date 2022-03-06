@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 
 import {styled} from '@mui/material';
 
-import {BottomBar, TopBar, mq} from 'sites-shared';
+import {QcrBottomBar, QcrPage, QcrTopBar, qcr_mqs} from 'qcr-sites-shared';
 
 interface LayoutProps {
   children: React.ReactNode[];
@@ -32,18 +32,9 @@ const StyledList = styled(StyledMain)({
   maxWidth: '1700px',
 });
 
-const StyledPage = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '100vh',
-  a: {
-    color: 'inherit',
-  },
-});
-
 const StyledSpace = styled('div')({
   height: '128px',
-  [mq('tablet')]: {
+  [qcr_mqs('tablet')]: {
     height: '92px',
   },
 });
@@ -69,11 +60,11 @@ export default function Layout({
     : false;
   const Body = home ? StyledHome : list ? StyledList : StyledContent;
   return (
-    <StyledPage>
-      <TopBar selected={selected} title="Open Source" tabs={tabs} />
+    <QcrPage>
+      <QcrTopBar selected={selected} title="Open Source" tabs={tabs} />
       <StyledSpace />
       <Body>{children}</Body>
-      <BottomBar />
-    </StyledPage>
+      <QcrBottomBar />
+    </QcrPage>
   );
 }
