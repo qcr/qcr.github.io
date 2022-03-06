@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 
 import {styled} from '@mui/material';
 
-import {QcrBottomBar, QcrPage, QcrTopBar, qcr_mqs} from 'qcr-sites-shared';
+import {QcrBody, QcrBottomBar, QcrPage, QcrTopBar} from 'qcr-sites-shared';
 
 interface LayoutProps {
   children: React.ReactNode[];
@@ -11,32 +11,13 @@ interface LayoutProps {
   list?: boolean;
 }
 
-const StyledMain = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  flexGrow: 1,
-  margin: '0 auto',
-});
-
-const StyledContent = styled(StyledMain)({
-  maxWidth: '970px',
-  padding: '10px',
+const StyledHome = styled(QcrBody)({
+  maxWidth: 'initial',
   width: '100%',
 });
 
-const StyledHome = styled(StyledMain)({
-  width: '100%',
-});
-
-const StyledList = styled(StyledMain)({
+const StyledList = styled(QcrBody)({
   maxWidth: '1700px',
-});
-
-const StyledSpace = styled('div')({
-  height: '128px',
-  [qcr_mqs('tablet')]: {
-    height: '92px',
-  },
 });
 
 const tabs = [
@@ -58,11 +39,10 @@ export default function Layout({
     : r.asPath.startsWith('/dataset')
     ? 2
     : false;
-  const Body = home ? StyledHome : list ? StyledList : StyledContent;
+  const Body = home ? StyledHome : list ? StyledList : QcrBody;
   return (
     <QcrPage>
       <QcrTopBar selected={selected} title="Open Source" tabs={tabs} />
-      <StyledSpace />
       <Body>{children}</Body>
       <QcrBottomBar />
     </QcrPage>
