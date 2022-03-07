@@ -12,6 +12,7 @@ interface LayoutProps {
 }
 
 const StyledHome = styled(QcrBody)({
+  padding: '0px',
   maxWidth: 'initial',
   width: '100%',
 });
