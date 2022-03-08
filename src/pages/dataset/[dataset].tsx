@@ -60,6 +60,7 @@ export default function DatasetPage({datasetData}: DatasetPageProps) {
 
       {_urlIsArray(datasetData) && (
         <QcrSimpleDialog
+          title="Select dataset variant"
           open={open}
           onClose={() => {
             setOpen(false);
