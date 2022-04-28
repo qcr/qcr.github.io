@@ -22,8 +22,10 @@ const LIMIT_MOST_POPULAR = 10;
 const LIMIT_MOST_RECENT = 10;
 
 const StyledBanner = styled('img')({
+  marginTop: '-8px',
   objectFit: 'cover',
   objectPosition: '50% 52.5%',
+  width: '100%',
 });
 
 const StyledContent = styled('div')({
