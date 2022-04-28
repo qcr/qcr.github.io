@@ -15,12 +15,6 @@ const REQUIRE_REGEX = new RegExp(
   'g'
 );
 
-const _defaultBranchCache: {[key: string]: any} = {};
-
-function defaultBranchKey(repoUser: string, repoName: string) {
-  return `${repoUser}/${repoName}`;
-}
-
 function blobUriToRawUri(uri: string) {
   return uri.replace(
     /^(https?\:\/\/github\.com\/[^\/]*\/[^\/]*\/)blob/,
@@ -133,42 +127,11 @@ async function repoUriToHttpsUri(repoUri: string, repoContext?: string) {
       REPO_SCHEME.length
     )}`;
   }
-
-  // Get details about the repository (including the default branch)
   const r = repoUri.match(`^${REPO_SCHEME}([^\/]*)\/([^\/]*)\/(.*)$`);
   if (r === null) throw e;
-  const k = defaultBranchKey(r[1], r[2]);
-  let branch = _defaultBranchCache[k];
-  if (branch === null) {
-    // Waits for default branch currently being fetched
-    await new Promise<void>((resolve, _) => {
-      (function waitForBranch() {
-        if (_defaultBranchCache[k] !== null) return resolve();
-        setTimeout(waitForBranch, 50);
-      })();
-    });
-    branch = _defaultBranchCache[k];
-  } else if (typeof branch === 'undefined') {
-    // Starts the process of fetching a default branch
-    _defaultBranchCache[k] = null;
-    try {
-      const resp = await fetch(`https://api.github.com/repos/${r[1]}/${r[2]}`);
-      if (resp.status >= 400 && resp.status < 600) throw Error();
-      const j = await resp.json();
-      if (typeof j.default_branch === 'undefined') throw Error();
-      branch = j.default_branch;
-    } catch (err) {
-      branch = REPO_DEFAULT_BRANCH;
-      console.log(
-        `Failed to fetch default branch for '${k}', ` +
-          `using '${branch}' as fallback.`
-      );
-    }
-    _defaultBranchCache[k] = branch;
-  }
 
   // Convert the explicit repo URI to HTTPS and return the result
-  return `https://github.com/${r[1]}/${r[2]}/raw/${branch}/${r[3]}`;
+  return `https://github.com/${r[1]}/${r[2]}/raw/HEAD/${r[3]}`;
 }
 
 function shouldMark(uri: string) {

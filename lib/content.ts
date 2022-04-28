@@ -1,6 +1,6 @@
 import path from 'path';
 
-import {ContentCardProps} from 'sites-shared';
+import {QcrContentCardProps} from 'qcr-sites-shared';
 
 const DEFAULT_IMAGE_URL = '/qcr_logo_light_filled.svg';
 const VALID_TYPES = ['code', 'dataset', 'collection'];
@@ -70,7 +70,7 @@ class ContentError extends Error {
   }
 }
 
-function contentToContentCardProps(content: Content): ContentCardProps {
+function contentToContentCardProps(content: Content): QcrContentCardProps {
   return {
     linkUrl: `/${content.type}/${content.id}`,
     ...(content.image_fit && {mediaFit: content.image_fit}),
