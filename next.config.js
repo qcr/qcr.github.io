@@ -1,45 +1,60 @@
-const fs = require('fs');
-const optimisedImages = require('next-optimized-images');
-const path = require('path');
 const withPlugins = require('next-compose-plugins');
+const optimizedImages = require('next-optimized-images');
+const {PHASE_DEVELOPMENT_SERVER} = require('next/constants');
 
-const nextConfig = {
-  sassOptions: {
-    includePaths: ['node_modules'].map((d) => path.join(__dirname, d)),
-  },
-  trailingSlash: true,
-  webpack(config) {
-    config.resolve.roots = [__dirname];
-    config.module.rules.push({
-      test: /^repo:/,
-      loader: ['./lib/loaders/repo.js'],
-    });
-    config.module.rules.push({
-      test: /\.md$/,
-      loader: ['./lib/loaders/markdown.js'],
-    });
-    config.module.rules.push({
-      test: /\.yaml$/,
-      loader: ['./lib/loaders/yaml.js'],
-    });
-    config.module.rules.push({
-      test: /\.gif$/,
-      loader: ['./lib/loaders/gif.js'],
-    });
-    config.module.rules.push({
-      test: /\.csv$/,
-      loader: 'csv-loader',
-    });
-    return config;
-  },
-};
-
+/** @type {import('next').NextConfig} */
 module.exports = withPlugins(
+  [
     [
-      [
-        optimisedImages,
-        {handleImages: ['jpeg', 'png', 'svg', 'webp'], optimizeImages: true},
-      ],
+      optimizedImages,
+      {
+        ['!' + PHASE_DEVELOPMENT_SERVER]: {
+          handleImages: ['jpeg', 'png', 'svg', 'webp'],
+        },
+        inlineImageLimit: -1,
+        responsive: {
+          adapter: require('responsive-loader/sharp'),
+        },
+      },
     ],
-    nextConfig
+  ],
+  {
+    images: {disableStaticImages: true},
+    reactStrictMode: true,
+    trailingSlash: true,
+    webpack: (config, {dev}) => {
+      // config.cache = {
+      //   type: 'filesystem',
+      //   buildDependencies: {
+      //     config: [__filename],
+      //   },
+      // };
+      config.module.rules.push(
+        ...[
+          {
+            test: /\.md$/,
+            loader: './lib/loaders/markdown.js',
+          },
+          {
+            test: /\.csv$/,
+            loader: 'csv-loader',
+          },
+        ]
+      );
+      if (!dev) {
+        config.module.rules.push({
+          test: /\.gif$/,
+          loader: './lib/loaders/gif.js',
+        });
+        config.experiments.buildHttp = {
+          allowedUris: [/^https?:\/\/github\.com/],
+          frozen: false,
+        };
+      }
+      // config.infrastructureLogging = {
+      //   debug: /webpack\.cache/,
+      // };
+      return config;
+    },
+  }
 );

@@ -3,6 +3,7 @@ name: Multi-Lane Road Sideways-Camera Datasets
 type: dataset
 url: https://mega.co.nz/#F!8FEQiDzC!B57HWocLSlSjgSDqNjEWvQ
 image: ./multilane_sideways.png
+size: 761MB
 ---
 
 <p align="center"><img src="./multilane_sideways.png" alt="Example images from the multi-lane road sideways-camera datasets"/></p>

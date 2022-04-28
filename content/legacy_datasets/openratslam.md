@@ -4,10 +4,15 @@ type: dataset
 url:
   - name: iRat 2011 Australia
     url: https://mega.co.nz/#!FAlXyZbB!6rMpQ6EE4LQIKmZvy5zN7Stdu4pIzZm2h3TnHkG2wms
+    size: 861MB
   - name: St Lucia 2007
     url: https://mega.co.nz/#!od8xVbKJ!E81hKj-M1-CybBkX1dLe3htAJw-gP9MAQIEeZkPwuUY
+    size: 2.31GB
   - name: Oxford's New College 2008
     url: https://mega.co.nz/#!oJdwxTAJ!EB-M_gLWq8Sy2uFvmER-D_uTZ7_Rd4v-5ZUhu1YGNCQ
+    size: 1.18GB
+url_type: list
+size: 3.6GB
 ---
 
 A ROS and OpenCV version of RatSLAM is available at: [Google Code](https://code.google.com/archive/p/ratslam/)
