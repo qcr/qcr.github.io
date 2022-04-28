@@ -39,14 +39,14 @@ jobs:
           REPO_CACHE='.repo_cache' npm run build
       - name: Push result to gh_pages branch
         run: |
-          cp -r .next-out/ ../
+          cp -r out/ ../
           git fetch --all
           git checkout -f gh_pages
           git reset --hard build_root
           git clean -d -x -f
           rm -rf .repo_cache
-          cp -r ../.next-out/* .
-          cp ../.next-out/.repo* .
+          cp -r ../out/* .
+          cp ../out/.repo* .
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Action"
           git add .
