@@ -46,7 +46,10 @@ module.exports = withPlugins(
           test: /\.gif$/,
           loader: './lib/loaders/gif.js',
         });
-        config.experiments.buildHttp = [/^https?:\/\/github\.com/];
+        config.experiments.buildHttp = {
+          allowedUris: [/^https?:\/\/github\.com/],
+          frozen: false,
+        };
       }
       // config.infrastructureLogging = {
       //   debug: /webpack\.cache/,
