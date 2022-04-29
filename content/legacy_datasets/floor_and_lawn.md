@@ -3,6 +3,7 @@ name: Day-night vacuum-cleaner robot and lawn datasets
 type: dataset
 url: https://mega.nz/#!ZUVhjCjK!E5vxmbVDwo18_bVkuz5vVMV_5Fiu3GJo9M0Z8YUufNs
 image: ./floor_and_lawn.jpg
+size: 400MB
 ---
 
 ![Floor and lawn dataset sample](./floor_and_lawn.jpg)

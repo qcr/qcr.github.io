@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout site code
         uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: '12'
+          node-version: '16'
       - name: Cache dependencies
         id: cache-deps
         uses: actions/cache@v2
@@ -36,17 +36,15 @@ jobs:
           npm install
       - name: Build
         run: |
-          REPO_CACHE='.repo_cache' npm run build
+          npm run build && npm run export
       - name: Push result to gh_pages branch
         run: |
-          cp -r .next-out/ ../
+          cp -r out/ ../
           git fetch --all
           git checkout -f gh_pages
           git reset --hard build_root
           git clean -d -x -f
-          rm -rf .repo_cache
-          cp -r ../.next-out/* .
-          cp ../.next-out/.repo* .
+          cp -r ../out/* .
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Action"
           git add .

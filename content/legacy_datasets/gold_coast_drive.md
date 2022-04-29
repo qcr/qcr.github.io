@@ -2,13 +2,17 @@
 name: Gold Coast drive
 type: dataset
 url:
-  - name: Full video (~15GB)
+  - name: Full video
     url: https://mega.nz/#!4NFzmJyI!fkgjjEN-OJ9ceYRtUMT5VXYVHo8GhakpbuIs-Ih5FjE
-  - name: Low resolution, highly compressed video (~263MB)
+    size: 15.24GB
+  - name: Low resolution, highly compressed video
     url: https://mega.nz/#!EUlmQRqD!pOD6Ob7i2G5SDdmC7cvcjBK0K4cxx-drjHlFqWhBMgo
+    size: 257.2MB
   - name: Short sample segment (~314MB)
     url: https://mega.nz/#!1YUHzTIR!46f0xwKy57_9Zdbay466u-vWkMUgIJjgPbJW5lqLjyQ
-size: 15.5GB
+    size: 314.8MB
+url_type: list
+size: 15.8GB
 image: ./gold_coast_sample.jpg
 ---
 

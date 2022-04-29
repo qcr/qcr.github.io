@@ -4,13 +4,19 @@ type: dataset
 url:
   - name: Daytime drive recorded on a Sony A7s
     url: https://mega.nz/#!1JVy0CxQ!kKxjcJB6Ma5ML4ERJZzWv3AcFV9j-V3vMpbZLX68JqM
+    size: 785.9MB
   - name: Nighttime drive recorded on a Sony A7s
     url: https://mega.nz/#!dAVG1KJD!2GHfMxj_kUiALfCjGDGH8ERQZO1qNmRaqNUHHTK5Pmo
+    size: 489.2MB
   - name: Daytime drive recorded on a Nikon D5100
     url: https://mega.nz/#!8Fdgkabb!S_FFvCmuH3RvebV9NBx5m28o8PMOp1eBwRVW0-LVcb4
+    size: 566.5MB
   - name: Nighttime drive recorded on a Niko D5100
     url: https://mega.nz/#!dQEQRSRI!cm_Xgm1ceGbHara8xX4vbn3X5gYtpPXamtS5WzABfJk
+    size: 1.11GB
+url_type: list
 image: ./mt_cootha.jpg
+size: 2.8GB
 ---
 
 ![Mt Cootha Day Night dataset snapshot](./mt_cootha.jpg)
