@@ -9,7 +9,7 @@ code:
   - spatialmath-python
   - robotics-toolbox-python
   - swift
-feature: 2
+feature: 99999
 ---
 
 Python Robotics is a collection of software packages providing robotics-specific functionality to Python. While leveraging Python's advantages of portability, ubiquity and support, and the capability of the open-source ecosystem for linear algebra (numpy, scipy), graphics (matplotlib, three.js, WebGL), interactive development (jupyter, jupyterlab, mybinder.org), and documentation (sphinx).
