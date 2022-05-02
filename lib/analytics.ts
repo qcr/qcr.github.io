@@ -55,7 +55,7 @@ function orderByPopularity() {
   const start = ANALYTICS.findIndex(
     (l) =>
       l.length === 2 &&
-      l[0] === 'Page path and screen class' &&
+      l[0] === 'Page path + query string and screen class' &&
       l[1] === 'Views'
   );
   const end = ANALYTICS.findIndex((l, i) => i > start && l[0] === '');
