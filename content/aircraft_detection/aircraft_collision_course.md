@@ -14,3 +14,6 @@ The dataset consists of 15 uncompressed, high-resolution image sequences contain
 
 Ground truth labels and videos of the image sequences are also provided.
 
+This dataset is licensed under the [BSD-3 license](https://opensource.org/licenses/BSD-3-Clause). If you use this dataset please cite the following paper:
+
+_Martin, Jasmin, Jenna Riseley, and Jason J. Ford. "A Dataset of Stationary, Fixed-wing Aircraft on a Collision Course for Vision-Based Sense and Avoid." arXiv preprint arXiv:2112.02735 (2021)._
