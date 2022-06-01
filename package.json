@@ -64,7 +64,7 @@
     "prettier": "^2.5.1",
     "responsive-loader": "^2.3.0",
     "sass": "^1.49.8",
-    "sharp": "^0.30.1",
+    "sharp": "^0.30.5",
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.5",
     "url-loader": "^4.1.1",
