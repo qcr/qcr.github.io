@@ -2,7 +2,7 @@
 
 [![QUT Centre for Robotics Open Source](https://github.com/qcr/qcr.github.io/raw/master/misc/badge.svg)](https://qcr.github.io)
 
-![Website snapshot](./docs/snapshot.jpg)
+![Website snapshot](./.github/snapshot.jpg)
 
 This repository holds the QCR open source website; a central place where the [QUT Centre for Robotics](https://research.qut.edu.au/qcr/) lists its code and datasets for the community.
 
