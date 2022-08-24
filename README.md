@@ -1,6 +1,8 @@
 # QCR Open Source Website
 
 [![QUT Centre for Robotics Open Source](https://github.com/qcr/qcr.github.io/raw/master/misc/badge.svg)](https://qcr.github.io)
+![Primary language](https://img.shields.io/github/languages/top/qcr/qcr.github.io)
+[![License](https://img.shields.io/github/license/qcr/qcr.github.io)](./LICENSE.txt)
 
 ![Website snapshot](./.github/snapshot.jpg)
 
