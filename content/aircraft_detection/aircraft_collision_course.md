@@ -1,7 +1,7 @@
 ---
 name: Aircraft Collision Course Dataset
 type: dataset
-url: https://cloudstor.aarnet.edu.au/plus/s/qHjCKYrFagWBHL5
+url: https://huggingface.co/datasets/jasminmartin/vision_based_aircraft_detection_dataset/tree/main
 image: ./aircraft_collision_course.png
 size: 43.1GB
 ---
@@ -16,4 +16,4 @@ Ground truth labels and videos of the image sequences are also provided.
 
 This dataset is licensed under the [BSD-3 license](https://opensource.org/licenses/BSD-3-Clause). If you use this dataset please cite the following paper:
 
-_Martin, Jasmin, Jenna Riseley, and Jason J. Ford. "A Dataset of Stationary, Fixed-wing Aircraft on a Collision Course for Vision-Based Sense and Avoid." arXiv preprint arXiv:2112.02735 (2021)._
+_Martin, J., Riseley, J., & Ford, J. J. (2022) A Dataset of Stationary, Fixed-wing Aircraft on a Collision Course for Vision-Based Sense and Avoid. In Proceedings of the 2022 International Conference on Unmanned Aircraft Systems (ICUAS). Institute of Electrical and Electronics Engineers Inc., United States of America, pp. 144-149._
