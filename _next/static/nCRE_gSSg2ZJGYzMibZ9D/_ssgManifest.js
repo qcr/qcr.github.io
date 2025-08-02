@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002F","\u002F[list]","\u002Fcode\u002F[code]","\u002Fcollection\u002F[collection]","\u002Fdataset\u002F[dataset]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
