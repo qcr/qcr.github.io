@@ -1,7 +1,7 @@
 ---
 name: St Lucia multiple times of day
 type: dataset
-url: https://wiki.qut.edu.au/display/cyphy/St+Lucia+Multiple+Times+of+Day
+url: https://huggingface.co/datasets/medwa126/UQStLuciaMultipleToD/
 url_type: external
 image: ./st_lucia_multiple.jpg
 size: 1.46GB
