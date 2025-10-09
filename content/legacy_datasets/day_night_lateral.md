@@ -1,7 +1,7 @@
 ---
 name: Day and Night with Lateral Pose Change
 type: dataset
-url: https://wiki.qut.edu.au/pages/viewpage.action?pageId=175739622
+url: https://huggingface.co/datasets/medwa126/GardensPointWalking
 url_type: external
 image: ./day_night_lateral.jpg
 size: 67.9MB
